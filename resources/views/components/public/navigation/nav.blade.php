@@ -11,5 +11,7 @@
         </a>
 
         <x-public.navigation.links />
+
+        <x-public.navigation.language.selector/>
     </div>
 </nav>

@@ -1472,7 +1472,22 @@
 </head>
 <body>
 
-{{ $slot }}
+<noscript>
+    <p class="no-js__message">Pour accéder à toutes les fonctionnalités de ce site, vous devez activer JavaScript.
+        <br>Voici les <a href="https://www.enable-javascript.com/fr/" hreflang="fr"
+                         title="vers le site enable-javascript">instructions pour activer JavaScript dans votre
+            navigateur Web</a>.</p>
+</noscript>
+
+<h1>{{ $title }}</h1>
+
+<a href="#">Aller au contenu principal</a>
+
+<header>
+    <x-public.navigation.nav/>
+</header>
+
+{{$slot}}
 
 </body>
 </html>

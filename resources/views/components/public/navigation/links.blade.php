@@ -1,26 +1,26 @@
 @php
     $links = [
         [
-            'name' => 'Accueil',
-            'title' => 'Aller à la page d\'accueil',
+            'name' => __('/public/navigation/header.home'),
+            'title' => __('/public/navigation/header.go_home'),
             'href' => route('home'),
             'current' => request()->routeIs('home') ? 'text-red-strong hover:border-b-2 border-red-strong' : '',
         ],
         [
-            'name' => 'Nos Résidents',
-            'title' => 'Aller à la page des animaux',
+            'name' => __('/public/navigation/header.animals'),
+            'title' => __('/public/navigation/header.go_animals'),
             'href' => route('public.animals.index'),
             'current' => request()->routeIs('public.animals.index') ? 'text-red-strong hover:border-b-2 border-red-strong' : '',
         ],
         [
-            'name' => 'À propos',
-            'title' => 'Aller à la page à propos',
+            'name' => __('/public/navigation/header.about'),
+            'title' => __('/public/navigation/header.go_about'),
             'href' => route('public.about'),
             'current' => request()->routeIs('public.about') ? 'text-red-strong border-b-2 border-red-strong' : '',
         ],
         [
-            'name' => 'Nous Contact',
-            'title' => 'Aller à la page de contact',
+            'name' => __('/public/navigation/header.contact_us'),
+            'title' => __('/public/navigation/header.go_contact_us'),
             'href' => route('public.contact'),
             'current' => request()->routeIs('public.contact') ? 'text-red-strong border-b-2 border-red-strong' : '',
         ],

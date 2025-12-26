@@ -1,9 +1,9 @@
-<label for="lang-switch" class="sr-only">Langue du site</label>
+<label for="selectLocal" class="sr-only">Langue du site</label>
 
 <div class="relative">
     <select
-        id="lang-switch"
-        name="lang"
+        id="select-local"
+        name="selectLocal"
         class="
             appearance-none
             bg-transparent
@@ -18,9 +18,17 @@
             focus:outline-none
         "
     >
-        <option selected>FR</option>
-        <option>EN</option>
-        <option>DE</option>
-        <option>NL</option>
+        <option value="{{ __('public/navigation/lang.fr') }}" selected title="{{ __('public/navigation/lang.switch_fr')
+        }}">{{ __('public/navigation/lang.fr')
+        }}</option>
+        <option  value="{{ __('public/navigation/lang.en') }}" title="{{ __('public/navigation/lang.switch_en')
+        }}">{{ __('public/navigation/lang.en')
+        }}</option>
+        <option  value="{{ __('public/navigation/lang.nl') }}" title="{{ __('public/navigation/lang.switch_nl')
+        }}">{{ __('public/navigation/lang.nl')
+        }}</option>
+        <option value="{{ __('public/navigation/lang.de') }}" title="{{ __('public/navigation/lang.switch_de')
+        }}">{{ __('public/navigation/lang.de')
+        }}</option>
     </select>
 </div>

@@ -1,3 +1,3 @@
-<x-layouts.guest title="Accueil - Les Pattes Heureuses">
+<x-layouts.guest title="{{ __('public/home.title') }}">
 
 </x-layouts.guest>

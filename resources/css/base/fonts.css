@@ -1,3 +1,5 @@
+/* --- Raleway --- */
+
 @font-face {
     font-family: "Raleway";
     font-style: normal;
@@ -36,4 +38,38 @@
     font-weight: 900;
     font-display: swap;
     src: url("../../fonts/Raleway-Black.ttf") format("truetype");
+}
+
+/* --- Lora --- */
+
+@font-face {
+    font-family: "Lora";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../fonts/Lora-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Lora";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../fonts/Lora-Italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Lora";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../../fonts/Lora-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Lora";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../../fonts/Lora-Bold.ttf") format("truetype");
 }

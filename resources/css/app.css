@@ -1,8 +1,25 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "./base/breakpoints.css";
+@import "./base/fonts.css";
+
+@import "./partials/select.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans:
+        "Raleway", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-serif: "Lora", serif;
+
+    --color-red-light: #edddd4;
+    --color-red-normal: #c54537;
+    --color-red-strong: #772f25;
+
+    --color-blue-turquoise: #197378;
+    --color-blue-strong: #283e3b;
+
+    --color-white: #ffffff;
+    --color-black: #000000;
 }

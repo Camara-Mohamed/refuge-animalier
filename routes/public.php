@@ -3,8 +3,6 @@
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', 'fr');
-
 Route::prefix('{locale}')->middleware(SetLocale::class)->group(function (){
     Route::get('/'.__('public/routes.home'), function () {
         return view('home');

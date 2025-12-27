@@ -15,13 +15,13 @@ it('home route returns 200 for valid locales', function ($locale) {
 })->with(['fr', 'en', 'nl', 'de']);
 
 it('animals route returns 200 for valid locales', function ($locale) {
-    $response = $this->get("/{$locale}/nos-animaux");
+    $response = $this->get("/{$locale}/animals");
 
     $response->assertStatus(200);
 })->with(['fr', 'en', 'nl', 'de']);
 
 it('contact route returns 200 for valid locales', function ($locale) {
-    $response = $this->get("/{$locale}/nous-contacter");
+    $response = $this->get("/{$locale}/contact");
 
     $response->assertStatus(200);
 })->with(['fr', 'en', 'nl', 'de']);

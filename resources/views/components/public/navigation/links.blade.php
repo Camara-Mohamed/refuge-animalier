@@ -49,5 +49,5 @@
         </li>
     @endforeach
 
-    <x-public.navigation.language.selector />
+    <x-public.navigation.language.dropdown />
 </ul>

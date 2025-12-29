@@ -20,4 +20,15 @@ return  [
     'story_link_title' => 'Dévenir bénévole',
     'alt_story_img' => 'Dévenir bénévole',
 
+    'stats_title' => 'Notre impact en quelques chiffres',
+    'stats_number_1' => '+120',
+    'stats_number_1_content' => 'animaux sauvés',
+    'stats_number_2' => '18',
+    'stats_number_2_content' => 'places d’accueil',
+    'stats_number_3' => '10+ ans',
+    'stats_number_3_content' => 'd’expérience.',
+    'stats_number_4' => '100 %',
+    'stats_number_4_content' => 'engagement',
+
+
 ];

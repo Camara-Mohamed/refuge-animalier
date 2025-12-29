@@ -8,7 +8,7 @@
 <a
     href="{{ $href }}"
     title="{{ $title }}"
-    class="{{ $base }}"
+    {{ $attributes(['class' => $base]) }}
 >
     {{ $slot }}
 </a>

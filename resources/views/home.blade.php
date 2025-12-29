@@ -24,6 +24,6 @@
             </figure>
         </div>
     </x-public.sections.section>
-<x-public.sections.stats></x-public.sections.stats>
+    <x-public.sections.stats></x-public.sections.stats>
 
 </x-layouts.guest>

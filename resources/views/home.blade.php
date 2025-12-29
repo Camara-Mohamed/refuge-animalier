@@ -1,9 +1,6 @@
 <x-layouts.guest title="{{ __('public/home.title') }}">
     <x-public.sections.hero></x-public.sections.hero>
-    <section class="py-16 px-20 flex flex-col gap-8 text-blue-strong transition-all duration-300 ease-in-out">
-        <h2 class="font-serif font-bold text-4xl">
-            {{ __('public/home.story_title') }}
-        </h2>
+    <x-public.sections.section title="{{ __('public/home.story_title') }}">
 
         <div class="flex justify-between gap-8">
             <div class="flex flex-col gap-6">
@@ -21,12 +18,12 @@
             </div>
 
             <figure class="flex">
-                <img src="{{ asset('assets/img/public/hero_bg_2_1280.webp') }}"
-                     alt="{{ __('public/home.alt_story_img') }}"
-                     class="rounded-lg w-full h-full object-cover">
+                <x-public.sections.image src="{{ asset('assets/img/public/hero_bg_2_1280.webp') }}"
+                     alt="{{ __('public/home.alt_story_img') }}">
+                </x-public.sections.image>
             </figure>
         </div>
-    </section>
+    </x-public.sections.section>
 
 
 </x-layouts.guest>

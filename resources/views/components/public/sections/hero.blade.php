@@ -17,22 +17,22 @@
                 {{ __('public/home.hero_subtitle') }}
             </p>
 
-            <div class="flex gap-4 text-base font-bold mt-8">
-                <x-public.navigation.link
-                    href="#"
-                    class="px-4 py-3 bg-red-strong
-                    rounded-lg flex justify-between items-center text-white border
-                    border-red-strong"
-                    title="{{ __('public/home.title_hero_button_1') }}">
-                    {{ __('public/home.hero_button_1') }}
-                </x-public.navigation.link>
-                <x-public.navigation.link
-                    href="#"
-                    class="px-4 py-3 bg-white rounded-lg flex justify-between items-center text-red-strong border
-                    border-white"
-                    title="{{ __('public/home.title_hero_button_2') }}">
-                    {{ __('public/home.hero_button_2') }}
-                </x-public.navigation.link>
+            <div class="flex gap-4 mt-8">
+                <x-buttons.button
+                        href="#"
+                        title="{{ __('public/home.title_hero_button_1') }}"
+                        class="bg-red-strong border-red-strong text-white"
+                >
+                        {{ __('public/home.hero_button_1') }}
+                </x-buttons.button>
+
+                <x-buttons.button
+                        href="#"
+                        title="{{ __('public/home.title_hero_button_2') }}"
+                        class="bg-white border-red-strong text-red-strong"
+                >
+                        {{ __('public/home.hero_button_2') }}
+                </x-buttons.button>¬
             </div>
         </div>
     </div>

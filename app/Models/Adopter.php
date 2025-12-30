@@ -19,13 +19,13 @@ class Adopter extends Model
         'number',
         'city',
         'postal_code',
-        'house',
-        'garden',
+        'house_type',
+        'have_garden',
     ];
 
     protected $casts = [
-        'garden' => 'boolean',
-        'house' => House::class,
+        'have_garden' => 'boolean',
+        'house_type' => House::class,
     ];
 
     public function adoptions():HasMany

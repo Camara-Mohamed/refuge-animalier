@@ -16,8 +16,8 @@ class Animal extends Model
 
     protected $fillable = [
         'name',
-        'genre',
-        'age',
+        'gender',
+        'birth_date',
         'chip',
         'description',
         'status',
@@ -25,7 +25,7 @@ class Animal extends Model
         'animal_picture_id',
         'user_id',
         'race_id',
-        'species_id',
+        'specie_id',
         'coat_id',
     ];
 
@@ -40,12 +40,12 @@ class Animal extends Model
         return $this->belongsTo(Race::class);
     }
 
-    public function species():BelongsTo
+    public function specie():BelongsTo
     {
         return $this->belongsTo(Specie::class);
     }
 
-    public function coat():BelongsTo
+    public function coats():BelongsTo
     {
         return $this->belongsTo(Coat::class);
     }
@@ -55,17 +55,17 @@ class Animal extends Model
         return $this->hasMany(Note::class);
     }
 
-    public function vaccines():BelongsToMany
+    public function vaccine():BelongsToMany
     {
         return $this->belongsToMany(Vaccine::class);
     }
 
-    public function adoptions():HasMany
+    public function adoption():HasMany
     {
         return $this->hasMany(Adoption::class);
     }
 
-    public function pictures()
+    public function picture()
     {
         return $this->hasMany(AnimalPicture::class);
     }

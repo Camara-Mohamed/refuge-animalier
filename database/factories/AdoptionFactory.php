@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\AnimalStatus;
+use App\Enums\AdoptionStatus;
 use App\Models\Adopter;
 use App\Models\Adoption;
 use App\Models\Animal;
@@ -18,8 +18,8 @@ class AdoptionFactory extends Factory{
         return [
             'adoption_date' => Carbon::now(),
             'message' => $this->faker->text(),
-            'status' => $this->faker->randomElement([AnimalStatus::IN_PROCESS, AnimalStatus::ADOPTED,
-                AnimalStatus::ADOPTABLE]),
+            'status' => $this->faker->randomElement([AdoptionStatus::ACCEPTED, AdoptionStatus::REJECTED,
+                AdoptionStatus::SUBMITTED, AdoptionStatus::QUEUE]),
             'adopter_id' => Adopter::factory(),
             'animal_id' => Animal::factory(),
             'user_id' => User::factory(),

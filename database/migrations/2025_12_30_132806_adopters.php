@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('postal_code');
             $table->enum('house_type', ['apartment', 'house', 'studio', 'loft']);
-            $table->boolean('have_garden');
+            $table->boolean('have_garden')->default(false);
             $table->timestamps();
         });
 

@@ -20,8 +20,8 @@ class AdopterFactory extends Factory{
             'number' => $this->faker->buildingNumber(),
             'city' => $this->faker->city(),
             'postal_code' => $this->faker->postcode(),
-            'garden' => $this->faker->randomElement([true, false]),
-            'house' => $this->faker->randomElement([House::APARTMENT, House::LOFT, House::HOUSE, House::STUDIO]),
+            'have_garden' => $this->faker->boolean(),
+            'house_type' => $this->faker->randomElement([House::APARTMENT, House::LOFT, House::HOUSE, House::STUDIO]),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

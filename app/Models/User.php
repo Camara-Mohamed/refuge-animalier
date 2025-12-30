@@ -3,8 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -35,17 +37,29 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function animals():HasMany
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(Animal::class);
+    }
+
+    public function notes():HasMany
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function adoptions():HasMany
+    {
+        return $this->hasMany(Adoption::class);
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRole::ADMIN->value;
+    }
+
+    public function isVolunteer(): bool
+    {
+        return $this->role === UserRole::VOLUNTEER->value;
     }
 
     /**
@@ -58,5 +72,14 @@ class User extends Authenticatable
             ->take(2)
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'availabilities' => 'array',
+        ];
     }
 }

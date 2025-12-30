@@ -1,7 +1,5 @@
 @props([
     'for' => '',
-    'id' => '',
-    'name' => '',
     'type' => '',
     'class_label' => '',
     'class_input' => '',
@@ -13,14 +11,14 @@
 
 <div>
     <label for="{{ $for }}" {{ $attributes->merge(['class' => $class_label]) }}>
-        {{ $label }}
+        {{ $slot }}
 
         @if($required)
             <small class="{{ $class_require }}"><abbr title="{{ __('public/form.abbr_require') }}">*</abbr></small>
         @endif
     </label>
 
-    <input type="{{ $type }}" name="{{ $for }}" id="{{ $id }}" {{ $attributes->merge(['class' => $class_input]) }}
+    <input type="{{ $type }}" name="{{ $for }}" id="{{ $for }}" class="{{ $class_input }}"
     placeholder="{{ $placeholder }}">
 
     @error($for)

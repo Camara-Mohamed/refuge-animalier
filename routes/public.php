@@ -19,4 +19,8 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function (){
     Route::get('/contact', function () {
         return view('public.contact');
     })->name('public.contact');
+
+    Route::get('/volunteer', function () {
+        return view('public.volunteer');
+    })->name('public.volunteer');
 });

@@ -12,6 +12,7 @@ return  [
     'animal_found' => 'animal trouvé',
     'animals_found' => 'animals trouvés',
     'reset' => 'Réinitialiser',
+    'title_reset' => 'Réinitialiser le filtre',
     'not_found' => 'Aucun autre animal trouvé.',
 
     'filtre_sexe' => 'Choisir un sexe',
@@ -26,7 +27,5 @@ return  [
     'filtre_race_beagle' => 'beagle',
     'filtre_species_dog' => 'Chien',
     'filtre_species_cat' => 'Chat',
-
-
 
 ];

@@ -19,7 +19,7 @@
 
             <div class="flex gap-4 mt-8">
                 <x-buttons.button
-                        href="#"
+                        href="{{ route('public.animals.index', app()->getLocale()) }}"
                         title="{{ __('public/home.title_hero_button_1') }}"
                         class="bg-red-strong border-red-strong text-white
                         hover:bg-white hover:text-red-strong hover:border-red-strong"
@@ -28,7 +28,7 @@
                 </x-buttons.button>
 
                 <x-buttons.button
-                        href="#"
+                        href="{{ route('public.volunteer', app()->getLocale()) }}"
                         title="{{ __('public/home.title_hero_button_2') }}"
                         class="bg-white border-white text-red-strong
                         hover:bg-red-strong hover:text-white hover:border-red-strong"

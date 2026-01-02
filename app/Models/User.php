@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasMany(Note::class);
     }
 
-    public function adoptions():HasMany
+    public function adoption():HasMany
     {
         return $this->hasMany(Adoption::class);
     }

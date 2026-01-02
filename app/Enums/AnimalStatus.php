@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum AnimalStatus: string
+enum AnimalStatus:String
+
 {
     case ADOPTED = 'adopted';
     case ADOPTABLE = 'adoptable';

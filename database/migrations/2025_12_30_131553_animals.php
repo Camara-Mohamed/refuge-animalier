@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('animals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('genre', ['male', 'female']);
+            $table->enum('gender', ['male', 'female']);
             $table->date('birth_date')->nullable();
             $table->string('chip')->nullable();
             $table->text('description')->nullable();

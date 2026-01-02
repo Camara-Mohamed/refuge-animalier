@@ -7,7 +7,6 @@ use App\Enums\Gender;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Animal extends Model
@@ -45,7 +44,7 @@ class Animal extends Model
         return $this->belongsTo(Specie::class);
     }
 
-    public function coats():BelongsTo
+    public function coat():BelongsTo
     {
         return $this->belongsTo(Coat::class);
     }
@@ -55,17 +54,12 @@ class Animal extends Model
         return $this->hasMany(Note::class);
     }
 
-    public function vaccine():BelongsToMany
-    {
-        return $this->belongsToMany(Vaccine::class);
-    }
-
     public function adoption():HasMany
     {
         return $this->hasMany(Adoption::class);
     }
 
-    public function picture()
+    public function pictures(): HasMany
     {
         return $this->hasMany(AnimalPicture::class);
     }

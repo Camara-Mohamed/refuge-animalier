@@ -28,7 +28,7 @@ class Adopter extends Model
         'house_type' => House::class,
     ];
 
-    public function adoptions():HasMany
+    public function adoption():HasMany
     {
         return $this->hasMany(Adoption::class);
     }

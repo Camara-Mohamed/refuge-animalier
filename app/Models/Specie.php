@@ -18,4 +18,9 @@ class Specie extends Model
     {
         return $this->hasMany(Animal::class);
     }
+
+    public function vaccines(): HasMany
+    {
+        return $this->hasMany(Vaccine::class);
+    }
 }

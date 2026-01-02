@@ -19,9 +19,9 @@ class AnimalFactory extends Factory{
     {
         return [
             'name' => $this->faker->name(),
-            'genre' =>$this->faker->randomElement([Gender::MALE->value, Gender::FEMALE->value]),
+            'gender' =>$this->faker->randomElement([Gender::MALE->value, Gender::FEMALE->value]),
             'birth_date' => Carbon::now(),
-            'chip' => $this->faker->uuid,
+            'chip' => '#' . $this->faker->numerify('######'),
             'description' => $this->faker->text(),
             'status' => $this->faker->randomElement([
                 AnimalStatus::ADOPTABLE->value, AnimalStatus::IN_PROCESS->value, AnimalStatus::ADOPTED->value,

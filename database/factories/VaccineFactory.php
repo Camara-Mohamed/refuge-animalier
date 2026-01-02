@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Specie;
 use App\Models\Vaccine;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
@@ -13,6 +14,7 @@ class VaccineFactory extends Factory{
     {
         return [
             'name' => $this->faker->name(),
+            'specie_id' => Specie::factory(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

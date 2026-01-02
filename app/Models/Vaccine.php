@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Vaccine extends Model
 {
@@ -12,10 +11,11 @@ class Vaccine extends Model
 
     protected $fillable = [
         'name',
+        'specie_id',
     ];
 
-    public function animals():BelongsToMany
+    public function specie(): BelongsTo
     {
-        return $this->belongsToMany(Animal::class);
+        return $this->belongsTo(Specie::class);
     }
 }

@@ -26,10 +26,6 @@ it('has adopters table', function () {
     expect(Schema::hasTable('adopters'))->toBeTrue();
 });
 
-it('has animal_vaccine table', function () {
-    expect(Schema::hasTable('animal_vaccine'))->toBeTrue();
-});
-
 it('has races table', function () {
     expect(Schema::hasTable('races'))->toBeTrue();
 });

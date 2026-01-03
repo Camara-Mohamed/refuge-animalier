@@ -43,15 +43,15 @@
     Aller au contenu principal
 </a>
 
-<x-public.navigation.header></x-public.navigation.header>
+<header>
+    <x-public.navigation.nav />
+</header>
 
 <main id="main-content">
 
     {{ $slot }}
 
 </main>
-
-<x-public.navigation.footer></x-public.navigation.footer>
 
 </body>
 

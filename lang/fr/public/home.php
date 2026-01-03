@@ -11,6 +11,8 @@ return  [
     'title_hero_button_1' => 'Voir la liste des animaux',
     'hero_button_2' => 'Devenir bénévole',
     'title_hero_button_2' => 'Dévenir bénévole',
+    'hero_button_3' => 'Nous contacter',
+    'title_hero_button_3' => 'Nous contacter',
 
     'story_title' => 'Un refuge dédié au bien-être animal depuis 2015',
     'story_content_1' => 'Les Pattes Heureuses est bien plus qu\'un simple refuge. C\'est un havre de paix où chaque animal abandonné retrouve espoir, soins et dignité en attendant sa famille d\'adoption.',
@@ -30,5 +32,7 @@ return  [
     'stats_number_4' => '100 %',
     'stats_number_4_content' => 'engagement',
 
+    'cta_title' => 'Prêt à faire la différence ?',
+    'cta_subtitle' => 'Rejoignez notre communauté et aidez-nous à offrir une meilleure vie aux animaux dans le besoin.',
 
 ];

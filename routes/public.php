@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnimalController;
+use App\Http\Controllers\MessageController;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function (){
     Route::get('/contact', function () {
         return view('public.contact');
     })->name('public.contact');
+    Route::post('/contact', [MessageController::class, 'store'])
+        ->name('public.contact.store');
 
     Route::get('/volunteer', function () {
         return view('public.volunteer');

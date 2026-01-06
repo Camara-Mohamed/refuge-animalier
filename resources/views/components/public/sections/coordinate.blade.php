@@ -44,7 +44,7 @@
 <div class="flex flex-col gap-6">
     @foreach($infos as $info)
         <div class="flex gap-4">
-            <div class="w-12 h-12 {{ $bgColors[$info['color']] }} rounded-full flex items-center justify-center">
+            <div class="w-12 h-12 {{ $bgColors[$info['color']] }} rounded-2xl flex items-center justify-center">
                 <x-dynamic-component
                     :component="'icons.' . $info['icon']"
                     class="{{ $fillColors[$info['color']] }}"

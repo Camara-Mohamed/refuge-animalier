@@ -50,12 +50,9 @@
             <ul class="capitalize flex gap-2">
                 @foreach(config('app.locales') as $locale)
                     <li>
-                        <x-public.navigation.link
-                            href="{{ route($currentRoute, array_merge($params, ['locale' => $locale])) }}"
-                            :title="__('public/navigation/lang.switch_'.$locale)"
-                            class="hover:underline"
-                            :hrefLang="$locale"
-                        >
+                        <x-public.navigation.link :href="route($currentRoute, array_merge($params, ['locale' =>
+                        $locale]))" :title="__('public/navigation/lang.switch_'.$locale)" class="hover:underline"
+                                                  :hrefLang="$locale">
                             {{ $locale }}
                         </x-public.navigation.link>
                     </li>

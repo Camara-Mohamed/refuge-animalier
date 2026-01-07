@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33491d0d88d7ac741137473da6cb2344",
+    "content-hash": "7152d461ec618f7342a59e4baabfe65b",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -2178,16 +2178,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.6.4",
+            "version": "v4.0.0-beta.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "ef04be759da41b14d2d129e670533180a44987dc"
+                "reference": "f868b14968caafbdd50f219698544315347d8a73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/ef04be759da41b14d2d129e670533180a44987dc",
-                "reference": "ef04be759da41b14d2d129e670533180a44987dc",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/f868b14968caafbdd50f219698544315347d8a73",
+                "reference": "f868b14968caafbdd50f219698544315347d8a73",
                 "shasum": ""
             },
             "require": {
@@ -2242,7 +2242,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.6.4"
+                "source": "https://github.com/livewire/livewire/tree/v4.0.0-beta.5"
             },
             "funding": [
                 {
@@ -2250,7 +2250,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-17T05:12:15+00:00"
+            "time": "2025-12-17T02:05:33+00:00"
         },
         {
             "name": "livewire/volt",
@@ -9754,7 +9754,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "livewire/livewire": 10
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

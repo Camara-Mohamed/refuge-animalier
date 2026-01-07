@@ -21,6 +21,7 @@ class Adopter extends Model
         'postal_code',
         'house_type',
         'have_garden',
+        'message',
     ];
 
     protected $casts = [

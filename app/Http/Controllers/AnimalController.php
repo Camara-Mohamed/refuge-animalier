@@ -7,7 +7,6 @@ use App\Models\Animal;
 use App\Models\Coat;
 use App\Models\Race;
 use App\Models\Specie;
-use App\Models\Vaccine;
 
 class AnimalController extends Controller{
     public function index()
@@ -15,10 +14,26 @@ class AnimalController extends Controller{
         $races = Race::all();
         $species = Specie::all();
         $coats = Coat::all();
-        $vaccines = Vaccine::all();
+        $vaccines = Animal::with([
+            'race',
+            'specie.vaccines'
+        ])->get();
 
-        $animals = Animal::where('status', AnimalStatus::ADOPTABLE)->get();
+        $animals = Animal::where('status', AnimalStatus::ADOPTABLE)
+            ->orderBy('name')
+            ->paginate(6)
+            ->withQueryString();
 
         return view('public.animals.index', compact('animals', 'races', 'species', 'coats', 'vaccines'));
     }
+
+    public function show($locale, $animal)
+    {
+        $animal = Animal::with(['race', 'specie', 'coat'])->findOrFail($animal);
+
+        $vaccines = $animal->specie->vaccines;
+
+        return view('public.animals.show', compact('animal', 'vaccines'));
+    }
+
 }

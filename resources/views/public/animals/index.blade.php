@@ -8,42 +8,59 @@
 
     <section class="pb-20 px-20 flex flex-col text-blue-strong transition-all duration-200 ease-in-out">
         <h2 class="sr-only">{{ __('public/animals/animals_index.section_animals_title') }}</h2>
+        <div class="flex flex-wrap items-center justify-between gap-4 mt-4">
+            <form method="GET" action="{{ route('public.animals.index', app()->getLocale()) }}" class="flex items-center gap-2">
+                <x-forms.hidden
+                    for="search"
+                    type="search"
+                    placeholder="{{ __('public/animals/animals_index.search_placeholder') }}">
+                    {{ __('public/animals/animals_index.search') }}
+                </x-forms.hidden>
 
-        <form method="GET" action="{{ route('public.animals.index', app()->getLocale()) }}"
-              class="flex justify-between gap-4">
-            <x-forms.hidden for="search" type="search"
-                            placeholder="{{ __('public/animals/animals_index.search_placeholder') }}">
-                {{ __('public/animals/animals_index
-                            .search') }}
-            </x-forms.hidden>
+                <x-forms.button
+                    type="submit"
+                    class="h-10 bg-red-strong border-red-strong text-white hover:bg-white hover:text-red-strong hover:border-red-strong"
+                    title="Rechercher un animal">
+                    Rechercher
+                </x-forms.button>
+            </form>
 
-            <div class="flex items-center gap-4">
-                <x-forms.select class="capitalize" for="sexe" label_title="{{ __('public/animals/animals_index.filtre_sexe') }}">
+            <form method="GET" action="{{ route('public.animals.index', app()->getLocale()) }}" class="flex items-center gap-2 flex-wrap">
+                <x-forms.select class="h-10 capitalize" for="sexe" label_title="{{ __('public/animals/animals_index.filtre_sexe') }}">
                     <option value="all">{{ __('public/animals/animals_index.filtre_tous') }}</option>
                     @foreach(Gender::cases() as $gender)
-                        <option value="{{ $gender->name }}">
-                            {{ $gender->value }}
-                        </option>
+                        <option value="{{ $gender->name }}" @selected(request('sexe') === $gender->name)>{{
+                        $gender->value }}</option>
                     @endforeach
                 </x-forms.select>
-                <x-forms.select for="race" label_title="{{ __('public/animals/animals_index.filtre_race') }}">
+
+                <x-forms.select class="h-10" for="race" label_title="{{ __('public/animals/animals_index.filtre_race') }}">
                     <option value="all">{{ __('public/animals/animals_index.filtre_toutes') }}</option>
                     @foreach($races as $race)
-                        <option  value="{{ $race->name }}">{{ $race->name }}</option>
+                        <option value="{{ $race->name }}" @selected(request('race') === $race->name)>{{ $race->name }}</option>
                     @endforeach
                 </x-forms.select>
-                <x-forms.select for="species" label_title="{{ __('public/animals/animals_index.filtre_species') }}">
+
+                <x-forms.select class="h-10" for="species" label_title="{{ __('public/animals/animals_index.filtre_species') }}">
                     <option value="all">{{ __('public/animals/animals_index.filtre_tous') }}</option>
                     @foreach($species as $specie)
-                        <option  value="{{ $specie->name }}">{{ $specie->name }}</option>
+                        <option value="{{ $specie->name }}" @selected(request('species') === $specie->name)>{{ $specie->name }}</option>
                     @endforeach
                 </x-forms.select>
-            </div>
-        </form>
+
+                <x-forms.button
+                    type="submit"
+                    class="h-10 bg-red-strong border-red-strong text-white hover:bg-white hover:text-red-strong hover:border-red-strong"
+                    title="Filtrer les animaux">
+                    Filter
+                </x-forms.button>
+            </form>
+        </div>
 
         <div class="flex justify-between mt-4">
             <p class="font-normal text-blue-strong">
-                <span class="font-bold text-red-strong">{{ $animals->count() }}</span> {{ __('public/animals/animals_index.animals_found') }}</p>
+                <span class="font-bold text-red-strong">{{ $animals->total() }}</span> {{ __
+                ('public/animals/animals_index.animals_found') }}</p>
             <a href="{{ route('public.animals.index', app()->getLocale()) }}"
                class="text-red-strong font-normal hover:underline text-sm" title="{{ __
                ('public/animals/animals_index.title_reset') }}">
@@ -55,7 +72,7 @@
             @forelse ($animals as $animal)
                 <details class="p-2 bg--white rounded-lg shadow-2xl">
                     <summary class="list-none cursor-pointer flex flex-col gap-2 items-center">
-                        <div class="self-stretch h-72 p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center" style="background-image: url('{{ asset('assets/img/public/animals/cats/cat_1_320.webp') }}');">
+                        <div class="self-stretch h-72 p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center" style="background-image: url('{{ asset($animal->avatar) }}');">
                         </div>
 
                         <x-icons.caret-down></x-icons.caret-down>
@@ -88,9 +105,9 @@
                             {{ $animal->description }}
                         </p>
 
-                        @if(isset($vaccines))
+                        @if(isset($animal->specie->vaccines))
                             <ul class="flex gap-2 pt-4 border-t border-blue-strong flex-wrap">
-                                @foreach($vaccines as $vaccine)
+                                @foreach($animal->specie->vaccines as $vaccine)
                                     <li class="px-3 py-1 rounded-lg border text-sm
                                                 odd:border-red-strong odd:bg-red-strong/5 odd:text-red-strong
                                                 even:border-blue-strong even:bg-blue-strong/5 even:text-blue-strong">
@@ -100,8 +117,9 @@
                             </ul>
                         @endif
 
-                        <x-buttons.button href="#" class="bg-red-strong border-red-strong text-white
-                        hover:bg-white hover:text-red-strong hover:border-red-strong">
+                        <x-buttons.button
+                            href="{{ route('public.animals.show', [app()->getLocale(), $animal]) }}"
+                            class="bg-red-strong border-red-strong text-white hover:bg-white hover:text-red-strong hover:border-red-strong">
                             {{ __('public/animals/animals_index.cta_adopt') }}
                         </x-buttons.button>
                     </div>
@@ -110,6 +128,8 @@
                 <p class="mt-8 font-serif font-medium text-center opacity-60">
                     {{ __('public/animals/animals_index.not_found') }}</p>
             @endforelse
+
+            {{ $animals->links() }}
         </div>
     </section>
 </x-layouts.guest>

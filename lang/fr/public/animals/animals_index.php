@@ -28,4 +28,7 @@ return  [
     'filtre_species_dog' => 'Chien',
     'filtre_species_cat' => 'Chat',
 
+    'section_animals_title' => 'Liste des animaux',
+    'cta_adopt' => 'Adopter',
+
 ];

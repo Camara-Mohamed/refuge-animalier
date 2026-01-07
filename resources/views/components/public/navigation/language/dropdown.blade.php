@@ -13,7 +13,7 @@
             @foreach(config('app.locales') as $locale)
                 <li class="text-[0.75rem]">
                     <x-public.navigation.link
-                        href="{{ route($currentRoute, array_merge($params, ['locale' => $locale])) }}"
+                        :href="route($currentRoute, array_merge($params, ['locale' => $locale]))"
                         :title="__('public/navigation/lang.switch_'.$locale)"
                         class="block px-3 py-2 hover:bg-red-strong hover:text-white"
                         :hrefLang="$locale"

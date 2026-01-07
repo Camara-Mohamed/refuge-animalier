@@ -55,4 +55,8 @@
         </div>
     </x-public.sections.hidden_section>
 
+    <x-public.sections.section title="FAQ - Questions & réponses">
+        <x-public.sections.faq></x-public.sections.faq>
+    </x-public.sections.section>
+
 </x-layouts.guest>

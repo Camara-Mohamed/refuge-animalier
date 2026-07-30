@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+STAGED_PHP=$(git diff --cached --name-only --diff-filter=ACMR -- '*.php')
+
+if [ -n "$STAGED_PHP" ]; then
+  echo "Pint…"
+  ./vendor/bin/pint $STAGED_PHP
+  git add $STAGED_PHP
+fi

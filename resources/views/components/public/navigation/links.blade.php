@@ -21,6 +21,12 @@
             'href' => '#',
         ],
     ];
+
+    $buttonLink = [
+        'name_button' => 'Devenir Bénévole',
+        'title_button' => 'Aller à la page pour devenir bénévole',
+        'href_button' => '#',
+    ];
 @endphp
 
 <ul>
@@ -34,4 +40,12 @@
             </x-public.navigation.link>
         </li>
     @endforeach
+    <li>
+        <x-public.navigation.button
+            :href="$buttonLink['href_button']"
+            :title="$buttonLink['title_button']"
+        >
+            {{ $buttonLink['name_button'] }}
+        </x-public.navigation.button>
+    </li>
 </ul>

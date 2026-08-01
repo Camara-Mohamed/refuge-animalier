@@ -1,4 +1,8 @@
 @import "tailwindcss";
+@import "./base/breakpoints.css";
+@import "./base/fonts.css";
+
+@import "./partials/select.css";
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

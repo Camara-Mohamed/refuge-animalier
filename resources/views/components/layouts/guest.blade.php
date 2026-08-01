@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Camara Mohamed">
+    <meta name="description" content="Les Pattes Heureuses - Plateforme de gestion et d'adoption d'animaux. Gérez les
+     fiches animaux, les demandes d'adoption, les bénévoles et suivez les statistiques du refuge.">
+    <meta name="keywords" content="refuge, adoption, animaux à adopter, bénévoles, chat, chien, Les Pattes Heureuses">
 
-    <title>Laravel</title>
+    <meta property="og:title" content="Les Pattes Heureuses - Application">
+    <meta property="og:description" content="Gérez votre refuge animalier avec notre application">
+    <meta property="og:type" content="website">
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet"/>
+    <title>{{ $title }}</title>
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -1471,6 +1471,8 @@
     @endif
 </head>
 <body>
+
+{{ $slot }}
 
 </body>
 </html>

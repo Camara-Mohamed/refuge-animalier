@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('animal_pictures', function (Blueprint $table) {
             $table->id();
-            $table->string('path');
+            $table->string('path')->nullable();
             $table->text('alt');
             $table->foreignId('animal_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

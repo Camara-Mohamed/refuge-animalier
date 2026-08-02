@@ -1,7 +1,7 @@
-<section class="hero_home min-h-dvh flex bg-cover bg-center px-20 py-20"
+<section class="hero_home min-h-dvh flex bg-cover bg-center px-20 py-40"
          style="
         background-image:
-            linear-gradient(to left, rgba(0,0,0,0.2), rgba(0,0,0,0.8)),
+            linear-gradient(90deg,rgba(0, 0, 0, 0.75) 30%, rgba(0, 0, 0, 0.1) 100%),
             url('{{ asset('assets/img/public/hero_bg.webp') }}');
     ">
 
@@ -21,7 +21,8 @@
                 <x-buttons.button
                         href="#"
                         title="{{ __('public/home.title_hero_button_1') }}"
-                        class="bg-red-strong border-red-strong text-white"
+                        class="bg-red-strong border-red-strong text-white
+                        hover:bg-white hover:text-red-strong hover:border-red-strong"
                 >
                         {{ __('public/home.hero_button_1') }}
                 </x-buttons.button>
@@ -29,7 +30,8 @@
                 <x-buttons.button
                         href="#"
                         title="{{ __('public/home.title_hero_button_2') }}"
-                        class="bg-white border-red-strong text-red-strong"
+                        class="bg-white border-white text-red-strong
+                        hover:bg-red-strong hover:text-white hover:border-red-strong"
                 >
                         {{ __('public/home.hero_button_2') }}
                 </x-buttons.button>¬

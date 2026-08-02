@@ -6,9 +6,7 @@
 <div class="flex justify-between items-center">
     <label for="{{ $for }}" class="sr-only">{{ $label_title }}</label>
 
-    <select name="{{ $for }}" id="{{ $for }}" {{ $attributes->merge(['class' => 'px-6 py-4 rounded-lg border-2 border-gray-300 font-sans
-    font-normal text-gray-400 hover:border-gray-500 hover:text-gray-500 focus:border-red-strong
-    focus:text-blue-strong focus:outline-none']) }}>
+    <select name="{{ $for }}" id="{{ $for }}" {{ $attributes->merge(['class' => 'px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-strong focus:border-2']) }}>
         {{ $slot }}
     </select>
 </div>

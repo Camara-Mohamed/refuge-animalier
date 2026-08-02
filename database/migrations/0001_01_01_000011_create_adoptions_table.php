@@ -15,7 +15,7 @@ return new class extends Migration
             $table->enum('status', ['accepted', 'rejected', 'queue', 'submitted'])->default('submitted');
             $table->foreignId('adopter_id')->constrained()->cascadeOnDelete();
             $table->foreignId('animal_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -5,8 +5,6 @@
     'class_input' => '',
     'required' => 'false',
     'placeholder' => '',
-    'class_require' => 'text-red-normal',
-    'class_error' => 'font-serif text-sm text-red-normal mt-1',
 ])
 
 <div>
@@ -14,7 +12,7 @@
         {{ $slot }}
 
         @if($required)
-            <small class="{{ $class_require }}"><abbr title="{{ __('public/form.abbr_require') }}">*</abbr></small>
+            <small class="{{ $class_require }}"><abbr class="text-red-normal" title="{{ __('public/form.abbr_require') }}">*</abbr></small>
         @endif
     </label>
 
@@ -22,6 +20,6 @@
     placeholder="{{ $placeholder }}">
 
     @error($for)
-        <p class="{{ $class_error }}">{!! $message !!}</p>
+        <p class="font-serif text-sm text-red-normal mt-1">{!! $message !!}</p>
     @enderror
 </div>

@@ -10,11 +10,11 @@
     <div class="grid grid-cols-12">
         <div class="flex flex-col items-start col-span-6">
             <h2 class="font-serif text-white text-5xl font-bold leading-16">
-                Donnez une seconde chance à un animal
+                {{ __('public/home.hero_title') }}
             </h2>
 
             <p class="text-white text-xl font-light mt-6">
-                Chaque jour, nous accueillons des animaux abandonnés, blessés ou maltraités. Notre mission : les protéger, les soigner… et leur trouver enfin la famille qu’ils méritent.
+                {{ __('public/home.hero_subtitle') }}
             </p>
 
             <div class="flex gap-4 text-base font-bold mt-8">
@@ -23,15 +23,15 @@
                     class="px-4 py-3 bg-red-strong
                     rounded-lg flex justify-between items-center text-white border
                     border-red-strong"
-                    title="Voir la liste des animaux">
-                    Voir Les Animaux
+                    title="{{ __('public/home.title_hero_button_1') }}">
+                    {{ __('public/home.hero_button_1') }}
                 </x-public.navigation.link>
                 <x-public.navigation.link
                     href="#"
                     class="px-4 py-3 bg-white rounded-lg flex justify-between items-center text-red-strong border
                     border-white"
-                    title="Dévenir bénévole">
-                    Devenir bénévole
+                    title="{{ __('public/home.title_hero_button_2') }}">
+                    {{ __('public/home.hero_button_2') }}
                 </x-public.navigation.link>
             </div>
         </div>

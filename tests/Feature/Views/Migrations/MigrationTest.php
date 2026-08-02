@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Schema;
 
+it('has users table', function () {
+    expect(Schema::hasTable('users'))->toBeTrue();
+});
+
 it('has animals table', function () {
     expect(Schema::hasTable('animals'))->toBeTrue();
 });

@@ -128,6 +128,8 @@
                 <p class="mt-8 font-serif font-medium text-center opacity-60">
                     {{ __('public/animals/animals_index.not_found') }}</p>
             @endforelse
+
+            {{ $animals->links() }}
         </div>
     </section>
 </x-layouts.guest>

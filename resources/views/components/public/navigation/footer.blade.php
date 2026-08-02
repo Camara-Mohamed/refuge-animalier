@@ -37,8 +37,7 @@
                 <ul class="flex items-center gap-6">
                     @foreach ($links as $link)
                         <li class="flex items-center justify-center py-2 font-sans font-medium
-                     hover:underline
-                     hover:font-bold">
+                     hover:underline">
                             <x-public.navigation.link :href="$link['href']" :title="$link['title']">
                                 {{ $link['name'] }}
                             </x-public.navigation.link>

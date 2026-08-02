@@ -22,7 +22,7 @@ class Animal extends Model
         'description',
         'status',
         'avatar',
-        'pictures',
+        'animal_picture_id',
         'user_id',
         'race_id',
         'species_id',
@@ -63,6 +63,11 @@ class Animal extends Model
     public function adoptions(): HasMany
     {
         return $this->hasMany(Adoption::class);
+    }
+
+    public function pictures(): HasMany
+    {
+        return $this->hasMany(AnimalPicture::class);
     }
 
     public function user(): BelongsTo

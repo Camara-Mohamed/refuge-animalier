@@ -1,4 +1,4 @@
-<section class="hero_home min-h-dvh flex bg-cover bg-center px-20 py-40"
+<section class="hero_home min-h-dvh flex bg-cover bg-center px-20 py-40 transition-all duration-300 ease-in-out"
          style="
         background-image:
             linear-gradient(90deg,rgba(0, 0, 0, 0.75) 30%, rgba(0, 0, 0, 0.1) 100%),

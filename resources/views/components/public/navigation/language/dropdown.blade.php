@@ -2,7 +2,6 @@
     @php
         $currentRoute = request()->route()->getName();
         $params = request()->route()->parameters();
-        $locales = ['fr', 'en', 'nl', 'de'];
     @endphp
 
     <details class="relative">
@@ -11,7 +10,7 @@
         </summary>
 
         <ul class="capitalize min-w-max absolute right-0 mt-2 bg-white border shadow rounded">
-            @foreach($locales as $locale)
+            @foreach(config('app.locales') as $locale)
                 <li class="text-[0.75rem]">
                     <x-public.navigation.link
                         href="{{ route($currentRoute, array_merge($params, ['locale' => $locale])) }}"

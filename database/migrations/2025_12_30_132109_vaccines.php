@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('vaccines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('specie_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

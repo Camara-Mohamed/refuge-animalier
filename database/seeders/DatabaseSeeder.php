@@ -8,6 +8,7 @@ use App\Models\Animal;
 use App\Models\Race;
 use App\Models\Specie;
 use App\Models\User;
+use App\Models\Vaccine;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -25,7 +26,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $users = User::factory(5)->create();
-        $animals = Animal::factory(10)->create();
+
+        $species = Specie::factory(2)->create();
+
+        foreach ($species as $specie) {
+            Race::factory(3)->create([
+                'specie_id' => $specie->id,
+            ]);
+
+            Vaccine::factory(5)->create([
+                'specie_id' => $specie->id,
+            ]);
+        }
+
+        $animals = Animal::factory(30)->create();
+
         $adopters = Adopter::factory(5)->create();
 
         foreach ($animals as $animal) {
@@ -33,13 +48,6 @@ class DatabaseSeeder extends Seeder
                 'animal_id' => $animal->id,
                 'adopter_id' => $adopters->random()->id,
                 'user_id' => $users->random()->id,
-            ]);
-        }
-
-        $species = Specie::factory(2)->create();
-        foreach ($species as $specie) {
-            Race::factory(3)->create([
-                'specie_id' => $specie->id,
             ]);
         }
     }

@@ -1,7 +1,7 @@
 # Cahier des charges – Application de gestion d’un refuge animalier
 
 <p align="center">
-  <img src="https://wakatime.com/badge/user/996f0f7d-c952-4cd0-a2d6-e00eb364028d/project/53812df9-b0a2-4865-89c7-e3b0226309e9.svg" alt="WakaTime">
+  <img src="https://wakatime.com/badge/user/996f0f7d-c952-4cd0-a2d6-e00eb364028d/project/53812df9-b0a2-4865-89c7-e3b0226309e9.svg?cache_seconds=60" alt="WakaTime">
 
   <a href="https://www.figma.com/design/wuWI2Hz0CRlpOel4Aj8lf6/Refuge-Animalier?node-id=0-1&t=89DFSOcUbCU0fy3S-1" target="_blank">
     <img src="https://img.shields.io/badge/Figma-Design-F24E1E?logo=figma">

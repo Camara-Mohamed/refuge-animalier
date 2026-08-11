@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use Carbon\CarbonImmutable;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,28 +21,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->configureDefaults();
-    }
+        Gate::define('manage-animals', function (User $user): bool {
+            return $user->isAdmin() || $user->isVolunteer();
+        });
 
-    /**
-     * Configure default behaviors for production-ready applications.
-     */
-    protected function configureDefaults(): void
-    {
-        Date::use(CarbonImmutable::class);
+        Gate::define('manage-adoptions', function (User $user): bool {
+            return $user->isAdmin() || $user->isVolunteer();
+        });
 
-        DB::prohibitDestructiveCommands(
-            app()->isProduction(),
-        );
+        Gate::define('manage-messages', function (User $user): bool {
+            return $user->isAdmin();
+        });
 
-        Password::defaults(fn (): ?Password => app()->isProduction()
-            ? Password::min(12)
-                ->mixedCase()
-                ->letters()
-                ->numbers()
-                ->symbols()
-                ->uncompromised()
-            : null,
-        );
+        Gate::define('manage-volunteers', function (User $user): bool {
+            return $user->isAdmin();
+        });
+
+        Gate::define('manage-reports', function (User $user): bool {
+            return $user->isAdmin();
+        });
     }
 }

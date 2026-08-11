@@ -37,12 +37,12 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return $this->role === UserRole::ADMIN->value;
+        return $this->role === UserRole::ADMIN;
     }
 
     public function isVolunteer(): bool
     {
-        return $this->role === UserRole::VOLUNTEER->value;
+        return $this->role === UserRole::VOLUNTEER;
     }
 
     /**
@@ -63,6 +63,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'availabilities' => 'array',
+            'role' => UserRole::class,
         ];
     }
 }

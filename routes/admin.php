@@ -1,26 +1,49 @@
 <?php
 
+use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function () {
-    Route::prefix('admin')->middleware('role:admin')->group(function () {
+Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
+    Route::prefix('admin')->middleware(['auth'])->group(function () {
 
-        Route::livewire('/', 'admin::dashboard')->name('admin.dashboard');
+        // dashboard
+        Route::livewire('/dashboard', 'pages::dashboard')->name('admin.dashboard');
 
-        Route::livewire('/animals', 'admin::animals.index')->name('admin.animals.index');
-        Route::livewire('/animals/create', 'admin::animals.create')->name('admin.animals.create');
-        Route::livewire('/animals/{animal}', 'admin::animals.show')->name('admin.animals.show');
-        Route::livewire('/animals/{animal}/edit', 'admin::animals.edit')->name('admin.animals.edit');
+        // les pages de gestion des animaux
+        Route::livewire('/animals', 'pages::animals.index')
+            ->middleware('can:manage-animals')
+            ->name('admin.animals.index');
+        Route::livewire('/animals/create', 'pages::animals.create')
+            ->middleware('can:manage-animals')
+            ->name('admin.animals.create');
+        Route::livewire('/animals/{animal}', 'pages::animals.show')->name('admin.animals.show');
+        Route::livewire('/animals/{animal}/edit', 'pages::animals.edit')->name('admin.animals.edit');
+
+        // les demandes d'adoption
+        Route::livewire('/adoptions', 'pages::adoptions.index')
+            ->middleware('can:manage-adoptions')
+            ->name('admin.adoptions.index');
+        Route::livewire('/adoptions/{adoption}', 'pages::adoptions.show')->name('admin.adoptions.show');
+
+        // les notes internes
+        Route::livewire('/notes', 'pages::notes')->name('admin.notes.index');
+
+        // les messages
+        Route::livewire('/messages', 'pages::messages')
+            ->middleware('can:manage-messages')
+            ->name('admin.messages.index');
+
+        // la gestion des bénévoles
+        Route::livewire('/volunteers', 'pages::volunteers')
+            ->middleware('can:manage-volunteers')
+            ->name('admin.volunteers.index');
+
+        // les statistiques
+        Route::livewire('/reports', 'pages::reports')
+            ->middleware('can:manage-reports')
+            ->name('admin.reports.index');
+
+        // le profil de l'utilisateur
+        Route::livewire('/profile', 'pages::profile')->name('admin.profile');
     });
-
-    Route::prefix('admin/volunteer')->middleware('role:volunteer')->group(function () {
-
-        Route::livewire('/', 'volunteer::dashboard')->name('volunteer.dashboard');
-
-        Route::livewire('/animals', 'volunteer::animals.index')->name('volunteer.animals.index');
-        Route::livewire('/animals/create', 'volunteer::animals.create')->name('volunteer.animals.create');
-        Route::livewire('/animals/{animal}', 'volunteer::animals.show')->name('volunteer.animals.show');
-        Route::livewire('/animals/{animal}/edit', 'volunteer::animals.edit')->name('volunteer.animals.edit');
-    });
-
 });

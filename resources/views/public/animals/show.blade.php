@@ -3,13 +3,21 @@
 
     <section class="relative h-96 bg-cover bg-center" style="background-image: url('{{ asset($animal->avatar) }}');">
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
-        <div class="relative h-full flex items-end px-20 pb-12">
+        <div class="relative h-full flex items-end justify-between px-20 pb-12">
             <div class="text-white">
                 <h1 class="text-5xl font-black font-serif mb-2">{{ $animal->name }}</h1>
                 @if($animal->race)
                     <p class="text-xl uppercase text-red-light">{{ $animal->race->name }}</p>
                 @endif
             </div>
+
+            <x-public.share-button
+                :url="route('public.animals.show', ['locale' => app()->getLocale(), 'animal' => $animal])"
+                subject="Rencontrez {{ $animal->name }}"
+                body="Je veux adopter {{ $animal->name }}."
+            >
+                Partager
+            </x-public.share-button>
         </div>
     </section>
 

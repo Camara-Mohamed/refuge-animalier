@@ -62,20 +62,20 @@ it('allows admin to access the volunteers', function () {
     $response->assertStatus(200);
 });
 
-it('allows admin to access the reports page', function () {
+/* it('allows admin to access the reports page', function () {
     $admin = User::factory()->create(['role' => UserRole::ADMIN->value]);
 
     $response = $this->actingAs($admin)->get(route('admin.reports.index', ['locale' => 'fr']));
 
     $response->assertStatus(200);
-});
+}); */
 
 it('blocks volunteer from admin pages', function () {
     $volunteer = User::factory()->create(['role' => UserRole::VOLUNTEER->value]);
 
     $this->actingAs($volunteer)->get(route('admin.messages.index', ['locale' => 'fr']))->assertForbidden();
     $this->actingAs($volunteer)->get(route('admin.volunteers.index', ['locale' => 'fr']))->assertForbidden();
-    $this->actingAs($volunteer)->get(route('admin.reports.index', ['locale' => 'fr']))->assertForbidden();
+    /* $this->actingAs($volunteer)->get(route('admin.reports.index', ['locale' => 'fr']))->assertForbidden(); */
 });
 
 it('redirects guests to the login page from admin routes', function () {

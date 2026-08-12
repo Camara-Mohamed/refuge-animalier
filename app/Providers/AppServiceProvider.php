@@ -40,5 +40,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('manage-reports', function (User $user): bool {
             return $user->isAdmin();
         });
+
+        Gate::define('manage-data', function (User $user): bool {
+            return $user->isAdmin() || $user->isVolunteer();
+        });
     }
 }

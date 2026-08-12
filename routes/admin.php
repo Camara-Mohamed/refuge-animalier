@@ -28,6 +28,11 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
         // les notes internes
         Route::livewire('/notes', 'pages::notes')->name('admin.notes.index');
 
+        // la gestion des données
+        Route::livewire('/data', 'pages::data')
+            ->middleware('can:manage-data')
+            ->name('admin.data.index');
+
         // les messages
         Route::livewire('/messages', 'pages::messages')
             ->middleware('can:manage-messages')
@@ -39,9 +44,9 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
             ->name('admin.volunteers.index');
 
         // les statistiques
-        Route::livewire('/reports', 'pages::reports')
+        /* Route::livewire('/reports', 'pages::reports')
             ->middleware('can:manage-reports')
-            ->name('admin.reports.index');
+            ->name('admin.reports.index'); */
 
         // le profil de l'utilisateur
         Route::livewire('/profile', 'pages::profile')->name('admin.profile');

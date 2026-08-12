@@ -24,24 +24,13 @@
 
 <body class="min-h-screen font-sans bg-white max-w-[1920px] m-auto">
 
-<noscript>
-    <p class="font-serif text-red-normal text-center p-4">
-        Pour accéder à toutes les fonctionnalités de ce site, vous devez activer JavaScript.
-        <br>
-        <a href="https://www.enable-javascript.com/fr/" class="font-sans font-bold hover:underline">
-            Instructions pour activer JavaScript
-        </a>
-    </p>
-</noscript>
+<x-no-script />
 
 <h1 class="sr-only">
     {{ $title }}
 </h1>
 
-<a href="#main-content"
-   class="sr-only focus:not-sr-only font-serif text-blue-strong underline hover:text-red-normal">
-    Aller au contenu principal
-</a>
+<x-skip-link />
 
 <x-public.navigation.header></x-public.navigation.header>
 

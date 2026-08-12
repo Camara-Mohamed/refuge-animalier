@@ -16,6 +16,7 @@ return [
     'component_namespaces' => [
         'pages' => resource_path('views/pages'),
         'layouts' => resource_path('views/layouts'),
+        'widgets' => resource_path('views/widgets'),
     ],
 
     /*

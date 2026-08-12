@@ -30,7 +30,7 @@
                     <option value="all">{{ __('public/animals/animals_index.filtre_tous') }}</option>
                     @foreach(Gender::cases() as $gender)
                         <option value="{{ $gender->name }}" @selected(request('sexe') === $gender->name)>{{
-                        $gender->value }}</option>
+                        $gender->label() }}</option>
                     @endforeach
                 </x-forms.select>
 

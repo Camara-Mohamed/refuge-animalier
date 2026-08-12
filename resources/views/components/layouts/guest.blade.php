@@ -24,13 +24,13 @@
 
 <body class="min-h-screen font-sans bg-white max-w-[1920px] m-auto">
 
-<x-no-script />
+<x-public.navigation.no-script />
 
 <h1 class="sr-only">
     {{ $title }}
 </h1>
 
-<x-skip-link />
+<x-public.navigation.skip-link />
 
 <x-public.navigation.header></x-public.navigation.header>
 

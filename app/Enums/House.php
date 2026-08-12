@@ -8,4 +8,9 @@ enum House: string
     case HOUSE = 'house';
     case LOFT = 'loft';
     case STUDIO = 'studio';
+
+    public function label(): string
+    {
+        return __('enums.house.'.$this->value);
+    }
 }

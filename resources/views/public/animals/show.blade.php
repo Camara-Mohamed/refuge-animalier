@@ -32,7 +32,7 @@
                             </span>
                             <div>
                                 <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.gender') }}</p>
-                                <p class="font-semibold text-blue-strong capitalize">{{ $animal->gender->value }}</p>
+                                <p class="font-semibold text-blue-strong capitalize">{{ $animal->gender->label() }}</p>
                             </div>
                         </div>
 

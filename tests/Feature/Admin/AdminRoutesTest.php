@@ -38,14 +38,6 @@ it('allows admin and volunteer to access the animals', function () {
     $this->actingAs($volunteer)->get(route('admin.animals.index', ['locale' => 'fr']))->assertStatus(200);
 });
 
-it('allows admin and volunteer to access the notes', function () {
-    $admin = User::factory()->create(['role' => UserRole::ADMIN->value]);
-    $volunteer = User::factory()->create(['role' => UserRole::VOLUNTEER->value]);
-
-    $this->actingAs($admin)->get(route('admin.notes.index', ['locale' => 'fr']))->assertStatus(200);
-    $this->actingAs($volunteer)->get(route('admin.notes.index', ['locale' => 'fr']))->assertStatus(200);
-});
-
 it('allows admin to access the messages', function () {
     $admin = User::factory()->create(['role' => UserRole::ADMIN->value]);
 

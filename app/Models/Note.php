@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Note extends Model
 {
@@ -12,13 +13,14 @@ class Note extends Model
 
     protected $fillable = [
         'content',
-        'animal_id',
+        'notable_type',
+        'notable_id',
         'user_id',
     ];
 
-    public function animal(): BelongsTo
+    public function notable(): MorphTo
     {
-        return $this->belongsTo(Animal::class);
+        return $this->morphTo();
     }
 
     public function user(): BelongsTo

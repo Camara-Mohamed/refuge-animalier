@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Animal extends Model
 {
@@ -32,7 +33,13 @@ class Animal extends Model
         'pictures' => 'array',
         'gender' => Gender::class,
         'status' => AnimalStatus::class,
+        'birth_date' => 'date',
     ];
+
+    public function age(): ?int
+    {
+        return $this->birth_date?->age;
+    }
 
     public function race(): BelongsTo
     {
@@ -49,9 +56,9 @@ class Animal extends Model
         return $this->belongsTo(Coat::class);
     }
 
-    public function notes(): HasMany
+    public function notes(): MorphMany
     {
-        return $this->hasMany(Note::class);
+        return $this->morphMany(Note::class, 'notable');
     }
 
     public function adoption(): HasMany

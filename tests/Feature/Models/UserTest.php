@@ -25,3 +25,9 @@ it('isVolunteer returns true for volunteer role', function () {
     expect($volunteer->isVolunteer())->toBeTrue()
         ->and($admin->isVolunteer())->toBeFalse();
 });
+
+it('exposes fullName', function () {
+    $user = User::factory()->create(['name' => 'Jean Dupont']);
+
+    expect($user->fullName())->toBe('Jean Dupont');
+});

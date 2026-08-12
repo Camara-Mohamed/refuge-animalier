@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Adoption;
 use App\Models\Animal;
 use App\Models\Note;
 use App\Models\User;
@@ -16,10 +17,19 @@ class NoteFactory extends Factory
     {
         return [
             'content' => $this->faker->text(),
-            'animal_id' => Animal::factory(),
+            'notable_type' => Animal::class,
+            'notable_id' => Animal::factory(),
             'user_id' => User::factory(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
+    }
+
+    public function forAdoption(): static
+    {
+        return $this->state(fn () => [
+            'notable_type' => Adoption::class,
+            'notable_id' => Adoption::factory(),
+        ]);
     }
 }

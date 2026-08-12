@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Race extends Model
@@ -12,7 +13,13 @@ class Race extends Model
 
     protected $fillable = [
         'name',
+        'specie_id',
     ];
+
+    public function specie(): BelongsTo
+    {
+        return $this->belongsTo(Specie::class);
+    }
 
     public function animals(): HasMany
     {

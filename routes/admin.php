@@ -25,9 +25,6 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
             ->name('admin.adoptions.index');
         Route::livewire('/adoptions/{adoption}', 'pages::adoptions.show')->name('admin.adoptions.show');
 
-        // les notes internes
-        Route::livewire('/notes', 'pages::notes')->name('admin.notes.index');
-
         // la gestion des données
         Route::livewire('/data', 'pages::data')
             ->middleware('can:manage-data')

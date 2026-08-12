@@ -20,6 +20,11 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public function fullName(): string
+    {
+        return $this->name;
+    }
+
     public function animals(): HasMany
     {
         return $this->hasMany(Animal::class);

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
     Route::get('/', function () {
         return view('home');
-    })->name('home');
+    })->name('public.home');
 
     Route::get('/animals', [AnimalController::class, 'index'])
         ->name('public.animals.index');

@@ -3,8 +3,8 @@
         [
             'name' => __('/public/navigation/header.home'),
             'title' => __('/public/navigation/header.go_home'),
-            'href' => route('home',  app()->getLocale()),
-            'current' => request()->routeIs('home') ? 'text-red-strong hover:border-b-2 border-red-strong' : '',
+            'href' => route('public.home',  app()->getLocale()),
+            'current' => request()->routeIs('public.home') ? 'text-red-strong hover:border-b-2 border-red-strong' : '',
         ],
         [
             'name' => __('/public/navigation/header.animals'),

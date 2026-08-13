@@ -22,7 +22,6 @@ class Animal extends Model
         'description',
         'status',
         'avatar',
-        'animal_picture_id',
         'user_id',
         'race_id',
         'specie_id',
@@ -30,7 +29,6 @@ class Animal extends Model
     ];
 
     protected $casts = [
-        'pictures' => 'array',
         'gender' => Gender::class,
         'status' => AnimalStatus::class,
         'birth_date' => 'date',

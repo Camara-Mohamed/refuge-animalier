@@ -30,13 +30,13 @@ it('allows admin to update any animal', function () {
     expect($admin->can('update', $animal))->toBeTrue();
 });
 
-it('allows volunteer to update only their own animal', function () {
+it('allows volunteer to update any animal, not just their own', function () {
     $volunteer = User::factory()->create(['role' => UserRole::VOLUNTEER->value]);
     $ownAnimal = Animal::factory()->create(['user_id' => $volunteer->id]);
     $otherAnimal = Animal::factory()->create();
 
     expect($volunteer->can('update', $ownAnimal))->toBeTrue()
-        ->and($volunteer->can('update', $otherAnimal))->toBeFalse();
+        ->and($volunteer->can('update', $otherAnimal))->toBeTrue();
 });
 
 it('allows admin to delete but denies volunteer', function () {

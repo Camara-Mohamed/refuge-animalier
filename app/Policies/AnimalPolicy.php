@@ -33,17 +33,10 @@ class AnimalPolicy
 
     /**
      * Determine whether the user can update the model.
-     *
-     * Admins can update any animal. Volunteers can only update animals
-     * they created themselves.
      */
     public function update(User $user, Animal $animal): bool
     {
-        if ($user->isAdmin()) {
-            return true;
-        }
-
-        return $user->isVolunteer() && $animal->user_id === $user->id;
+        return $user->isAdmin() || $user->isVolunteer();
     }
 
     /**

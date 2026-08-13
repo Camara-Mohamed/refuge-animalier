@@ -24,9 +24,7 @@ class AnimalFactory extends Factory
             'birth_date' => Carbon::now(),
             'chip' => '#'.$this->faker->numerify('######'),
             'description' => $this->faker->text(),
-            'status' => $this->faker->randomElement([
-                AnimalStatus::ADOPTABLE->value, AnimalStatus::IN_PROCESS->value, AnimalStatus::ADOPTED->value,
-            ]),
+            'status' => $this->faker->randomElement(array_column(AnimalStatus::cases(), 'value')),
             'user_id' => User::factory(),
             'race_id' => Race::factory(),
             'specie_id' => Specie::factory(),

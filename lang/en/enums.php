@@ -2,9 +2,12 @@
 
 return [
     'animal_status' => [
-        'adopted' => 'Adopted',
+        'pending' => 'To process',
         'adoptable' => 'Adoptable',
+        'under_care' => 'Under care',
         'in_process' => 'Adoption in progress',
+        'adopted' => 'Adopted',
+        'deceased' => 'Deceased',
     ],
 
     'adoption_status' => [

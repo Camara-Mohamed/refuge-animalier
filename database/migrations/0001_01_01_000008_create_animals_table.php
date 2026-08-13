@@ -15,7 +15,7 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('chip')->nullable();
             $table->text('description')->nullable();
-            $table->enum('status', ['adopted', 'adoptable', 'in_process'])->default('adoptable');
+            $table->enum('status', ['pending', 'adoptable', 'under_care', 'in_process', 'adopted', 'deceased'])->default('pending');
             $table->string('avatar')->nullable();
             $table->foreignId('specie_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('race_id')->nullable()->constrained()->cascadeOnDelete();

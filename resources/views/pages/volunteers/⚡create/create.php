@@ -1,6 +1,8 @@
 <?php
 
+use App\Mail\VolunteerAccountCreatedMail;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -52,13 +54,18 @@ new #[Title('Créer un profil')] class extends Component
         $data = $this->validate();
         unset($data['avatarFile']);
 
-        $data['password'] = bcrypt($data['password']);
+        $password = $data['password'];
+        $data['password'] = bcrypt($password);
 
         if ($this->avatarFile) {
             $data['avatar'] = $this->avatarFile->store('avatars', 'public');
         }
 
         $volunteer = User::create($data);
+
+        if ($volunteer->receive_emails) {
+            Mail::to($volunteer)->send(new VolunteerAccountCreatedMail($volunteer, $password));
+        }
 
         $this->redirectRoute('admin.volunteers.show', ['locale' => app()->getLocale(), 'volunteer' => $volunteer]);
     }

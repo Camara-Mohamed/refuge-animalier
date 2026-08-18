@@ -1,14 +1,18 @@
-<p>Un nouveau message a été reçu via le formulaire de contact.</p>
+@extends('emails.layout')
 
-<ul>
-    <li><strong>De :</strong> {{ $message->name }} ({{ $message->email }})</li>
-    <li><strong>Sujet :</strong> {{ $message->subject ?? '—' }}</li>
-</ul>
+@section('content')
+    <h1>Nouveau message</h1>
 
-<p>{{ $message->message }}</p>
+    <p><strong>De :</strong> {{ $message->name }} ({{ $message->email }})</p>
+    <p><strong>Sujet :</strong> {{ $message->subject ?? '—' }}</p>
 
-<p>
-    <a href="{{ route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message]) }}">
+    <hr class="divider">
+
+    <p>{{ $message->message }}</p>
+
+    <hr class="divider">
+
+    <a href="{{ route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message]) }}" class="btn">
         Voir le message
     </a>
-</p>
+@endsection

@@ -1,8 +1,13 @@
-<p>Bonjour {{ $message->name }},</p>
+@extends('emails.layout')
 
-<p>Nous avons bien reçu votre message et nous vous répondrons dans les meilleurs délais.</p>
+@section('content')
+    <h1>Message bien reçu</h1>
 
-<p><strong>Votre message :</strong></p>
-<p>{{ $message->message }}</p>
+    <p>Bonjour {{ $message->name }},</p>
+    <p>Nous avons bien reçu votre message et nous vous répondrons dans les meilleurs délais.</p>
 
-<p>— Les Pattes Heureuses</p>
+    <hr class="divider">
+
+    <p><strong>Votre message :</strong></p>
+    <p>{{ $message->message }}</p>
+@endsection

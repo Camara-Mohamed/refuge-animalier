@@ -1,5 +1,9 @@
 <?php
 
+use App\Enums\UserRole;
+use App\Mail\ProfileUpdatedMail;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -58,6 +62,17 @@ new #[Title('Mon profil')] class extends Component
         }
 
         $user->update($data);
+
+        if ($user->wasChanged(['name', 'email', 'receive_emails', 'availabilities'])) {
+            $admins = User::where('role', UserRole::ADMIN)
+                ->where('id', '!=', $user->id)
+                ->where('receive_emails', true)
+                ->get();
+
+            if ($admins->isNotEmpty()) {
+                Mail::to($admins)->send(new ProfileUpdatedMail($user));
+            }
+        }
 
         $this->reset('avatarFile');
 

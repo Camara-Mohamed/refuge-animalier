@@ -231,16 +231,16 @@
                 <div class="flex flex-col gap-2">
                     <label class="text-blue-strong font-medium">{{ __('public/volunteer.form_availability') }}</label>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        @foreach(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'] as $day)
+                        @foreach(\App\Enums\Day::cases() as $day)
                             <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-strong/5">
                                 <input
                                     type="checkbox"
                                     name="availabilities[]"
-                                    value="{{ $day }}"
-                                    {{ is_array(old('availabilities')) && in_array($day, old('availabilities')) ? 'checked' : '' }}
+                                    value="{{ $day->value }}"
+                                    {{ is_array(old('availabilities')) && in_array($day->value, old('availabilities')) ? 'checked' : '' }}
                                     class="w-4 h-4 text-red-strong border-gray-300 rounded focus:ring-red-strong"
                                 >
-                                <span class="text-blue-strong">{{ __('public/volunteer.days.' . $day) }}</span>
+                                <span class="text-blue-strong">{{ $day->label() }}</span>
                             </label>
                         @endforeach
                     </div>

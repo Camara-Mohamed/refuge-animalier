@@ -21,11 +21,14 @@ new #[Title('Mon profil')] class extends Component
 
     public bool $receive_emails = true;
 
+    public array $availabilities = [];
+
     public function mount(): void
     {
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
         $this->receive_emails = auth()->user()->receive_emails;
+        $this->availabilities = auth()->user()->availabilities ?? [];
     }
 
     public function removeNewAvatar(): void
@@ -47,6 +50,7 @@ new #[Title('Mon profil')] class extends Component
             'name' => $this->name,
             'email' => $this->email,
             'receive_emails' => $this->receive_emails,
+            'availabilities' => $this->availabilities,
         ];
 
         if ($this->avatarFile) {

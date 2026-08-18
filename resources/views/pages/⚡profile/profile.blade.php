@@ -35,6 +35,16 @@
             Recevoir des emails de notification
         </label>
 
+        <fieldset>
+            <legend>Disponibilités</legend>
+            @foreach (\App\Enums\Day::cases() as $day)
+                <label for="availability-{{ $day->value }}">
+                    <input type="checkbox" id="availability-{{ $day->value }}" wire:model="availabilities" value="{{ $day->value }}">
+                    {{ $day->label() }}
+                </label>
+            @endforeach
+        </fieldset>
+
         <button type="submit">Enregistrer</button>
     </form>
 </div>

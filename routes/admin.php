@@ -52,6 +52,14 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
             ->middleware('can:manage-volunteers')
             ->name('admin.volunteers.edit');
 
+        // les candidatures bénévoles
+        Route::livewire('/volunteer-applications', 'pages::volunteer-applications.index')
+            ->middleware('can:manage-volunteers')
+            ->name('admin.volunteer-applications.index');
+        Route::livewire('/volunteer-applications/{volunteerApplication}', 'pages::volunteer-applications.show')
+            ->middleware('can:manage-volunteers')
+            ->name('admin.volunteer-applications.show');
+
         // les statistiques
         /* Route::livewire('/reports', 'pages::reports')
             ->middleware('can:manage-reports')

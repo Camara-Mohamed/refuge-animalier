@@ -16,8 +16,13 @@ class StoreVolunteerRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'subject' => 'nullable|string|max:255',
-            'message' => 'required|string|max:2000',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'number' => 'required|string',
+            'city' => 'required|string',
+            'code_postal' => 'required|string',
+            'availabilities' => 'nullable|array',
+            'availabilities.*' => 'string',
         ];
     }
 }

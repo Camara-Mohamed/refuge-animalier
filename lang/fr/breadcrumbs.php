@@ -9,6 +9,7 @@ return [
     'data' => 'Les Données',
     'messages' => 'Les Messages',
     'volunteers' => 'Les Bénévoles',
+    'volunteer_applications' => 'Les Candidatures',
     'profile' => 'Mon profil',
     'edit' => 'Modifier',
 ];

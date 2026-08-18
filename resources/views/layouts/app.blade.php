@@ -83,6 +83,12 @@
                     <x-icons.users class="w-5 h-5 text-blue-strong shrink-0" />
                     <span>Bénévoles</span>
                 </a>
+
+                <a href="{{ route('admin.volunteer-applications.index', ['locale' => app()->getLocale()]) }}"
+                   class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.volunteer-applications.*') ? 'bg-red-light font-bold' : '' }}">
+                    <x-icons.note class="w-5 h-5 text-blue-strong shrink-0" />
+                    <span>Candidatures</span>
+                </a>
             @endcan
 
         </nav>

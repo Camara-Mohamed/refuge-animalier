@@ -18,7 +18,7 @@ class MessageController extends Controller
 
         Mail::to($message->email)->send(new MessageReceivedMail($message));
 
-        $admins = User::where('role', UserRole::ADMIN)->get();
+        $admins = User::where('role', UserRole::ADMIN)->where('receive_emails', true)->get();
         if ($admins->isNotEmpty()) {
             Mail::to($admins)->send(new NewMessageMail($message));
         }

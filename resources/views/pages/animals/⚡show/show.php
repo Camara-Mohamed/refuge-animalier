@@ -1,9 +1,13 @@
 <?php
 
 use App\Enums\AnimalStatus;
+use App\Enums\UserRole;
+use App\Mail\DeleteNotificationMail;
 use App\Models\Animal;
 use App\Models\AnimalPicture;
 use App\Models\Note;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -80,7 +84,17 @@ new #[Title('Fiche animal')] class extends Component
     {
         $this->authorize('delete', $this->animal);
 
+        $name = $this->animal->name;
         $this->animal->delete();
+
+        $admins = User::where('role', UserRole::ADMIN)
+            ->where('id', '!=', auth()->id())
+            ->where('receive_emails', true)
+            ->get();
+
+        if ($admins->isNotEmpty()) {
+            Mail::to($admins)->send(new DeleteNotificationMail('Animal', $name, auth()->user()->fullName()));
+        }
 
         $this->redirectRoute('admin.animals.index', ['locale' => app()->getLocale()]);
     }

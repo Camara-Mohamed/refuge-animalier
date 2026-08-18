@@ -1,6 +1,9 @@
 <?php
 
+use App\Enums\UserRole;
+use App\Mail\DeleteNotificationMail;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -23,7 +26,17 @@ new #[Title('Fiche bénévole')] class extends Component
     {
         $this->authorize('delete', $this->volunteer);
 
+        $name = $this->volunteer->name;
         $this->volunteer->delete();
+
+        $admins = User::where('role', UserRole::ADMIN)
+            ->where('id', '!=', auth()->id())
+            ->where('receive_emails', true)
+            ->get();
+
+        if ($admins->isNotEmpty()) {
+            Mail::to($admins)->send(new DeleteNotificationMail('Profil bénévole', $name, auth()->user()->fullName()));
+        }
 
         $this->redirectRoute('admin.volunteers.index', ['locale' => app()->getLocale()]);
     }

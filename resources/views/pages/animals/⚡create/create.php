@@ -1,10 +1,14 @@
 <?php
 
 use App\Enums\AnimalStatus;
+use App\Enums\UserRole;
+use App\Mail\NewAnimalMail;
 use App\Models\Animal;
 use App\Models\Coat;
 use App\Models\Race;
 use App\Models\Specie;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -53,6 +57,13 @@ new #[Title('Ajouter un animal')] class extends Component
         }
 
         $animal = Animal::create($data);
+
+        if (auth()->user()->isVolunteer()) {
+            $admins = User::where('role', UserRole::ADMIN)->where('receive_emails', true)->get();
+            if ($admins->isNotEmpty()) {
+                Mail::to($admins)->send(new NewAnimalMail($animal));
+            }
+        }
 
         $this->redirectRoute('admin.animals.show', ['locale' => app()->getLocale(), 'animal' => $animal]);
     }

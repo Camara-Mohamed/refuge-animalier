@@ -7,7 +7,7 @@
 ])
 
 <div class="flex flex-col gap-2 font-medium">
-    <label for="{{ $for }}" {{ $attributes->merge(['class' => $class_label]) }}>
+    <label for="{{ $for }}" class="{{ $class_label }}">
         {{ $slot }}
 
         @if($required)
@@ -20,10 +20,10 @@
     <textarea
         name="{{ $for }}"
         id="{{ $for }}"
-        class="{{ $class_area }}"
         placeholder="{{ $placeholder }}"
         @if($required) required @endif
         rows="8"
+        {{ $attributes->merge(['class' => $class_area]) }}
     >{{ old($for) }}</textarea>
 
     @error($for)

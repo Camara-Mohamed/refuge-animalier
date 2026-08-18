@@ -5,11 +5,12 @@ use App\Models\Animal;
 use App\Models\Coat;
 use App\Models\Race;
 use App\Models\Specie;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-new class extends Component
+new #[Title('Ajouter un animal')] class extends Component
 {
     use WithFileUploads;
 

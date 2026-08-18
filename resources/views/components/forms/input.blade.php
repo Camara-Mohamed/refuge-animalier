@@ -9,7 +9,7 @@
 ])
 
 <div class="flex flex-col gap-2">
-    <label for="{{ $for }}" {{ $attributes->merge(['class' => $class_label]) }}>
+    <label for="{{ $for }}" class="{{ $class_label }}">
         {{ $slot }}
 
         @if($required)
@@ -17,8 +17,8 @@
         @endif
     </label>
 
-    <input @if($required) required @endif type="{{ $type }}" value="{{ old($for, $value) }}" name="{{ $for }}" id="{{ $for }}" class="{{ $class_input }}"
-    placeholder="{{ $placeholder }}">
+    <input @if($required) required @endif type="{{ $type }}" value="{{ old($for, $value) }}" name="{{ $for }}" id="{{ $for }}"
+    placeholder="{{ $placeholder }}" {{ $attributes->merge(['class' => $class_input]) }}>
 
     @error($for)
         <p class="font-serif text-sm text-red-normal mt-1">{!! $message !!}</p>

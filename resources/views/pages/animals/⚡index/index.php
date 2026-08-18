@@ -2,10 +2,11 @@
 
 use App\Models\Animal;
 use App\Models\Specie;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-new class extends Component
+new #[Title('Animaux')] class extends Component
 {
     use WithPagination;
 

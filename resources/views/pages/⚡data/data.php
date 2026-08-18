@@ -3,10 +3,11 @@
 use App\Models\Coat;
 use App\Models\Race;
 use App\Models\Specie;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-new class extends Component
+new #[Title('Données')] class extends Component
 {
     #[Validate('required|string|max:255')]
     public string $newSpecie = '';

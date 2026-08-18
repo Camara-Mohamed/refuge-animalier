@@ -8,7 +8,7 @@
     <meta name="description" content="Les Pattes Heureuses - Gestionnaire de Refuge.">
     <meta name="robots" content="noindex, nofollow">
 
-    <title>{{ $title . ' - Les Pattes Heureuses' }}</title>
+    <title>{{ ($title ?? 'Dashboard') . ' - Les Pattes Heureuses' }}</title>
 
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])

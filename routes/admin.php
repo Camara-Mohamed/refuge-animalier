@@ -36,9 +36,18 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
             ->name('admin.messages.index');
 
         // la gestion des bénévoles
-        Route::livewire('/volunteers', 'pages::volunteers')
+        Route::livewire('/volunteers', 'pages::volunteers.index')
             ->middleware('can:manage-volunteers')
             ->name('admin.volunteers.index');
+        Route::livewire('/volunteers/create', 'pages::volunteers.create')
+            ->middleware('can:manage-volunteers')
+            ->name('admin.volunteers.create');
+        Route::livewire('/volunteers/{volunteer}', 'pages::volunteers.show')
+            ->middleware('can:manage-volunteers')
+            ->name('admin.volunteers.show');
+        Route::livewire('/volunteers/{volunteer}/edit', 'pages::volunteers.edit')
+            ->middleware('can:manage-volunteers')
+            ->name('admin.volunteers.edit');
 
         // les statistiques
         /* Route::livewire('/reports', 'pages::reports')

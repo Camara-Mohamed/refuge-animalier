@@ -31,9 +31,12 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
             ->name('admin.data.index');
 
         // les messages
-        Route::livewire('/messages', 'pages::messages')
+        Route::livewire('/messages', 'pages::messages.index')
             ->middleware('can:manage-messages')
             ->name('admin.messages.index');
+        Route::livewire('/messages/{message}', 'pages::messages.show')
+            ->middleware('can:manage-messages')
+            ->name('admin.messages.show');
 
         // la gestion des bénévoles
         Route::livewire('/volunteers', 'pages::volunteers.index')

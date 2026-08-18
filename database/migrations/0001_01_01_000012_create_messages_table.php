@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('subject')->nullable();
             $table->text('message');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages ');
+        Schema::dropIfExists('messages');
     }
 };

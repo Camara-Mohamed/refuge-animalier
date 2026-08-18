@@ -30,6 +30,11 @@
         <input type="email" id="email" wire:model="email">
         @error('email') <p>{{ $message }}</p> @enderror
 
+        <label for="receive_emails">
+            <input type="checkbox" id="receive_emails" wire:model="receive_emails">
+            Recevoir des emails de notification
+        </label>
+
         <button type="submit">Enregistrer</button>
     </form>
 </div>

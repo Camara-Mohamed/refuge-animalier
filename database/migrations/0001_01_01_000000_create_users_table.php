@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('code_postal')->nullable();
             $table->json('availabilities')->nullable();
+            $table->boolean('receive_emails')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

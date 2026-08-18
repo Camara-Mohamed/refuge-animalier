@@ -13,12 +13,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 
-#[Fillable(['name', 'email', 'password', 'avatar'])]
+#[Fillable(['name', 'email', 'password', 'avatar', 'receive_emails'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
+
+    protected $attributes = [
+        'receive_emails' => true,
+    ];
 
     public function fullName(): string
     {
@@ -69,6 +73,7 @@ class User extends Authenticatable
             'password' => 'hashed',
             'availabilities' => 'array',
             'role' => UserRole::class,
+            'receive_emails' => 'boolean',
         ];
     }
 }

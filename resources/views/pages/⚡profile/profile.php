@@ -19,10 +19,13 @@ new #[Title('Mon profil')] class extends Component
     #[Validate('nullable|image|max:2048')]
     public $avatarFile = null;
 
+    public bool $receive_emails = true;
+
     public function mount(): void
     {
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
+        $this->receive_emails = auth()->user()->receive_emails;
     }
 
     public function removeNewAvatar(): void
@@ -43,6 +46,7 @@ new #[Title('Mon profil')] class extends Component
         $data = [
             'name' => $this->name,
             'email' => $this->email,
+            'receive_emails' => $this->receive_emails,
         ];
 
         if ($this->avatarFile) {

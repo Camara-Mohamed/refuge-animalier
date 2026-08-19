@@ -23,7 +23,9 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
         Route::livewire('/adoptions', 'pages::adoptions.index')
             ->middleware('can:manage-adoptions')
             ->name('admin.adoptions.index');
-        Route::livewire('/adoptions/{adoption}', 'pages::adoptions.show')->name('admin.adoptions.show');
+        Route::livewire('/adoptions/{adoption}', 'pages::adoptions.show')
+            ->middleware('can:manage-adoptions')
+            ->name('admin.adoptions.show');
 
         // la gestion des données
         Route::livewire('/data', 'pages::data')

@@ -4,7 +4,14 @@ namespace Database\Seeders;
 
 use App\Enums\AnimalStatus;
 use App\Enums\Gender;
+use App\Enums\UserRole;
+use App\Models\Adopter;
+use App\Models\Adoption;
+use App\Models\Animal;
+use App\Models\Message;
+use App\Models\Note;
 use App\Models\User;
+use App\Models\VolunteerApplication;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -18,10 +25,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        $admin = User::factory()->create([
             'name' => 'Camara Mohamed',
             'email' => 'mohamed.camara@lespattesheureuses.com',
             'password' => 'change_this',
+            'role' => UserRole::ADMIN->value,
+        ]);
+
+        $volunteer = User::factory()->create([
+            'name' => 'Sophie Bénévole',
+            'email' => 'sophie.benevole@lespattesheureuses.com',
+            'password' => 'change_this',
+            'role' => UserRole::VOLUNTEER->value,
         ]);
 
         DB::table('species')->insert([
@@ -193,5 +208,34 @@ class DatabaseSeeder extends Seeder
             ['name' => 'VHD (maladie hémorragique)', 'specie_id' => $species['Lapin']],
             ['name' => 'VHD2', 'specie_id' => $species['Lapin']],
         ]);
+
+        $allAnimals = Animal::all();
+
+        // Notes sur quelques animaux
+        $allAnimals->random(8)->each(function (Animal $animal) use ($admin, $volunteer) {
+            Note::factory()->count(rand(1, 3))->create([
+                'notable_type' => Animal::class,
+                'notable_id' => $animal->id,
+                'user_id' => fake()->randomElement([$admin->id, $volunteer->id]),
+            ]);
+        });
+
+        // Demandes d'adoption sur quelques animaux
+        $allAnimals->random(6)->each(function (Animal $animal) {
+            $adopter = Adopter::factory()->create();
+
+            Adoption::factory()->create([
+                'adopter_id' => $adopter->id,
+                'animal_id' => $animal->id,
+                'user_id' => null,
+                'message' => $adopter->message,
+            ]);
+        });
+
+        // Messages de contact
+        Message::factory()->count(6)->create();
+
+        // Candidatures bénévoles
+        VolunteerApplication::factory()->count(4)->create();
     }
 }

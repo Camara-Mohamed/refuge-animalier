@@ -26,6 +26,8 @@ new #[Title('Tableau de bord')] class extends Component
 
     public string $adoptionSearch = '';
 
+    public string $messageSearch = '';
+
     public function updatingAnimalSearch(): void
     {
         $this->resetPage('animalsPage');
@@ -34,6 +36,11 @@ new #[Title('Tableau de bord')] class extends Component
     public function updatingAdoptionSearch(): void
     {
         $this->resetPage('adoptionsPage');
+    }
+
+    public function updatingMessageSearch(): void
+    {
+        $this->resetPage('messagesPage');
     }
 
     public function changeAnimalStatus(Animal $animal, string $status): void
@@ -55,6 +62,13 @@ new #[Title('Tableau de bord')] class extends Component
         $this->authorize('delete', $animal);
 
         $animal->delete();
+    }
+
+    public function deleteMessage(Message $message): void
+    {
+        $this->authorize('delete', $message);
+
+        $message->delete();
     }
 
     public function mount(): void
@@ -151,10 +165,27 @@ new #[Title('Tableau de bord')] class extends Component
             $adoptionsPending = $adoptionsQuery->latest()->paginate(5, ['*'], 'adoptionsPage');
         }
 
+        $messagesUnread = null;
+        if (auth()->user()->can('manage-messages')) {
+            $messagesQuery = Message::whereNull('read_at');
+
+            if ($this->messageSearch !== '') {
+                $search = $this->messageSearch;
+
+                $messagesQuery->where(function ($query) use ($search) {
+                    $query->where('name', 'like', '%'.$search.'%')
+                        ->orWhere('subject', 'like', '%'.$search.'%');
+                });
+            }
+
+            $messagesUnread = $messagesQuery->latest()->paginate(5, ['*'], 'messagesPage');
+        }
+
         return [
             'stats' => $stats,
             'animalsPending' => $animalsPending,
             'adoptionsPending' => $adoptionsPending,
+            'messagesUnread' => $messagesUnread,
         ];
     }
 };

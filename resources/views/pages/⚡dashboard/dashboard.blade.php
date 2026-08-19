@@ -205,4 +205,51 @@
             {{ $adoptionsPending->links() }}
         </x-dashboard.section>
     @endcan
+
+    @can('manage-messages')
+        <x-dashboard.section title="Messages non lus" term="messageSearch" placeholder="Rechercher un nom ou un sujet...">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">De</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Sujet</th>
+                        <th class="py-2"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse ($messagesUnread as $message)
+                        <tr wire:key="message-{{ $message->id }}">
+                            <td class="py-2 font-sans text-blue-strong">{{ $message->name }}</td>
+                            <td class="py-2 font-sans text-blue-strong/70">{{ $message->subject ?? '—' }}</td>
+                            <td class="py-2 text-right flex items-center justify-end gap-4">
+                                <a href="{{ route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message]) }}"
+                                   class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
+                                    Voir
+                                </a>
+                                <a href="mailto:{{ $message->email }}"
+                                   class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
+                                    Répondre
+                                </a>
+                                @can('delete', $message)
+                                    <button wire:click="deleteMessage({{ $message->id }})"
+                                            wire:confirm="Supprimer ce message ?"
+                                            class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
+                                        Supprimer
+                                    </button>
+                                @endcan
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                                Aucun message non lu.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+            {{ $messagesUnread->links() }}
+        </x-dashboard.section>
+    @endcan
 </div>

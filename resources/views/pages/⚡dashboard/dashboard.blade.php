@@ -102,4 +102,107 @@
             </a>
         @endcan
     </div>
+
+    @can('manage-animals')
+        <x-dashboard.section title="Animaux à traiter" term="animalSearch" placeholder="Rechercher un nom...">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Nom</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Espèce</th>
+                        <th class="py-2"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse ($animalsPending as $animal)
+                        <tr wire:key="animal-{{ $animal->id }}">
+                            <td class="py-2 font-sans text-blue-strong">{{ $animal->name }}</td>
+                            <td class="py-2 font-sans text-blue-strong/70">{{ $animal->specie?->name ?? '—' }}</td>
+                            <td class="py-2 text-right flex items-center justify-end gap-2">
+                                @can('update', $animal)
+                                    <select wire:change="changeAnimalStatus({{ $animal->id }}, $event.target.value)"
+                                            class="px-2 py-1 rounded-lg border border-gray-200 font-sans text-sm text-blue-strong focus:outline-none focus:border-red-strong">
+                                        @foreach (\App\Enums\AnimalStatus::cases() as $status)
+                                            <option value="{{ $status->value }}" @selected($status === $animal->status)>{{ $status->label() }}</option>
+                                        @endforeach
+                                    </select>
+                                @endcan
+
+                                <a href="{{ route('admin.animals.show', ['locale' => app()->getLocale(), 'animal' => $animal]) }}"
+                                   class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
+                                    Voir
+                                </a>
+                                @can('update', $animal)
+                                    <a href="{{ route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal]) }}"
+                                       class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
+                                        Modifier
+                                    </a>
+                                @endcan
+                                @can('delete', $animal)
+                                    <button wire:click="deleteAnimal({{ $animal->id }})"
+                                            wire:confirm="Supprimer {{ $animal->name }} ? Cette action est irréversible."
+                                            class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
+                                        Supprimer
+                                    </button>
+                                @endcan
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                                Aucun animal à traiter.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+            {{ $animalsPending->links() }}
+        </x-dashboard.section>
+    @endcan
+
+    @can('manage-adoptions')
+        <x-dashboard.section title="Adoptions en attente" term="adoptionSearch" placeholder="Rechercher un adoptant ou un animal...">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Adoptant</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Animal</th>
+                        <th class="py-2"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse ($adoptionsPending as $adoption)
+                        <tr wire:key="adoption-{{ $adoption->id }}">
+                            <td class="py-2 font-sans text-blue-strong">{{ $adoption->adopter->name }}</td>
+                            <td class="py-2 font-sans text-blue-strong/70">{{ $adoption->animal->name }}</td>
+                            <td class="py-2 text-right flex items-center justify-end gap-2">
+                                @can('changeStatus', $adoption)
+                                    <select wire:change="changeAdoptionStatus({{ $adoption->id }}, $event.target.value)"
+                                            class="px-2 py-1 rounded-lg border border-gray-200 font-sans text-sm text-blue-strong focus:outline-none focus:border-red-strong">
+                                        @foreach (\App\Enums\AdoptionStatus::cases() as $status)
+                                            <option value="{{ $status->value }}" @selected($status === $adoption->status)>{{ $status->label() }}</option>
+                                        @endforeach
+                                    </select>
+                                @endcan
+
+                                <a href="{{ route('admin.adoptions.show', ['locale' => app()->getLocale(), 'adoption' => $adoption]) }}"
+                                   class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
+                                    Voir
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                                Aucune adoption en attente.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+            {{ $adoptionsPending->links() }}
+        </x-dashboard.section>
+    @endcan
 </div>

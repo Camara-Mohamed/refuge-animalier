@@ -12,12 +12,50 @@ use App\Models\VolunteerApplication;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 new #[Title('Tableau de bord')] class extends Component
 {
+    use WithPagination;
+
     public string $selectedMonth = '';
 
     public array $months = [];
+
+    public string $animalSearch = '';
+
+    public string $adoptionSearch = '';
+
+    public function updatingAnimalSearch(): void
+    {
+        $this->resetPage('animalsPage');
+    }
+
+    public function updatingAdoptionSearch(): void
+    {
+        $this->resetPage('adoptionsPage');
+    }
+
+    public function changeAnimalStatus(Animal $animal, string $status): void
+    {
+        $this->authorize('update', $animal);
+
+        $animal->update(['status' => AnimalStatus::from($status)]);
+    }
+
+    public function changeAdoptionStatus(Adoption $adoption, string $status): void
+    {
+        $this->authorize('changeStatus', $adoption);
+
+        $adoption->update(['status' => AdoptionStatus::from($status)]);
+    }
+
+    public function deleteAnimal(Animal $animal): void
+    {
+        $this->authorize('delete', $animal);
+
+        $animal->delete();
+    }
 
     public function mount(): void
     {
@@ -82,6 +120,41 @@ new #[Title('Tableau de bord')] class extends Component
             $stats['applications_unread'] = VolunteerApplication::whereNull('read_at')->count();
         }
 
-        return ['stats' => $stats];
+        $animalsPending = null;
+        if (auth()->user()->can('manage-animals')) {
+            $animalsQuery = Animal::where('status', AnimalStatus::PENDING);
+
+            if ($this->animalSearch !== '') {
+                $animalsQuery->where('name', 'like', '%'.$this->animalSearch.'%');
+            }
+
+            $animalsPending = $animalsQuery->latest()->paginate(5, ['*'], 'animalsPage');
+        }
+
+        $adoptionsPending = null;
+        if (auth()->user()->can('manage-adoptions')) {
+            $adoptionsQuery = Adoption::with(['adopter', 'animal'])
+                ->whereIn('status', [AdoptionStatus::SUBMITTED, AdoptionStatus::QUEUE]);
+
+            if ($this->adoptionSearch !== '') {
+                $search = $this->adoptionSearch;
+
+                $adoptionsQuery->where(function ($query) use ($search) {
+                    $query->whereHas('adopter', function ($q) use ($search) {
+                        $q->where('name', 'like', '%'.$search.'%');
+                    })->orWhereHas('animal', function ($q) use ($search) {
+                        $q->where('name', 'like', '%'.$search.'%');
+                    });
+                });
+            }
+
+            $adoptionsPending = $adoptionsQuery->latest()->paginate(5, ['*'], 'adoptionsPage');
+        }
+
+        return [
+            'stats' => $stats,
+            'animalsPending' => $animalsPending,
+            'adoptionsPending' => $adoptionsPending,
+        ];
     }
 };

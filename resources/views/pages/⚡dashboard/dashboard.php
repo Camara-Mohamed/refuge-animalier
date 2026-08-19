@@ -5,6 +5,7 @@ use App\Enums\AnimalStatus;
 use App\Enums\Month;
 use App\Enums\UserRole;
 use App\Mail\AdoptionStatusUpdatedMail;
+use App\Mail\AnimalStatusUpdatedMail;
 use App\Models\Adoption;
 use App\Models\Animal;
 use App\Models\Message;
@@ -57,6 +58,18 @@ new #[Title('Tableau de bord')] class extends Component
         $this->authorize('update', $animal);
 
         $animal->update(['status' => AnimalStatus::from($status)]);
+
+        $recipients = User::where('id', '!=', auth()->id())
+            ->where('receive_emails', true)
+            ->where(function ($query) use ($animal) {
+                $query->where('role', UserRole::ADMIN)
+                    ->orWhere('id', $animal->user_id);
+            })
+            ->get();
+
+        if ($recipients->isNotEmpty()) {
+            Mail::to($recipients)->send(new AnimalStatusUpdatedMail($animal));
+        }
     }
 
     public function changeAdoptionStatus(Adoption $adoption, string $status): void

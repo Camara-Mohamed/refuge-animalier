@@ -2,6 +2,7 @@
 
 use App\Enums\AnimalStatus;
 use App\Enums\UserRole;
+use App\Mail\AnimalStatusUpdatedMail;
 use App\Mail\DeleteNotificationMail;
 use App\Models\Animal;
 use App\Models\AnimalPicture;
@@ -36,6 +37,18 @@ new #[Title('Fiche animal')] class extends Component
         $this->authorize('update', $this->animal);
 
         $this->animal->update(['status' => AnimalStatus::from($status)]);
+
+        $recipients = User::where('id', '!=', auth()->id())
+            ->where('receive_emails', true)
+            ->where(function ($query) {
+                $query->where('role', UserRole::ADMIN)
+                    ->orWhere('id', $this->animal->user_id);
+            })
+            ->get();
+
+        if ($recipients->isNotEmpty()) {
+            Mail::to($recipients)->send(new AnimalStatusUpdatedMail($this->animal));
+        }
     }
 
     public function addPicture(): void

@@ -1,12 +1,38 @@
 <div class="flex flex-col gap-6">
-    <h1 class="font-serif font-bold text-2xl text-blue-strong">Tableau de bord</h1>
+    <div class="flex items-center justify-between gap-4 flex-wrap">
+        <h1 class="font-serif font-bold text-2xl text-blue-strong">Tableau de bord</h1>
+
+        <div class="flex items-center gap-2">
+            <select wire:model.live="selectedMonth"
+                    class="px-4 py-2 rounded-lg border border-gray-200 font-sans text-sm text-blue-strong focus:outline-none focus:border-red-strong">
+                <option value="">Toutes les périodes</option>
+                @foreach ($months as $month)
+                    <option value="{{ $month['value'] }}">{{ $month['label'] }}</option>
+                @endforeach
+            </select>
+
+            @can('manage-reports')
+                @php
+                    [$pdfYear, $pdfMonth] = $selectedMonth
+                        ? explode('-', $selectedMonth)
+                        : [now()->format('Y'), now()->format('m')];
+                @endphp
+                <a href="{{ route('admin.reports.download', ['locale' => app()->getLocale(), 'month' => $pdfMonth, 'year' => $pdfYear]) }}"
+                   class="px-4 py-2 rounded-lg font-sans font-bold text-sm text-blue-strong border border-gray-200 hover:border-blue-strong transition-colors">
+                    Télécharger PDF
+                </a>
+            @endcan
+        </div>
+    </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         @can('manage-animals')
             <a href="{{ route('admin.animals.index', ['locale' => app()->getLocale()]) }}"
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['animals_total'] }}</span>
-                <span class="font-sans text-sm text-blue-strong/60">Animaux ({{ $stats['animals_adoptable'] }} adoptables)</span>
+                <span class="font-sans text-sm text-blue-strong/60">
+                    Animaux {{ $selectedMonth ? 'ajoutés sur la période' : "({$stats['animals_adoptable']} adoptables)" }}
+                </span>
             </a>
         @endcan
 
@@ -15,6 +41,12 @@
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['adoptions_pending'] }}</span>
                 <span class="font-sans text-sm text-blue-strong/60">Demandes d'adoption en attente</span>
+            </a>
+
+            <a href="{{ route('admin.adoptions.index', ['locale' => app()->getLocale()]) }}"
+               class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
+                <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['adoptions_completed'] }}</span>
+                <span class="font-sans text-sm text-blue-strong/60">Adoptions réussies {{ $selectedMonth ? 'sur la période' : '' }}</span>
             </a>
         @endcan
 

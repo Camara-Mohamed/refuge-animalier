@@ -4,12 +4,14 @@ use App\Enums\AdoptionStatus;
 use App\Enums\AnimalStatus;
 use App\Enums\Month;
 use App\Enums\UserRole;
+use App\Mail\AdoptionStatusUpdatedMail;
 use App\Models\Adoption;
 use App\Models\Animal;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\VolunteerApplication;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -62,6 +64,10 @@ new #[Title('Tableau de bord')] class extends Component
         $this->authorize('changeStatus', $adoption);
 
         $adoption->update(['status' => AdoptionStatus::from($status)]);
+
+        if (in_array($adoption->status, [AdoptionStatus::ACCEPTED, AdoptionStatus::REJECTED])) {
+            Mail::to($adoption->adopter->email)->send(new AdoptionStatusUpdatedMail($adoption));
+        }
     }
 
     public function deleteAnimal(Animal $animal): void

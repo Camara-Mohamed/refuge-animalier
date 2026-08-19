@@ -1,8 +1,10 @@
 <?php
 
 use App\Enums\AdoptionStatus;
+use App\Mail\AdoptionStatusUpdatedMail;
 use App\Models\Adoption;
 use App\Models\Note;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -25,6 +27,10 @@ new #[Title('Détail adoption')] class extends Component
         $this->authorize('changeStatus', $this->adoption);
 
         $this->adoption->update(['status' => AdoptionStatus::from($status)]);
+
+        if (in_array($this->adoption->status, [AdoptionStatus::ACCEPTED, AdoptionStatus::REJECTED])) {
+            Mail::to($this->adoption->adopter->email)->send(new AdoptionStatusUpdatedMail($this->adoption));
+        }
     }
 
     public function delete(): void

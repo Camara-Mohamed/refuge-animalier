@@ -40,4 +40,34 @@
             </a>
         @endcan
     </div>
+
+    <div class="flex items-center gap-3 flex-wrap">
+        @can('create', \App\Models\Animal::class)
+            <a href="{{ route('admin.animals.create', ['locale' => app()->getLocale()]) }}"
+               class="px-4 py-2 rounded-lg font-sans font-bold text-sm text-white bg-red-strong hover:bg-red-normal transition-colors">
+                + Ajouter un animal
+            </a>
+        @endcan
+
+        @can('create', \App\Models\User::class)
+            <a href="{{ route('admin.volunteers.create', ['locale' => app()->getLocale()]) }}"
+               class="px-4 py-2 rounded-lg font-sans font-bold text-sm text-red-strong border border-red-strong hover:bg-red-light transition-colors">
+                + Créer un profil bénévole
+            </a>
+        @endcan
+
+        @can('manage-data')
+            <a href="{{ route('admin.data.index', ['locale' => app()->getLocale()]) }}"
+               class="px-4 py-2 rounded-lg font-sans font-bold text-sm text-blue-strong border border-gray-200 hover:border-blue-strong transition-colors">
+                Gérer les données
+            </a>
+        @endcan
+
+        @can('manage-messages')
+            <a href="{{ route('admin.messages.index', ['locale' => app()->getLocale()]) }}"
+               class="px-4 py-2 rounded-lg font-sans font-bold text-sm text-blue-strong border border-gray-200 hover:border-blue-strong transition-colors">
+                Voir les messages
+            </a>
+        @endcan
+    </div>
 </div>

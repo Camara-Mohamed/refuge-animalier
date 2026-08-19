@@ -252,4 +252,57 @@
             {{ $messagesUnread->links() }}
         </x-dashboard.section>
     @endcan
+
+    @can('manage-volunteers')
+        <x-dashboard.section title="Candidatures bénévoles non lues" term="applicationSearch" placeholder="Rechercher un nom...">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b border-gray-200">
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Nom</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Email</th>
+                        <th class="py-2"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse ($applicationsUnread as $application)
+                        <tr wire:key="application-{{ $application->id }}">
+                            <td class="py-2 font-sans text-blue-strong">{{ $application->name }}</td>
+                            <td class="py-2 font-sans text-blue-strong/70">{{ $application->email }}</td>
+                            <td class="py-2 text-right flex items-center justify-end gap-4">
+                                <a href="{{ route('admin.volunteer-applications.show', ['locale' => app()->getLocale(), 'volunteerApplication' => $application]) }}"
+                                   class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
+                                    Voir
+                                </a>
+                                @can('create', \App\Models\User::class)
+                                    <a href="{{ route('admin.volunteers.create', ['locale' => app()->getLocale()]) }}"
+                                       class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
+                                        Créer un compte
+                                    </a>
+                                @endcan
+                                <a href="mailto:{{ $application->email }}"
+                                   class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
+                                    Répondre
+                                </a>
+                                @can('delete', $application)
+                                    <button wire:click="deleteApplication({{ $application->id }})"
+                                            wire:confirm="Supprimer cette candidature ?"
+                                            class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
+                                        Supprimer
+                                    </button>
+                                @endcan
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                                Aucune candidature non lue.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+            {{ $applicationsUnread->links() }}
+        </x-dashboard.section>
+    @endcan
 </div>

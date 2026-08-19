@@ -28,6 +28,8 @@ new #[Title('Tableau de bord')] class extends Component
 
     public string $messageSearch = '';
 
+    public string $applicationSearch = '';
+
     public function updatingAnimalSearch(): void
     {
         $this->resetPage('animalsPage');
@@ -41,6 +43,11 @@ new #[Title('Tableau de bord')] class extends Component
     public function updatingMessageSearch(): void
     {
         $this->resetPage('messagesPage');
+    }
+
+    public function updatingApplicationSearch(): void
+    {
+        $this->resetPage('applicationsPage');
     }
 
     public function changeAnimalStatus(Animal $animal, string $status): void
@@ -69,6 +76,13 @@ new #[Title('Tableau de bord')] class extends Component
         $this->authorize('delete', $message);
 
         $message->delete();
+    }
+
+    public function deleteApplication(VolunteerApplication $volunteerApplication): void
+    {
+        $this->authorize('delete', $volunteerApplication);
+
+        $volunteerApplication->delete();
     }
 
     public function mount(): void
@@ -181,11 +195,23 @@ new #[Title('Tableau de bord')] class extends Component
             $messagesUnread = $messagesQuery->latest()->paginate(5, ['*'], 'messagesPage');
         }
 
+        $applicationsUnread = null;
+        if (auth()->user()->can('manage-volunteers')) {
+            $applicationsQuery = VolunteerApplication::whereNull('read_at');
+
+            if ($this->applicationSearch !== '') {
+                $applicationsQuery->where('name', 'like', '%'.$this->applicationSearch.'%');
+            }
+
+            $applicationsUnread = $applicationsQuery->latest()->paginate(5, ['*'], 'applicationsPage');
+        }
+
         return [
             'stats' => $stats,
             'animalsPending' => $animalsPending,
             'adoptionsPending' => $adoptionsPending,
             'messagesUnread' => $messagesUnread,
+            'applicationsUnread' => $applicationsUnread,
         ];
     }
 };

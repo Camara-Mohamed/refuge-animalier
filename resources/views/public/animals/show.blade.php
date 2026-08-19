@@ -1,7 +1,7 @@
 @php use App\Enums\House;use Carbon\Carbon; @endphp
 <x-layouts.guest title="{{ $animal->name }} - {{ __('public/animals/animals_show.title')}}">
 
-    <section class="relative h-96 bg-cover bg-center" style="background-image: url('{{ asset($animal->avatar) }}');">
+    <section class="relative h-96 bg-cover bg-center" style="background-image: url('{{ $animal->avatarUrl(1280) }}');">
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
         <div class="relative h-full flex items-end justify-between px-20 pb-12">
             <div class="text-white">

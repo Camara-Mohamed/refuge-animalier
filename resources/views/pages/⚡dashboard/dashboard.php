@@ -11,6 +11,7 @@ use App\Models\Animal;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\VolunteerApplication;
+use App\Traits\HandlesAnimalAvatar;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
@@ -19,7 +20,7 @@ use Livewire\WithPagination;
 
 new #[Title('Tableau de bord')] class extends Component
 {
-    use WithPagination;
+    use HandlesAnimalAvatar, WithPagination;
 
     public string $selectedMonth = '';
 
@@ -87,6 +88,7 @@ new #[Title('Tableau de bord')] class extends Component
     {
         $this->authorize('delete', $animal);
 
+        $this->deleteAnimalAvatar($animal);
         $animal->delete();
     }
 

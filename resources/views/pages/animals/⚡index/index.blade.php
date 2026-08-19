@@ -37,9 +37,25 @@
                 <tr wire:key="animal-{{ $animal->id }}">
                     <td>{{ $animal->name }}</td>
                     <td>{{ $animal->specie?->name ?? '—' }}</td>
-                    <td>{{ $animal->status->label() }}</td>
+                    <td>
+                        @can('update', $animal)
+                            <select wire:change="changeStatus({{ $animal->id }}, $event.target.value)">
+                                @foreach (\App\Enums\AnimalStatus::cases() as $status)
+                                    <option value="{{ $status->value }}" @selected($status === $animal->status)>{{ $status->label() }}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            {{ $animal->status->label() }}
+                        @endcan
+                    </td>
                     <td>
                         <a href="{{ route('admin.animals.show', ['locale' => app()->getLocale(), 'animal' => $animal]) }}">Voir</a>
+                        @can('update', $animal)
+                            <a href="{{ route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal]) }}">Modifier</a>
+                        @endcan
+                        @can('delete', $animal)
+                            <button wire:click="delete({{ $animal->id }})" wire:confirm="Supprimer {{ $animal->name }} ?">Supprimer</button>
+                        @endcan
                     </td>
                 </tr>
             @empty

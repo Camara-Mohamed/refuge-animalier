@@ -8,6 +8,7 @@ use App\Models\Animal;
 use App\Models\AnimalPicture;
 use App\Models\Note;
 use App\Models\User;
+use App\Traits\HandlesAnimalAvatar;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -16,7 +17,7 @@ use Livewire\WithFileUploads;
 
 new #[Title('Fiche animal')] class extends Component
 {
-    use WithFileUploads;
+    use HandlesAnimalAvatar, WithFileUploads;
 
     public Animal $animal;
 
@@ -98,6 +99,7 @@ new #[Title('Fiche animal')] class extends Component
         $this->authorize('delete', $this->animal);
 
         $name = $this->animal->name;
+        $this->deleteAnimalAvatar($this->animal);
         $this->animal->delete();
 
         $admins = User::where('role', UserRole::ADMIN)

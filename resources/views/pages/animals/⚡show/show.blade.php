@@ -13,7 +13,7 @@
 
     @if ($animal->avatar)
         <div>
-            <img src="{{ Storage::url($animal->avatar) }}" alt="{{ $animal->name }}" width="250">
+            <img src="{{ $animal->avatarUrl(640) }}" srcset="{{ $animal->avatarSrcset() }}" sizes="250px" alt="{{ $animal->name }}" width="250">
         </div>
     @endif
 

@@ -35,7 +35,7 @@
 
         <label for="avatarFile">Remplacer la photo principale</label>
         @if ($animal->avatar && ! $avatarFile)
-            <img src="{{ Storage::url($animal->avatar) }}" width="150">
+            <img src="{{ $animal->avatarUrl(320) }}" width="150">
         @endif
         <input type="file" id="avatarFile" wire:model="avatarFile">
         @error('avatarFile') <p>{{ $message }}</p> @enderror

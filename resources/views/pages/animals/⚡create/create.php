@@ -8,6 +8,7 @@ use App\Models\Coat;
 use App\Models\Race;
 use App\Models\Specie;
 use App\Models\User;
+use App\Traits\HandlesAnimalAvatar;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
@@ -16,7 +17,7 @@ use Livewire\WithFileUploads;
 
 new #[Title('Ajouter un animal')] class extends Component
 {
-    use WithFileUploads;
+    use HandlesAnimalAvatar, WithFileUploads;
 
     #[Validate('required|string|max:255')]
     public string $name = '';
@@ -53,7 +54,7 @@ new #[Title('Ajouter un animal')] class extends Component
         $data['user_id'] = auth()->id();
 
         if ($this->avatarFile) {
-            $data['avatar'] = $this->avatarFile->store('animals', 'public');
+            $data['avatar'] = $this->storeAnimalAvatar($this->avatarFile);
         }
 
         $animal = Animal::create($data);

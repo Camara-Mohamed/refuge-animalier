@@ -72,7 +72,7 @@
             @forelse ($animals as $animal)
                 <details class="p-2 bg--white rounded-lg shadow-2xl">
                     <summary class="list-none cursor-pointer flex flex-col gap-2 items-center">
-                        <div class="self-stretch h-72 p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center" style="background-image: url('{{ asset($animal->avatar) }}');">
+                        <div class="self-stretch h-72 p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center" style="background-image: url('{{ $animal->avatarUrl(640) }}');">
                         </div>
 
                         <x-icons.caret-down></x-icons.caret-down>

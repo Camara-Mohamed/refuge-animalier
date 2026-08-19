@@ -4,6 +4,7 @@ use App\Models\Animal;
 use App\Models\Coat;
 use App\Models\Race;
 use App\Models\Specie;
+use App\Traits\HandlesAnimalAvatar;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -11,7 +12,7 @@ use Livewire\WithFileUploads;
 
 new #[Title('Modifier un animal')] class extends Component
 {
-    use WithFileUploads;
+    use HandlesAnimalAvatar, WithFileUploads;
 
     public Animal $animal;
 
@@ -53,7 +54,8 @@ new #[Title('Modifier un animal')] class extends Component
         unset($data['avatarFile']);
 
         if ($this->avatarFile) {
-            $data['avatar'] = $this->avatarFile->store('animals', 'public');
+            $this->deleteAnimalAvatar($this->animal);
+            $data['avatar'] = $this->storeAnimalAvatar($this->avatarFile);
         }
 
         $this->animal->update($data);

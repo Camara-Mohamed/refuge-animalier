@@ -10,10 +10,10 @@
 
         <div class="flex items-center gap-4">
             @can('create', \App\Models\User::class)
-                <a href="{{ route('admin.volunteers.create', ['locale' => app()->getLocale()]) }}"
+                <x-admin-link :href="route('admin.volunteers.create', ['locale' => app()->getLocale()])"
                    class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
                     Créer un compte
-                </a>
+                </x-admin-link>
             @endcan
 
             <a href="mailto:{{ $application->email }}" class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">

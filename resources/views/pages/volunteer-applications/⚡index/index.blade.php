@@ -32,10 +32,10 @@
                         </x-badge>
                     </td>
                     <td class="py-2 text-right flex items-center justify-end gap-4">
-                        <a href="{{ route('admin.volunteer-applications.show', ['locale' => app()->getLocale(), 'volunteerApplication' => $application]) }}"
+                        <x-admin-link :href="route('admin.volunteer-applications.show', ['locale' => app()->getLocale(), 'volunteerApplication' => $application])"
                            class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
                             Voir
-                        </a>
+                        </x-admin-link>
                         <button wire:click="delete({{ $application->id }})" wire:confirm="Supprimer cette candidature ?"
                                 class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                             Supprimer

@@ -32,10 +32,10 @@
                         </x-badge>
                     </td>
                     <td class="py-2 text-right flex items-center justify-end gap-4">
-                        <a href="{{ route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message]) }}"
+                        <x-admin-link :href="route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message])"
                            class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
                             Voir
-                        </a>
+                        </x-admin-link>
                         <button wire:click="delete({{ $message->id }})" wire:confirm="Supprimer ce message ?"
                                 class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                             Supprimer

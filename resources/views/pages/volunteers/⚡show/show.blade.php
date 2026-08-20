@@ -13,10 +13,10 @@
 
         <div class="flex items-center gap-4">
             @can('update', $volunteer)
-                <a href="{{ route('admin.volunteers.edit', ['locale' => app()->getLocale(), 'volunteer' => $volunteer]) }}"
+                <x-admin-link :href="route('admin.volunteers.edit', ['locale' => app()->getLocale(), 'volunteer' => $volunteer])"
                    class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
                     Modifier
-                </a>
+                </x-admin-link>
             @endcan
 
             @can('delete', $volunteer)

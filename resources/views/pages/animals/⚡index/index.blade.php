@@ -2,7 +2,7 @@
     <h2>Animaux</h2>
 
     @can('create', \App\Models\Animal::class)
-        <a href="{{ route('admin.animals.create', ['locale' => app()->getLocale()]) }}">Ajouter un animal</a>
+        <x-admin-link :href="route('admin.animals.create', ['locale' => app()->getLocale()])">Ajouter un animal</x-admin-link>
     @endcan
 
     <div>
@@ -49,9 +49,9 @@
                         @endcan
                     </td>
                     <td>
-                        <a href="{{ route('admin.animals.show', ['locale' => app()->getLocale(), 'animal' => $animal]) }}">Voir</a>
+                        <x-admin-link :href="route('admin.animals.show', ['locale' => app()->getLocale(), 'animal' => $animal])">Voir</x-admin-link>
                         @can('update', $animal)
-                            <a href="{{ route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal]) }}">Modifier</a>
+                            <x-admin-link :href="route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal])">Modifier</x-admin-link>
                         @endcan
                         @can('delete', $animal)
                             <button wire:click="delete({{ $animal->id }})" wire:confirm="Supprimer {{ $animal->name }} ?">Supprimer</button>

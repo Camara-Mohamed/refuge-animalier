@@ -8,10 +8,10 @@
         <h1 class="font-serif font-bold text-2xl text-blue-strong">Bénévoles</h1>
 
         @can('create', \App\Models\User::class)
-            <a href="{{ route('admin.volunteers.create', ['locale' => app()->getLocale()]) }}"
+            <x-admin-link :href="route('admin.volunteers.create', ['locale' => app()->getLocale()])"
                class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
                 + Créer un profil
-            </a>
+            </x-admin-link>
         @endcan
     </div>
 
@@ -47,10 +47,10 @@
                         <x-badge :color="$volunteer->role->color()">{{ $volunteer->role->label() }}</x-badge>
                     </td>
                     <td class="py-2 text-right">
-                        <a href="{{ route('admin.volunteers.show', ['locale' => app()->getLocale(), 'volunteer' => $volunteer]) }}"
+                        <x-admin-link :href="route('admin.volunteers.show', ['locale' => app()->getLocale(), 'volunteer' => $volunteer])"
                            class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
                             Voir
-                        </a>
+                        </x-admin-link>
                     </td>
                 </tr>
             @empty

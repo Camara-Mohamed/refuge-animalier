@@ -42,10 +42,10 @@
                         @endcan
                     </td>
                     <td class="py-2 text-right flex items-center justify-end gap-4">
-                        <a href="{{ route('admin.adoptions.show', ['locale' => app()->getLocale(), 'adoption' => $adoption]) }}"
+                        <x-admin-link :href="route('admin.adoptions.show', ['locale' => app()->getLocale(), 'adoption' => $adoption])"
                            class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
                             Voir
-                        </a>
+                        </x-admin-link>
                         @can('delete', $adoption)
                             <button wire:click="delete({{ $adoption->id }})" wire:confirm="Supprimer cette demande ?"
                                     class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">

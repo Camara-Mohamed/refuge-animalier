@@ -2,7 +2,7 @@
     <h2>{{ $animal->name }}</h2>
 
     @can('update', $animal)
-        <a href="{{ route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal]) }}">Modifier</a>
+        <x-admin-link :href="route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal])">Modifier</x-admin-link>
     @endcan
 
     @can('delete', $animal)

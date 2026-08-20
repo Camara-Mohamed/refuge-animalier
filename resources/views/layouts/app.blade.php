@@ -26,41 +26,37 @@
 <div class="flex min-h-screen">
     <aside class="w-64 shrink-0 border-r border-gray-200 flex flex-col">
         <div class="flex items-center px-4 py-4">
-            <a href="{{ route('admin.dashboard', ['locale' => app()->getLocale()]) }}" wire:navigate
+            <x-admin-link :href="route('admin.dashboard', ['locale' => app()->getLocale()])"
                class="font-serif font-bold text-lg text-blue-strong whitespace-nowrap">
                 Les Pattes Heureuses
-            </a>
+            </x-admin-link>
         </div>
 
         <nav class="flex-1 flex flex-col gap-1 px-3 mt-2">
-            <a href="{{ route('admin.dashboard', ['locale' => app()->getLocale()]) }}" wire:navigate
-               class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.dashboard') ? 'bg-red-light font-bold' : '' }}">
+            <x-admin-nav-link :href="route('admin.dashboard', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.dashboard')">
                 <x-icons.house class="w-5 h-5 text-blue-strong shrink-0" />
                 <span>Tableau de bord</span>
-            </a>
+            </x-admin-nav-link>
 
             @can('manage-animals')
-                <a href="{{ route('admin.animals.index', ['locale' => app()->getLocale()]) }}" wire:navigate
-                   class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.animals.*') ? 'bg-red-light font-bold' : '' }}">
+                <x-admin-nav-link :href="route('admin.animals.index', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.animals.*')">
                     <x-icons.paw-print class="w-5 h-5 text-blue-strong shrink-0" />
                     <span>Animaux</span>
-                </a>
+                </x-admin-nav-link>
             @endcan
 
             @can('manage-adoptions')
-                <a href="{{ route('admin.adoptions.index', ['locale' => app()->getLocale()]) }}" wire:navigate
-                   class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.adoptions.*') ? 'bg-red-light font-bold' : '' }}">
+                <x-admin-nav-link :href="route('admin.adoptions.index', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.adoptions.*')">
                     <x-icons.hand-heart class="w-5 h-5 text-blue-strong shrink-0" />
                     <span>Adoptions</span>
-                </a>
+                </x-admin-nav-link>
             @endcan
 
             @can('manage-data')
-                <a href="{{ route('admin.data.index', ['locale' => app()->getLocale()]) }}" wire:navigate
-                   class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.data.*') ? 'bg-red-light font-bold' : '' }}">
+                <x-admin-nav-link :href="route('admin.data.index', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.data.*')">
                     <x-icons.database class="w-5 h-5 text-blue-strong shrink-0" />
                     <span>Données</span>
-                </a>
+                </x-admin-nav-link>
             @endcan
 
             @if (auth()->user()->isAdmin())
@@ -70,32 +66,28 @@
             @endif
 
             @can('manage-messages')
-                <a href="{{ route('admin.messages.index', ['locale' => app()->getLocale()]) }}" wire:navigate
-                   class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.messages.*') ? 'bg-red-light font-bold' : '' }}">
+                <x-admin-nav-link :href="route('admin.messages.index', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.messages.*')">
                     <x-icons.mail class="w-5 h-5 text-blue-strong shrink-0" />
                     <span>Messages</span>
-                </a>
+                </x-admin-nav-link>
             @endcan
 
             @can('manage-volunteers')
-                <a href="{{ route('admin.volunteers.index', ['locale' => app()->getLocale()]) }}" wire:navigate
-                   class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.volunteers.*') ? 'bg-red-light font-bold' : '' }}">
+                <x-admin-nav-link :href="route('admin.volunteers.index', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.volunteers.*')">
                     <x-icons.users class="w-5 h-5 text-blue-strong shrink-0" />
                     <span>Bénévoles</span>
-                </a>
+                </x-admin-nav-link>
 
-                <a href="{{ route('admin.volunteer-applications.index', ['locale' => app()->getLocale()]) }}" wire:navigate
-                   class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.volunteer-applications.*') ? 'bg-red-light font-bold' : '' }}">
+                <x-admin-nav-link :href="route('admin.volunteer-applications.index', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.volunteer-applications.*')">
                     <x-icons.note class="w-5 h-5 text-blue-strong shrink-0" />
                     <span>Candidatures</span>
-                </a>
+                </x-admin-nav-link>
             @endcan
 
         </nav>
 
         <div class="px-3 py-4 border-t border-gray-200 flex flex-col gap-1">
-            <a href="{{ route('admin.profile', ['locale' => app()->getLocale()]) }}" wire:navigate
-               class="flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-blue-strong hover:bg-red-light whitespace-nowrap {{ request()->routeIs('admin.profile') ? 'bg-red-light font-bold' : '' }}">
+            <x-admin-nav-link :href="route('admin.profile', ['locale' => app()->getLocale()])" :active="request()->routeIs('admin.profile')">
                 <span class="w-8 h-8 rounded-full bg-red-light flex items-center justify-center overflow-hidden shrink-0">
                     @if (auth()->user()->avatar)
                         <img src="{{ Storage::url(auth()->user()->avatar) }}" alt=""
@@ -105,7 +97,7 @@
                     @endif
                 </span>
                 <span class="truncate">{{ auth()->user()->name }}</span>
-            </a>
+            </x-admin-nav-link>
 
             <form method="POST" action="{{ route('logout', ['locale' => app()->getLocale()]) }}">
                 @csrf

@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-6" wire:poll.30s>
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <h1 class="font-serif font-bold text-2xl text-blue-strong">Tableau de bord</h1>
 

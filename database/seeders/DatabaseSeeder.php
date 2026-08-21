@@ -32,9 +32,16 @@ class DatabaseSeeder extends Seeder
             'role' => UserRole::ADMIN->value,
         ]);
 
+        $admin = User::factory()->create([
+            'name' => 'Élise Administratrice',
+            'email' => 'elise.admin@lespattesheureuses.com',
+            'password' => 'change_this',
+            'role' => UserRole::ADMIN->value,
+        ]);
+
         $volunteer = User::factory()->create([
-            'name' => 'Sophie Bénévole',
-            'email' => 'sophie.benevole@lespattesheureuses.com',
+            'name' => 'Thomas Bénévole',
+            'email' => 'thomas.benevole@lespattesheureuses.com',
             'password' => 'change_this',
             'role' => UserRole::VOLUNTEER->value,
         ]);
@@ -89,6 +96,16 @@ class DatabaseSeeder extends Seeder
         $races = DB::table('races')->pluck('id', 'name');
         $coats = DB::table('coats')->pluck('id', 'name');
 
+        // Les statuts
+        $statuses = [
+            AnimalStatus::ADOPTABLE->value,
+            AnimalStatus::PENDING->value,
+            AnimalStatus::UNDER_CARE->value,
+            AnimalStatus::IN_PROCESS->value,
+            AnimalStatus::ADOPTED->value,
+            AnimalStatus::DECEASED->value,
+        ];
+
         $animals = [];
 
         for ($i = 1; $i <= 8; $i++) {
@@ -98,12 +115,12 @@ class DatabaseSeeder extends Seeder
                 'birth_date' => Carbon::now()->subYears(rand(1, 10)),
                 'chip' => fake()->unique()->numerify('######'),
                 'description' => 'Chien sociable, habitué à la présence humaine, propre et joueur.',
-                'status' => AnimalStatus::ADOPTABLE->value,
+                'status' => $statuses[$i % count($statuses)],
                 'avatar' => "assets/img/public/animals/dogs/dog_{$i}.webp",
                 'specie_id' => $species['Chien'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Court'],
-                'user_id' => 1,
+                'user_id' => $admin->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -116,12 +133,12 @@ class DatabaseSeeder extends Seeder
                 'birth_date' => now()->subMonths(rand(2, 18)),
                 'chip' => null,
                 'description' => 'Hamster calme, idéal pour une adoption responsable avec encadrement.',
-                'status' => AnimalStatus::ADOPTABLE->value,
+                'status' => $statuses[$i % count($statuses)],
                 'avatar' => "assets/img/public/animals/hamsters/hamster_{$i}.webp",
                 'specie_id' => $species['Hamster'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Court'],
-                'user_id' => 1,
+                'user_id' => $admin->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -134,12 +151,12 @@ class DatabaseSeeder extends Seeder
                 'birth_date' => Carbon::now()->subYears(rand(1, 15)),
                 'chip' => fake()->unique()->numerify('######'),
                 'description' => 'Chat calme, affectueux, propre et compatible avec la vie en appartement.',
-                'status' => AnimalStatus::ADOPTABLE->value,
+                'status' => $statuses[$i % count($statuses)],
                 'avatar' => "assets/img/public/animals/cats/cat_{$i}.webp",
                 'specie_id' => $species['Chat'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Mi-long'],
-                'user_id' => 1,
+                'user_id' => $admin->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -152,12 +169,12 @@ class DatabaseSeeder extends Seeder
                 'birth_date' => now()->subYears(rand(1, 6)),
                 'chip' => fake()->optional()->numerify('######'),
                 'description' => 'Lapin sociable, propre, habitué à la manipulation et à la vie en intérieur.',
-                'status' => AnimalStatus::ADOPTABLE->value,
+                'status' => $statuses[$i % count($statuses)],
                 'avatar' => "assets/img/public/animals/rabbits/rabbit_{$i}.webp",
                 'specie_id' => $species['Lapin'],
                 'race_id' => $races->random(),
-                'coat_id' => $coats->random(),
-                'user_id' => 1,
+                'coat_id' => $coats['Court'],
+                'user_id' => $admin->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
@@ -170,20 +187,18 @@ class DatabaseSeeder extends Seeder
                 'birth_date' => Carbon::now()->subYears(rand(2, 30)),
                 'chip' => null,
                 'description' => 'Perroquet intelligent, sociable, nécessitant stimulation et attention.',
-                'status' => AnimalStatus::ADOPTABLE->value,
+                'status' => $statuses[$i % count($statuses)],
                 'avatar' => "assets/img/public/animals/perroquets/perroquet_{$i}.webp",
                 'specie_id' => $species['Perroquet'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Plumes'],
-                'user_id' => 1,
+                'user_id' => $admin->id,
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
 
         DB::table('animals')->insert($animals);
-
-        $species = DB::table('species')->pluck('id', 'name');
 
         DB::table('vaccines')->insert([
             ['name' => 'Maladie de Carré', 'specie_id' => $species['Chien']],
@@ -211,7 +226,7 @@ class DatabaseSeeder extends Seeder
 
         $allAnimals = Animal::all();
 
-        // Notes sur quelques animaux
+        // les notes
         $allAnimals->random(8)->each(function (Animal $animal) use ($admin, $volunteer) {
             Note::factory()->count(rand(1, 3))->create([
                 'notable_type' => Animal::class,
@@ -220,7 +235,7 @@ class DatabaseSeeder extends Seeder
             ]);
         });
 
-        // Demandes d'adoption sur quelques animaux
+        // les demandes d'adoption
         $allAnimals->random(6)->each(function (Animal $animal) {
             $adopter = Adopter::factory()->create();
 
@@ -232,10 +247,30 @@ class DatabaseSeeder extends Seeder
             ]);
         });
 
-        // Messages de contact
-        Message::factory()->count(6)->create();
+        // les messages de contact
+        $messages = [
+            ['subject' => 'Question sur l\'adoption', 'message' => 'Bonjour, est-ce que Rex est encore disponible à l\'adoption ?'],
+            ['subject' => 'Don de nourriture', 'message' => 'Je souhaite faire un don de croquettes, comment procéder ?'],
+            ['subject' => 'Horaires du refuge', 'message' => 'Quels sont vos horaires d\'ouverture le week-end ?'],
+            ['subject' => 'Animal trouvé', 'message' => 'J\'ai trouvé un chat errant, pouvez-vous le prendre en charge ?'],
+            ['subject' => 'Partenariat association', 'message' => 'Nous représentons une association et aimerions organiser un événement commun.'],
+            ['subject' => 'Suivi de dossier', 'message' => 'Je n\'ai pas eu de nouvelles depuis ma demande d\'adoption, pouvez-vous me tenir informé ?'],
+        ];
 
-        // Candidatures bénévoles
-        VolunteerApplication::factory()->count(4)->create();
+        foreach ($messages as $message) {
+            Message::factory()->create($message);
+        }
+
+        // les candidatures bénévoles
+        $applications = [
+            ['name' => 'Claire Dubois', 'email' => 'claire.dubois@example.com'],
+            ['name' => 'Julien Petit', 'email' => 'julien.petit@example.com'],
+            ['name' => 'Nadia Aziz', 'email' => 'nadia.aziz@example.com'],
+            ['name' => 'Marc Lefevre', 'email' => 'marc.lefevre@example.com'],
+        ];
+
+        foreach ($applications as $application) {
+            VolunteerApplication::factory()->create($application);
+        }
     }
 }

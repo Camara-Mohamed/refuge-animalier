@@ -58,7 +58,7 @@ new #[Title('Créer un profil')] class extends Component
         $data['password'] = bcrypt($password);
 
         if ($this->avatarFile) {
-            $data['avatar'] = $this->avatarFile->store('avatars', 'public');
+            $data['avatar'] = $this->avatarFile->store('avatars', config('filesystems.default'));
         }
 
         $volunteer = User::create($data);

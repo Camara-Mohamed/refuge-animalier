@@ -25,7 +25,7 @@ class ProcessUploadedImageJob implements ShouldQueue
         $manager = new ImageManager(Driver::class);
 
         $image = $manager->decodeBinary(
-            Storage::disk('public')->get($this->fullPathToOriginal)
+            Storage::disk(config('filesystems.default'))->get($this->fullPathToOriginal)
         );
 
         $sizes = config('animalavatars.sizes');
@@ -38,7 +38,7 @@ class ProcessUploadedImageJob implements ShouldQueue
 
             $path = sprintf($variantPattern, $size['width']).'/'.$this->newOriginalFileName;
 
-            Storage::disk('public')->put($path, (string) $variant->encodeUsingFileExtension($imageType));
+            Storage::disk(config('filesystems.default'))->put($path, (string) $variant->encodeUsingFileExtension($imageType));
         }
     }
 }

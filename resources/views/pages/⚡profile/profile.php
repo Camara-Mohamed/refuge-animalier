@@ -58,7 +58,7 @@ new #[Title('Mon profil')] class extends Component
         ];
 
         if ($this->avatarFile) {
-            $data['avatar'] = $this->avatarFile->store('avatars', 'public');
+            $data['avatar'] = $this->avatarFile->store('avatars', config('filesystems.default'));
         }
 
         $user->update($data);

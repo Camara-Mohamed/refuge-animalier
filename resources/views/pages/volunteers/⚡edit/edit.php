@@ -80,7 +80,7 @@ new #[Title('Modifier un profil')] class extends Component
         unset($data['avatarFile']);
 
         if ($this->avatarFile) {
-            $data['avatar'] = $this->avatarFile->store('avatars', 'public');
+            $data['avatar'] = $this->avatarFile->store('avatars', config('filesystems.default'));
         }
 
         $this->volunteer->update($data);

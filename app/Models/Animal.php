@@ -74,7 +74,7 @@ class Animal extends Model
         if ($wantsVariant) {
             $variantPath = "animals/variants/{$size}/".basename($this->avatar);
 
-            if (Storage::disk('public')->exists($variantPath)) {
+            if (Storage::disk(config('filesystems.default'))->exists($variantPath)) {
                 return Storage::url($variantPath);
             }
         }

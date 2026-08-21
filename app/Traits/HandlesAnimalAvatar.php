@@ -10,7 +10,7 @@ trait HandlesAnimalAvatar
 {
     protected function storeAnimalAvatar($file): string
     {
-        $path = $file->store('animals', 'public');
+        $path = $file->store('animals', config('filesystems.default'));
 
         ProcessUploadedImageJob::dispatchSync($path, basename($path));
 
@@ -23,11 +23,11 @@ trait HandlesAnimalAvatar
             return;
         }
 
-        Storage::disk('public')->delete($animal->avatar);
+        Storage::disk(config('filesystems.default'))->delete($animal->avatar);
 
         foreach (config('animalavatars.sizes') as $size) {
             $path = sprintf(config('animalavatars.variant_pattern'), $size['width']).'/'.basename($animal->avatar);
-            Storage::disk('public')->delete($path);
+            Storage::disk(config('filesystems.default'))->delete($path);
         }
     }
 }

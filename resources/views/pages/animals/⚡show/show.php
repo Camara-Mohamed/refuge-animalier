@@ -59,7 +59,7 @@ new #[Title('Fiche animal')] class extends Component
 
         if ($this->newPicture) {
             $this->animal->pictures()->create([
-                'path' => $this->newPicture->store('animals', 'public'),
+                'path' => $this->newPicture->store('animals', config('filesystems.default')),
                 'alt' => $this->animal->name,
             ]);
         }

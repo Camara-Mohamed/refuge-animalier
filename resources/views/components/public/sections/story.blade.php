@@ -5,8 +5,8 @@
 ])
 
 <x-public.sections.section title="{{ $title }}">
-    <div class="flex flex-col-reverse md:flex-row md:items-start justify-between gap-8">
-        <div class="flex flex-col gap-6 md:w-1/2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="flex flex-col gap-6 order-2 md:order-1">
             <div class="flex flex-col gap-4 font-sans font-normal text-lg text-blue-strong opacity-50">
                 {{ $slot }}
             </div>
@@ -16,7 +16,7 @@
             @endisset
         </div>
 
-        <figure class="flex shrink-0 w-full md:w-1/2 h-64 md:h-80">
+        <figure class="order-1 md:order-2 min-h-64">
             <x-public.sections.image src="{{ $image }}" alt="{{ $imageAlt }}" />
         </figure>
     </div>

@@ -3,6 +3,12 @@
 return [
     'title' => 'À propos - Les Pattes Heureuses',
 
+    'intro_title' => 'À propos de notre refuge',
+    'intro_subtitle' => 'Depuis notre création, nous nous engageons chaque jour à offrir refuge, soins et amour aux animaux dans le besoin. Notre mission est de leur donner une seconde chance et de leur trouver une famille aimante où ils pourront s\'épanouir.',
+
+    'faq_title' => 'Vos questions, nos réponses',
+    'faq_subtitle' => 'Vous avez une question sur l\'adoption ou le bénévolat ? Retrouvez les réponses les plus fréquentes ci-dessous.',
+
     'story_title' => 'Notre Histoire',
     'story_content_1' => 'Les Pattes Heureuses a été fondé en 2015 par Élise Moreau, vétérinaire passionnée, avec une vision claire : offrir un refuge sûr et aimant aux animaux abandonnés, blessés ou maltraités.',
     'story_content_2' => 'Ce qui a commencé comme un petit refuge local s\'est transformé en une organisation reconnue, accueillant jusqu\'à 50 pensionnaires simultanément dans nos installations modernes et chaleureuses.',

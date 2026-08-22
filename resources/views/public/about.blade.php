@@ -1,5 +1,11 @@
 <x-layouts.guest title="{{ __('public/about.title')}}" >
 
+    <x-public.sections.section title="{{ __('public/about.intro_title') }}">
+        <p class="font-sans font-normal text-lg text-blue-strong opacity-50 max-w-2xl">
+            {{ __('public/about.intro_subtitle') }}
+        </p>
+    </x-public.sections.section>
+
     <x-public.sections.story
         title="{{ __('public/about.story_title') }}"
         image="{{ asset('assets/img/public/hero_bg_2_1280.webp') }}"
@@ -9,6 +15,24 @@
         <p>{{ __('public/about.story_content_3') }}</p>
     </x-public.sections.story>
 
+    <x-public.sections.values></x-public.sections.values>
+
+    <section class="py-10 px-6 md:py-12 md:px-12 lg:py-16 lg:px-20 text-blue-strong">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div class="flex flex-col gap-4">
+                <h2 class="font-serif font-bold text-2xl md:text-3xl lg:text-4xl">
+                    {{ __('public/about.faq_title') }}
+                </h2>
+                <p class="font-sans font-normal text-lg text-blue-strong opacity-50">
+                    {{ __('public/about.faq_subtitle') }}
+                </p>
+            </div>
+
+            <x-public.sections.faq></x-public.sections.faq>
+        </div>
+    </section>
+
+    {{--
     <x-public.sections.section title="{{ __('public/about.mission_title') }}">
         <div class="flex flex-col gap-6">
             <p class="font-sans font-normal text-lg text-blue-strong opacity-50">
@@ -136,5 +160,6 @@
             </x-buttons.button>
         </div>
     </x-public.sections.section>
+    --}}
 
 </x-layouts.guest>

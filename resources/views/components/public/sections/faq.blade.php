@@ -28,16 +28,16 @@
 @endphp
 
 
-<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-4">
     @foreach ($faqs as $faq)
-        <details class="mb-4 rounded-lg border border-red-strong bg--white">
-            <summary class="p-6 flex justify-between items-center cursor-pointer select-none
-            text-blue-strong text-2xl font-bold font-sans">
+        <details class="group rounded-lg border border-red-strong bg-white">
+            <summary class="p-4 md:p-6 flex justify-between items-center gap-4 cursor-pointer select-none
+            text-blue-strong text-lg md:text-xl font-bold font-sans">
                 {!! $faq['question'] !!}
-                <x-icons.caret-down class="p-2 bg-red-strong rounded-full flex justify-center items-center"
+                <x-icons.caret-down class="w-8 h-8 shrink-0 p-2 bg-red-strong rounded-full transition-transform duration-300 group-open:rotate-180"
                                     fill="fill-white"></x-icons.caret-down>
             </summary>
-            <div class="px-6 pb-6 pt-2 text-blue-strong font-normal font-serif">
+            <div class="px-4 md:px-6 pb-6 pt-2 text-blue-strong font-normal font-serif">
                 {!! $faq['answer'] !!}
             </div>
         </details>

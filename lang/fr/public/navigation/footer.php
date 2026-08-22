@@ -19,4 +19,7 @@ return [
     'go_mention_legal' => 'Aller à la page mentions légales',
     'mention_legal' => 'Mentions légales',
 
+    'developed_by' => 'par Mohamed Camara',
+    'go_developer' => 'Voir le site de Mohamed Camara (nouvel onglet)',
+
 ];

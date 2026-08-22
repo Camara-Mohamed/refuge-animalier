@@ -99,6 +99,8 @@ class DatabaseSeeder extends Seeder
         // Les statuts
         $statuses = [
             AnimalStatus::ADOPTABLE->value,
+            AnimalStatus::ADOPTABLE->value,
+            AnimalStatus::ADOPTABLE->value,
             AnimalStatus::PENDING->value,
             AnimalStatus::UNDER_CARE->value,
             AnimalStatus::IN_PROCESS->value,
@@ -108,7 +110,8 @@ class DatabaseSeeder extends Seeder
 
         $animals = [];
 
-        for ($i = 1; $i <= 8; $i++) {
+        for ($i = 1; $i <= 16; $i++) {
+            $photo = (($i - 1) % 8) + 1;
             $animals[] = [
                 'name' => fake()->firstName(),
                 'gender' => fake()->randomElement([Gender::MALE->value, Gender::FEMALE->value]),
@@ -116,7 +119,7 @@ class DatabaseSeeder extends Seeder
                 'chip' => fake()->unique()->numerify('######'),
                 'description' => 'Chien sociable, habitué à la présence humaine, propre et joueur.',
                 'status' => $statuses[$i % count($statuses)],
-                'avatar' => "assets/img/public/animals/dogs/dog_{$i}.webp",
+                'avatar' => "assets/img/public/animals/dogs/dog_{$photo}.webp",
                 'specie_id' => $species['Chien'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Court'],
@@ -126,7 +129,8 @@ class DatabaseSeeder extends Seeder
             ];
         }
 
-        for ($i = 1; $i <= 2; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
+            $photo = (($i - 1) % 2) + 1;
             $animals[] = [
                 'name' => fake()->firstName(),
                 'gender' => fake()->randomElement([Gender::MALE->value, Gender::FEMALE->value]),
@@ -134,7 +138,7 @@ class DatabaseSeeder extends Seeder
                 'chip' => null,
                 'description' => 'Hamster calme, idéal pour une adoption responsable avec encadrement.',
                 'status' => $statuses[$i % count($statuses)],
-                'avatar' => "assets/img/public/animals/hamsters/hamster_{$i}.webp",
+                'avatar' => "assets/img/public/animals/hamsters/hamster_{$photo}.webp",
                 'specie_id' => $species['Hamster'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Court'],
@@ -144,7 +148,8 @@ class DatabaseSeeder extends Seeder
             ];
         }
 
-        for ($i = 1; $i <= 6; $i++) {
+        for ($i = 1; $i <= 12; $i++) {
+            $photo = (($i - 1) % 6) + 1;
             $animals[] = [
                 'name' => fake()->firstName(),
                 'gender' => fake()->randomElement([Gender::MALE->value, Gender::FEMALE->value]),
@@ -152,7 +157,7 @@ class DatabaseSeeder extends Seeder
                 'chip' => fake()->unique()->numerify('######'),
                 'description' => 'Chat calme, affectueux, propre et compatible avec la vie en appartement.',
                 'status' => $statuses[$i % count($statuses)],
-                'avatar' => "assets/img/public/animals/cats/cat_{$i}.webp",
+                'avatar' => "assets/img/public/animals/cats/cat_{$photo}.webp",
                 'specie_id' => $species['Chat'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Mi-long'],
@@ -162,7 +167,8 @@ class DatabaseSeeder extends Seeder
             ];
         }
 
-        for ($i = 1; $i <= 2; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
+            $photo = (($i - 1) % 2) + 1;
             $animals[] = [
                 'name' => fake()->firstName(),
                 'gender' => fake()->randomElement([Gender::MALE->value, Gender::FEMALE->value]),
@@ -170,7 +176,7 @@ class DatabaseSeeder extends Seeder
                 'chip' => fake()->optional()->numerify('######'),
                 'description' => 'Lapin sociable, propre, habitué à la manipulation et à la vie en intérieur.',
                 'status' => $statuses[$i % count($statuses)],
-                'avatar' => "assets/img/public/animals/rabbits/rabbit_{$i}.webp",
+                'avatar' => "assets/img/public/animals/rabbits/rabbit_{$photo}.webp",
                 'specie_id' => $species['Lapin'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Court'],
@@ -180,7 +186,8 @@ class DatabaseSeeder extends Seeder
             ];
         }
 
-        for ($i = 1; $i <= 2; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
+            $photo = (($i - 1) % 2) + 1;
             $animals[] = [
                 'name' => fake()->firstName(),
                 'gender' => fake()->randomElement([Gender::MALE->value, Gender::FEMALE->value]),
@@ -188,7 +195,7 @@ class DatabaseSeeder extends Seeder
                 'chip' => null,
                 'description' => 'Perroquet intelligent, sociable, nécessitant stimulation et attention.',
                 'status' => $statuses[$i % count($statuses)],
-                'avatar' => "assets/img/public/animals/perroquets/perroquet_{$i}.webp",
+                'avatar' => "assets/img/public/animals/perroquets/perroquet_{$photo}.webp",
                 'specie_id' => $species['Perroquet'],
                 'race_id' => $races->random(),
                 'coat_id' => $coats['Plumes'],

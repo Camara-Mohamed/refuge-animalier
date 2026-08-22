@@ -1,10 +1,8 @@
 @php use App\Enums\Gender; @endphp
 <x-layouts.guest title="{{ __('public/animals/animals_index.title')}}">
-    <x-public.sections.section title="{{ __('public/animals/animals_index.section_title')}}">
-        <p class="font-medium opacity-60">
-            {{ __('public/animals/animals_index.section_subtitle') }}
-        </p>
-    </x-public.sections.section>
+    <x-public.sections.intro title="{{ __('public/animals/animals_index.section_title')}}">
+        {{ __('public/animals/animals_index.section_subtitle') }}
+    </x-public.sections.intro>
 
     <section class="pb-20 px-20 flex flex-col text-blue-strong transition-all duration-200 ease-in-out">
         <h2 class="sr-only">{{ __('public/animals/animals_index.section_animals_title') }}</h2>

@@ -1,10 +1,8 @@
 <x-layouts.guest title="{{ __('public/about.title')}}" >
 
-    <x-public.sections.section title="{{ __('public/about.intro_title') }}">
-        <p class="font-sans font-normal text-lg text-blue-strong opacity-50 max-w-2xl">
-            {{ __('public/about.intro_subtitle') }}
-        </p>
-    </x-public.sections.section>
+    <x-public.sections.intro title="{{ __('public/about.intro_title') }}">
+        {{ __('public/about.intro_subtitle') }}
+    </x-public.sections.intro>
 
     <x-public.sections.story
         title="{{ __('public/about.story_title') }}"

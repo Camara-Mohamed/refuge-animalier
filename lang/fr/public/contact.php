@@ -16,12 +16,15 @@ return [
 
     'info_title' => 'Nos coordonnées',
     'info_address_title' => 'Adresse',
-    'info_address' => '123 Rue des Animaux, 75001 Paris, France',
+    'info_address' => 'Rue des Animaux 12, 1000 Bruxelles, Belgique',
     'info_phone_title' => 'Téléphone',
     'info_phone' => '+33 1 23 45 67 89',
     'info_email_title' => 'Email',
     'info_email' => 'contact@lespattesheureuses.com',
     'info_hours_title' => 'Horaires',
     'info_hours' => 'Lun-Ven: 9h-18h, Sam: 10h-16h',
+
+    'help_title' => 'Besoin d\'aide immédiate ?',
+    'help_button' => 'Appelez-nous maintenant',
 
 ];

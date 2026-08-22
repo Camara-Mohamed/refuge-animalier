@@ -1,10 +1,8 @@
 <x-layouts.guest title="{{ __('public/volunteer.title')}}" >
 
-    <x-public.sections.section title="{{ __('public/volunteer.page_title') }}">
-        <p class="font-sans font-normal text-lg text-blue-strong opacity-50">
-            {{ __('public/volunteer.page_subtitle') }}
-        </p>
-    </x-public.sections.section>
+    <x-public.sections.intro title="{{ __('public/volunteer.page_title') }}">
+        {{ __('public/volunteer.page_subtitle') }}
+    </x-public.sections.intro>
 
     <x-public.sections.section title="{{ __('public/volunteer.benefits_title') }}">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

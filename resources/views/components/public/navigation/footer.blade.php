@@ -31,10 +31,10 @@
 
 @endphp
 
-<footer class="bg-red-strong text-white py-4 px-20 transition-all easy-in-out duration-300">
-            <nav class="flex justify-end mb-4">
+<footer class="bg-red-strong text-white py-6 px-6 md:px-12 lg:px-20 transition-all easy-in-out duration-300">
+            <nav class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 mb-4">
                 <h2 class="sr-only">{{ __('/public/navigation/footer.footer_title') }}</h2>
-                <ul class="flex items-center gap-6">
+                <ul class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
                     @foreach ($links as $link)
                         <li class="flex items-center justify-center py-2 font-sans font-medium
                      hover:underline">
@@ -46,7 +46,7 @@
                 </ul>
             </nav>
 
-        <div class="flex justify-between items-center pt-1 border-t-1 text-sm">
+        <div class="flex flex-col md:flex-row gap-4 justify-between items-center pt-1 border-t-1 text-sm text-center md:text-left">
             <ul class="capitalize flex gap-2">
                 @foreach(config('app.locales') as $locale)
                     <li>
@@ -59,13 +59,22 @@
                 @endforeach
             </ul>
 
-            <p class="flex items-center gap-1">
+            <p class="flex flex-wrap items-center justify-center gap-1">
                 &copy; {{ date('Y') }} {{ __('/public/navigation/footer.website_name') }}
                 <x-public.navigation.link
                     href="#"
                     title="{{ __('/public/navigation/footer.go_mention_legal') }}"
                     class="underline hover:text-white">
                     {{ __('/public/navigation/footer.mention_legal') }}
+                </x-public.navigation.link>
+                |
+                <x-public.navigation.link
+                    href="https://mohamed-camara.com/"
+                    title="{{ __('/public/navigation/footer.go_developer') }}"
+                    class="underline hover:text-white"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    {{ __('/public/navigation/footer.developed_by') }}
                 </x-public.navigation.link>
             </p>
         </div>

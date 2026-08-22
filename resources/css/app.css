@@ -23,3 +23,51 @@
     --color-white: #ffffff;
     --color-black: #000000;
 }
+
+/* Burger Menu (sans JS, piloté par une checkbox) */
+@media (max-width: 1023px) {
+    body:has(#nav-toggle:checked) {
+        overflow: hidden;
+    }
+
+    #nav-toggle:checked ~ #nav-burger {
+        display: none;
+    }
+
+    #nav-toggle:checked ~ #nav-close {
+        display: block;
+        z-index: 110;
+    }
+
+    #nav-toggle:checked ~ ul#main-nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: var(--color-white);
+        z-index: 100;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    #nav-toggle:checked ~ ul#main-nav-links li {
+        padding: 0;
+        border: 0;
+    }
+
+    /* Le <ul> imbriqué des liens (Accueil, Animaux...) reste horizontal
+       par défaut : on le force en colonne dans le menu mobile. */
+    #nav-toggle:checked ~ ul#main-nav-links > ul {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}

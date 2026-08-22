@@ -5,7 +5,7 @@
             url('{{ asset('assets/img/public/hero_bg.webp') }}');
     ">
 
-    <div class="grid grid-cols-12">
+    <div class="grid grid-cols-12 w-full">
         <div class="flex flex-col items-start col-span-12 md:col-span-9 lg:col-span-6">
             <h2 class="font-serif text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight lg:leading-16">
                 {{ __('public/home.hero_title') }}

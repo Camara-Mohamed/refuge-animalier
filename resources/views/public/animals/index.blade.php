@@ -68,17 +68,19 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-3 gap-6 justify-center mt-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center items-start mt-8">
             @forelse ($animals as $animal)
-                <details class="p-2 bg--white rounded-lg shadow-2xl">
+                <details class="group p-2 bg-white rounded-lg shadow-2xl border-b-4 border-red-strong transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-b-8">
                     <summary class="list-none cursor-pointer flex flex-col gap-2 items-center">
-                        <div class="self-stretch h-72 p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center" style="background-image: url('{{ $animal->avatarUrl(640) }}');">
+                        <div class="self-stretch h-72 rounded-lg overflow-hidden">
+                            <div class="w-full h-full p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center transition-transform duration-500 ease-out hover:scale-105" style="background-image: url('{{ $animal->avatarUrl(640) }}');">
+                            </div>
                         </div>
 
-                        <x-icons.caret-down></x-icons.caret-down>
+                        <x-icons.caret-down class="w-6 h-6 transition-transform duration-300 group-open:rotate-180" fill="fill-blue-strong"></x-icons.caret-down>
                     </summary>
 
-                    <div class="px-2 pb-4 mt-4 flex flex-col gap-6">
+                    <div class="px-2 pb-4 mt-4 flex flex-col gap-6 transition-[opacity,translate] duration-300 ease-out starting:opacity-0 starting:-translate-y-2">
                         <div class="flex justify-between items-end">
                             <div>
                                 <h3 class="text-3xl font-black font-serif text-blue-strong">
@@ -92,11 +94,11 @@
                                 @endif
                             </div>
 
-                            <span class="flex p-1 rounded-3xl border border-blue-strong bg-blue-strong/5">
+                            <span class="w-8 h-8 shrink-0 flex items-center justify-center rounded-full border border-blue-strong bg-blue-strong/5">
                                 @if($animal->gender->value === 'male' )
-                                    <x-icons.male class="fill-blue-strong"></x-icons.male>
+                                    <x-icons.male class="w-4 h-4 fill-blue-strong"></x-icons.male>
                                 @else
-                                    <x-icons.female class="fill-blue-strong"></x-icons.female>
+                                    <x-icons.female class="w-4 h-4 fill-blue-strong"></x-icons.female>
                                 @endif
                             </span>
                         </div>
@@ -128,7 +130,9 @@
                 <p class="mt-8 font-serif font-medium text-center opacity-60">
                     {{ __('public/animals/animals_index.not_found') }}</p>
             @endforelse
+        </div>
 
+        <div class="flex justify-center mt-8">
             {{ $animals->links() }}
         </div>
     </section>

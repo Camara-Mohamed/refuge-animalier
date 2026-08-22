@@ -32,6 +32,15 @@ return [
     'stats_number_4' => '100 %',
     'stats_number_4_content' => 'engagement',
 
+    'values_title' => 'Nos valeurs',
+    'values_subtitle' => 'Ces principes guident chacune de nos actions et décisions au quotidien.',
+    'values_1_title' => 'Engagement',
+    'values_1_content' => 'Nous nous engageons à accompagner chaque adoption pour assurer le bonheur durable de l\'animal et de sa nouvelle famille.',
+    'values_2_title' => 'Professionnalisme',
+    'values_2_content' => 'Nos équipes sont formées et travaillent avec des vétérinaires pour garantir les meilleurs soins à nos pensionnaires.',
+    'values_3_title' => 'Bienveillance',
+    'values_3_content' => 'Chaque animal est accueilli avec patience et douceur, quel que soit son passé ou son état à son arrivée.',
+
     'cta_title' => 'Prêt à faire la différence ?',
     'cta_subtitle' => 'Rejoignez notre communauté et aidez-nous à offrir une meilleure vie aux animaux dans le besoin.',
 

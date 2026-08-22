@@ -30,4 +30,16 @@ return [
     'stats_number_4' => '100%',
     'stats_number_4_content' => 'betrokkenheid',
 
+    'values_title' => 'Onze waarden',
+    'values_subtitle' => 'Deze principes sturen al onze acties en beslissingen.',
+    'values_1_title' => 'Betrokkenheid',
+    'values_1_content' => 'Wij begeleiden elke adoptie om het duurzame geluk van het dier en zijn nieuwe familie te verzekeren.',
+    'values_2_title' => 'Professionaliteit',
+    'values_2_content' => 'Onze teams zijn opgeleid en werken samen met dierenartsen om de beste zorg voor onze bewoners te garanderen.',
+    'values_3_title' => 'Zorgzaamheid',
+    'values_3_content' => 'Elk dier wordt met geduld en zachtheid verwelkomd, ongeacht zijn verleden of toestand bij aankomst.',
+
+    'cta_title' => 'Klaar om het verschil te maken?',
+    'cta_subtitle' => 'Sluit je aan bij onze gemeenschap en help ons een beter leven te bieden aan dieren in nood.',
+
 ];

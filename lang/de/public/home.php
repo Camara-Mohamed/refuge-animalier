@@ -30,4 +30,16 @@ return [
     'stats_number_4' => '100 %',
     'stats_number_4_content' => 'Engagement',
 
+    'values_title' => 'Unsere Werte',
+    'values_subtitle' => 'Diese Grundsätze leiten jede unserer Handlungen und Entscheidungen.',
+    'values_1_title' => 'Engagement',
+    'values_1_content' => 'Wir begleiten jede Adoption, um das dauerhafte Glück des Tieres und seiner neuen Familie zu gewährleisten.',
+    'values_2_title' => 'Professionalität',
+    'values_2_content' => 'Unsere Teams sind geschult und arbeiten mit Tierärzten zusammen, um unseren Schützlingen die beste Pflege zu garantieren.',
+    'values_3_title' => 'Fürsorge',
+    'values_3_content' => 'Jedes Tier wird mit Geduld und Sanftheit aufgenommen, unabhängig von seiner Vergangenheit oder seinem Zustand bei der Ankunft.',
+
+    'cta_title' => 'Bereit, etwas zu bewirken?',
+    'cta_subtitle' => 'Werden Sie Teil unserer Gemeinschaft und helfen Sie uns, bedürftigen Tieren ein besseres Leben zu ermöglichen.',
+
 ];

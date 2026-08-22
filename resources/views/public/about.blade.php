@@ -1,22 +1,13 @@
 <x-layouts.guest title="{{ __('public/about.title')}}" >
 
-    <x-public.sections.section title="{{ __('public/about.story_title') }}">
-        <div class="flex justify-between gap-8">
-            <div class="flex flex-col gap-6">
-                <div class="flex flex-col gap-4 font-sans font-normal text-lg text-blue-strong opacity-50">
-                    <p>{{ __('public/about.story_content_1') }}</p>
-                    <p>{{ __('public/about.story_content_2') }}</p>
-                    <p>{{ __('public/about.story_content_3') }}</p>
-                </div>
-            </div>
-
-            <figure class="flex">
-                <x-public.sections.image src="{{ asset('assets/img/public/hero_bg_2_1280.webp') }}"
-                     alt="{{ __('public/about.alt_story_img') }}">
-                </x-public.sections.image>
-            </figure>
-        </div>
-    </x-public.sections.section>
+    <x-public.sections.story
+        title="{{ __('public/about.story_title') }}"
+        image="{{ asset('assets/img/public/hero_bg_2_1280.webp') }}"
+        imageAlt="{{ __('public/about.alt_story_img') }}">
+        <p>{{ __('public/about.story_content_1') }}</p>
+        <p>{{ __('public/about.story_content_2') }}</p>
+        <p>{{ __('public/about.story_content_3') }}</p>
+    </x-public.sections.story>
 
     <x-public.sections.section title="{{ __('public/about.mission_title') }}">
         <div class="flex flex-col gap-6">
@@ -125,11 +116,11 @@
     <x-public.sections.section class="items-center" title="{{ __('public/about.cta_title') }}">
         <p class="text-center text-lg text-blue-strong opacity-50">{{ __('public/about.cta_subtitle') }}</p>
 
-        <div class="flex gap-4 mt-8">
+        <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
             <x-buttons.button
                 href="{{ route('public.animals.index', app()->getLocale()) }}"
                 title="{{ __('public/about.cta_button_1_title') }}"
-                class="bg-red-strong border-red-strong text-white
+                class="bg-red-strong border-red-strong text-white justify-center
                         hover:bg-white hover:text-red-strong hover:border-red-strong"
             >
                 {{ __('public/about.cta_button_1') }}
@@ -138,7 +129,7 @@
             <x-buttons.button
                 href="{{ route('public.volunteer', app()->getLocale()) }}"
                 title="{{ __('public/about.cta_button_2_title') }}"
-                class="bg-white border-red-strong text-red-strong
+                class="bg-white border-red-strong text-red-strong justify-center
                         hover:bg-red-strong hover:text-white hover:border-red-strong"
             >
                 {{ __('public/about.cta_button_2') }}

@@ -30,4 +30,16 @@ return [
     'stats_number_4' => '100%',
     'stats_number_4_content' => 'commitment',
 
+    'values_title' => 'Our values',
+    'values_subtitle' => 'These principles guide every action and decision we make.',
+    'values_1_title' => 'Commitment',
+    'values_1_content' => 'We commit to supporting every adoption to ensure the long-term happiness of the animal and its new family.',
+    'values_2_title' => 'Professionalism',
+    'values_2_content' => 'Our teams are trained and work with veterinarians to guarantee the best care for our residents.',
+    'values_3_title' => 'Compassion',
+    'values_3_content' => 'Every animal is welcomed with patience and gentleness, whatever its past or condition on arrival.',
+
+    'cta_title' => 'Ready to make a difference?',
+    'cta_subtitle' => 'Join our community and help us give a better life to animals in need.',
+
 ];

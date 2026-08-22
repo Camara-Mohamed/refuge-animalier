@@ -62,7 +62,7 @@
             <p class="flex flex-wrap items-center justify-center gap-1">
                 &copy; {{ date('Y') }} {{ __('/public/navigation/footer.website_name') }}
                 <x-public.navigation.link
-                    href="#"
+                    href="{{ route('public.legal-notice', app()->getLocale()) }}"
                     title="{{ __('/public/navigation/footer.go_mention_legal') }}"
                     class="underline hover:text-white">
                     {{ __('/public/navigation/footer.mention_legal') }}

@@ -33,4 +33,8 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
         ->name('public.volunteer');
     Route::post('/volunteer', [VolunteerController::class, 'store'])
         ->name('public.volunteer.store');
+
+    Route::get('/mentions-legales', function () {
+        return view('public.legal-notice');
+    })->name('public.legal-notice');
 });

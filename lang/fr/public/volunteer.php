@@ -14,7 +14,7 @@ return [
     'benefit_3_title' => 'Apprentissage',
     'benefit_3_content' => 'Développez de nouvelles compétences en soins animaliers et en gestion de refuge.',
 
-    'roles_title' => 'Nos Besoins',
+    'roles_title' => 'Nos Rôles',
     'role_1_title' => 'Soins aux Animaux',
     'role_1_content' => 'Alimentation, nettoyage, câlins et jeux avec nos pensionnaires.',
     'role_2_title' => 'Événements',
@@ -23,6 +23,17 @@ return [
     'role_3_content' => 'Gestion des réseaux sociaux, création de contenu et promotion des adoptions.',
     'role_4_title' => 'Support Administratif',
     'role_4_content' => 'Aide administrative, accueil du public et gestion des dossiers d\'adoption.',
+
+    'needs_title' => 'Nos Besoins',
+    'need_1_title' => 'Temps et présence',
+    'need_1_content' => 'Des bénévoles disponibles régulièrement pour les soins quotidiens et l\'entretien du refuge.',
+    'need_2_title' => 'Dons matériels',
+    'need_2_content' => 'Nourriture, litière, couvertures, jouets... chaque don compte pour le confort de nos pensionnaires.',
+    'need_3_title' => 'Compétences spécifiques',
+    'need_3_content' => 'Vétérinaires, comportementalistes, transporteurs : votre expertise nous aide à mieux soigner les animaux.',
+
+    'faq_title' => 'Vos questions, nos réponses',
+    'faq_subtitle' => 'Retrouvez ici les réponses aux questions les plus fréquentes sur le bénévolat.',
 
     // Form
     'form_title' => 'Formulaire de Candidature',

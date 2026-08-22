@@ -1,5 +1,9 @@
+@props([
+    'faqs' => null,
+])
+
 @php
-    $faqs = [
+    $faqs = $faqs ?? [
         [
             'question' => 'Comment adopter un animal dans votre refuge ?',
             'answer' => 'L’adoption se fait en plusieurs étapes : une <strong>demande en ligne</strong>, un <strong>entretien</strong> avec notre équipe et, si tout est validé, une <strong>rencontre avec l’animal</strong>. L’objectif est de garantir une adoption responsable et durable.'
@@ -18,11 +22,11 @@
         ],
         [
             'question' => 'Puis-je devenir bénévole au refuge ?',
-            'answer' => 'Oui, nous accueillons régulièrement des <strong>bénévoles</strong> pour l’entretien, les promenades, la socialisation des animaux ou l’aide administrative. Vous pouvez nous contacter via le <a href="/contact" class="underline">formulaire de contact</a>.'
+            'answer' => 'Oui, nous accueillons régulièrement des <strong>bénévoles</strong> pour l’entretien, les promenades, la socialisation des animaux ou l’aide administrative. Vous pouvez nous contacter via le <a href="'.route('public.contact', app()->getLocale()).'" class="underline">formulaire de contact</a>.'
         ],
         [
             'question' => 'Comment soutenir le refuge sans adopter ?',
-            'answer' => 'Vous pouvez nous aider grâce à un <a href="/donate" class="underline">don financier</a>, des <strong>dons matériels</strong> ou en devenant <strong>famille d’accueil</strong> temporaire.'
+            'answer' => 'Vous pouvez nous aider grâce à un <strong>don financier</strong>, des <strong>dons matériels</strong> ou en devenant <strong>famille d’accueil</strong> temporaire.'
         ],
     ];
 @endphp

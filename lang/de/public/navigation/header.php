@@ -13,4 +13,9 @@ return [
     'contact_us' => 'Kontaktieren Sie Uns',
     'go_contact_us' => 'Gehe zu Seite: Kontaktieren Sie Uns',
 
+    'volunteer' => 'Freiwilliger werden',
+    'go_volunteer' => 'Gehe zu Seite: Freiwilliger werden',
+
+    'toggle_menu' => 'Menü öffnen/schließen',
+
 ];

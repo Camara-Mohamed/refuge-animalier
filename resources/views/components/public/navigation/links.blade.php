@@ -28,7 +28,7 @@
 
 @endphp
 
-<ul class="flex items-center gap-6">
+<ul {{ $attributes->class(['flex items-center gap-6']) }}>
     @foreach ($links as $link)
         <li class="flex items-center justify-center py-2 font-sans font-semibold text-blue-strong
 
@@ -48,6 +48,4 @@
             </x-public.navigation.link>
         </li>
     @endforeach
-
-    <x-public.navigation.language.dropdown />
 </ul>

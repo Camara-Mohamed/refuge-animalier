@@ -13,4 +13,9 @@ return [
     'contact_us' => 'Contact Us',
     'go_contact_us' => 'Contact Us',
 
+    'volunteer' => 'Become a volunteer',
+    'go_volunteer' => 'Become a volunteer',
+
+    'toggle_menu' => 'Toggle menu',
+
 ];

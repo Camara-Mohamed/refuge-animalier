@@ -13,4 +13,10 @@ return [
     'contact_us' => 'Contactez-nous',
     'go_contact_us' => 'Aller à la page : Contactez-nous',
 
+    'volunteer' => 'Devenir bénévole',
+    'go_volunteer' => 'Aller à la page : Devenir bénévole',
+
+    'toggle_menu' => 'Ouvrir le menu',
+    'close_menu' => 'Fermer le menu',
+
 ];

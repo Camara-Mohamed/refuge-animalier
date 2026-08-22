@@ -13,4 +13,9 @@ return [
     'contact_us' => 'Contacteer Ons',
     'go_contact_us' => 'Ga naar pagina: Contacteer Ons',
 
+    'volunteer' => 'Word vrijwilliger',
+    'go_volunteer' => 'Ga naar pagina: Word vrijwilliger',
+
+    'toggle_menu' => 'Menu openen/sluiten',
+
 ];

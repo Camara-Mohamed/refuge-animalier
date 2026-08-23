@@ -24,6 +24,7 @@ return [
     'phone' => 'Téléphone',
 
     'address_info' => 'Adresse',
+    'motivation_title' => 'Votre motivation',
     'address' => 'Rue',
     'number' => 'Numéro',
     'city' => 'Ville',

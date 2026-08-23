@@ -20,6 +20,6 @@ class AdopterController extends Controller
             'animal_id' => $animal->id,
         ]);
 
-        return back()->with('success', 'Votre demande d\'adoption a été envoyée !');
+        return back()->with('send', 'Votre demande d\'adoption a été envoyée !');
     }
 }

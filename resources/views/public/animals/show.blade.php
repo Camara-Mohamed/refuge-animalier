@@ -1,13 +1,16 @@
 @php use App\Enums\House;use Carbon\Carbon; @endphp
 <x-layouts.guest title="{{ $animal->name }} - {{ __('public/animals/animals_show.title')}}">
 
-    <section class="relative h-96 bg-cover bg-center" style="background-image: url('{{ $animal->avatarUrl(1280) }}');">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/70"></div>
-        <div class="relative h-full flex items-end justify-between px-20 pb-12">
+    <section class="relative h-72 md:h-80 lg:h-96 bg-cover bg-center px-6 md:px-12 lg:px-20 py-4 flex flex-col justify-end" style="
+        background-image:
+            linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%),
+            url('{{ $animal->avatarUrl(1280) }}');
+    ">
+        <div class="relative flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div class="text-white">
-                <h1 class="text-5xl font-black font-serif mb-2">{{ $animal->name }}</h1>
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-black font-serif mb-2">{{ $animal->name }}</h1>
                 @if($animal->race)
-                    <p class="text-xl uppercase text-red-light">{{ $animal->race->name }}</p>
+                    <p class="text-base md:text-lg uppercase font-medium">{{ $animal->race->name }}</p>
                 @endif
             </div>
 
@@ -21,21 +24,17 @@
         </div>
     </section>
 
-    <section class="py-20 px-20">
-        <div class="grid grid-cols-2 gap-12">
+    <section class="py-10 px-6 md:py-12 md:px-12 lg:py-16 lg:px-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
             <div class="space-y-8">
                 <div>
-                    <h2 class="text-3xl font-black font-serif text-blue-strong mb-6">
-                        {{ __('public/animals/animals_show.about_title') }}
-                    </h2>
-
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3">
-                            <span class="flex p-2 rounded-full border border-blue-strong bg-blue-strong/5">
+                    <div class="flex flex-row flex-wrap gap-4">
+                        <div class="flex items-center gap-3 w-full sm:w-[calc(50%-0.5rem)]">
+                            <span class="flex p-3 rounded-2xl bg-red-strong">
                                 @if($animal->gender->value === 'male')
-                                    <x-icons.male class="fill-blue-strong w-5 h-5"></x-icons.male>
+                                    <x-icons.male class="fill-white w-5 h-5"></x-icons.male>
                                 @else
-                                    <x-icons.female class="fill-blue-strong w-5 h-5"></x-icons.female>
+                                    <x-icons.female class="fill-white w-5 h-5"></x-icons.female>
                                 @endif
                             </span>
                             <div>
@@ -45,8 +44,9 @@
                         </div>
 
                         @if($animal->birth_date)
-                            <div class="flex items-center gap-3">
-                            <span class="flex p-2 rounded-full border border-blue-strong bg-blue-strong/5">
+                            <div class="flex items-center gap-3 w-full sm:w-[calc(50%-0.5rem)]">
+                            <span class="flex p-3 rounded-2xl bg-blue-strong">
+                                <x-icons.calender class="w-5 h-5 fill-white"></x-icons.calender>
                             </span>
                                 <div>
                                     <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.age') }}</p>
@@ -58,8 +58,9 @@
                         @endif
 
                         @if($animal->specie)
-                            <div class="flex items-center gap-3">
-                            <span class="flex p-2 rounded-full border border-blue-strong bg-blue-strong/5">
+                            <div class="flex items-center gap-3 w-full sm:w-[calc(50%-0.5rem)]">
+                            <span class="flex p-3 rounded-2xl bg-red-strong">
+                                <x-icons.paw-print class="w-5 h-5 fill-white"></x-icons.paw-print>
                             </span>
                                 <div>
                                     <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.species') }}</p>
@@ -69,9 +70,9 @@
                         @endif
 
                         @if($animal->coat)
-                            <div class="flex items-center gap-3">
-                            <span class="flex p-2 rounded-full border border-blue-strong bg-blue-strong/5">
-                                {{-- svg --}}
+                            <div class="flex items-center gap-3 w-full sm:w-[calc(50%-0.5rem)]">
+                            <span class="flex p-3 rounded-2xl bg-blue-strong">
+                                <x-icons.note class="w-5 h-5 fill-white"></x-icons.note>
                             </span>
                                 <div>
                                     <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.coat') }}</p>
@@ -81,8 +82,9 @@
                         @endif
 
                         @if($animal->chip)
-                            <div class="flex items-center gap-3">
-                            <span class="flex p-2 rounded-full border border-blue-strong bg-blue-strong/5">
+                            <div class="flex items-center gap-3 w-full sm:w-[calc(50%-0.5rem)]">
+                            <span class="flex p-3 rounded-2xl bg-red-strong">
+                                <x-icons.database class="w-5 h-5 fill-white"></x-icons.database>
                             </span>
                                 <div>
                                     <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.chip') }}</p>
@@ -120,28 +122,17 @@
                 @endif
             </div>
 
-            <div class="bg-blue-strong/5 p-8 rounded-2xl border border-blue-strong/10">
-                <h2 class="text-3xl font-black font-serif text-blue-strong mb-2">
+            <div class="p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
+                <h2 class="text-3xl font-black font-serif text-blue-strong mb-6">
                     {{ __('public/animals/animals_show.form_title') }}
                 </h2>
-                <p class="text-blue-strong/60 mb-6">
-                    {{ __('public/animals/animals_show.form_subtitle') }}
-                </p>
 
-                @if(session('success'))
-                    <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                <x-forms.send></x-forms.send>
 
-                <form method="POST" action="{{ route('public.animals.store', [app()->getLocale(), $animal]) }}">
-                    <x-forms.send></x-forms.send>
-
+                <form method="POST" action="{{ route('public.animals.store', [app()->getLocale(), $animal]) }}" class="flex flex-col gap-6">
                     @csrf
 
-                    <div class="space-y-4">
-                        <h3 class="font-bold text-blue-strong">{{ __('public/animals/animals_show.personal_info') }}</h3>
-
+                    <x-forms.fieldset title="{{ __('public/animals/animals_show.personal_info') }}">
                         <x-forms.input for="name" type="text" :required="true">
                             {{ __('public/animals/animals_show.name') }}
                         </x-forms.input>
@@ -153,10 +144,9 @@
                         <x-forms.input for="phone" type="tel" :required="true">
                             {{ __('public/animals/animals_show.phone') }}
                         </x-forms.input>
-                    </div>
+                    </x-forms.fieldset>
 
-                    <div class="space-y-4 pt-4 border-t border-blue-strong/10">
-                        <h3 class="font-bold text-blue-strong">{{ __('public/animals/animals_show.address_info') }}</h3>
+                    <x-forms.fieldset title="{{ __('public/animals/animals_show.address_info') }}">
 
                         <div class="grid grid-cols-3 gap-4">
                             <div class="col-span-2">
@@ -179,32 +169,34 @@
                             </x-forms.input>
                         </div>
 
-                        <x-forms.select for="house_type" :required="true"
-                                        label_title="{{ __('public/animals/animals_show.house_type') }}">
-                            @foreach(House::cases() as $houseType)
-                                <option value="{{ $houseType->value }}">
-                                    {{ __('public/animals/animals_show.house_' . $houseType->value) }}
-                                </option>
-                            @endforeach
-                        </x-forms.select>
+                        <div class="grid grid-cols-2 gap-4 items-end">
+                            <div class="flex flex-col gap-2">
+                                <label for="house_type" class="font-medium font-serif text-blue-strong">
+                                    {{ __('public/animals/animals_show.house_type') }}
+                                    <small><abbr class="text-red-normal" title="{{ __('public/form.abbr_require') }}">*</abbr></small>
+                                </label>
+                                <x-forms.select for="house_type" :required="true" class="h-12 w-full">
+                                    @foreach(House::cases() as $houseType)
+                                        <option value="{{ $houseType->value }}">
+                                            {{ __('public/animals/animals_show.house_' . $houseType->value) }}
+                                        </option>
+                                    @endforeach
+                                </x-forms.select>
+                            </div>
 
-                        <div class="flex items-center gap-2">
-                            <input type="checkbox" id="have_garden" name="have_garden" value="1"
-                                   class="w-4 h-4 text-red-strong border-blue-strong rounded focus:ring-red-strong">
-                            <label for="have_garden" class="text-sm text-blue-strong">
+                            <label for="have_garden"
+                                   class="h-12 flex items-center justify-center gap-2 px-4 rounded-lg border border-gray-300 text-blue-strong font-medium cursor-pointer transition-colors has-checked:bg-red-strong has-checked:text-white has-checked:border-red-strong">
+                                <input type="checkbox" id="have_garden" name="have_garden" value="1" class="sr-only">
                                 {{ __('public/animals/animals_show.have_garden') }}
                             </label>
                         </div>
-                    </div>
+                    </x-forms.fieldset>
 
-                    <div class="space-y-4 pt-4 border-t border-blue-strong/10">
+                    <x-forms.fieldset title="{{ __('public/animals/animals_show.motivation_title') }}">
                         <x-forms.textarea for="message" :required="true">
                             {{ __('public/animals/animals_show.message') }}
                         </x-forms.textarea>
-                        <p class="text-xs text-blue-strong/60">
-                            {{ __('public/animals/animals_show.message_help') }}
-                        </p>
-                    </div>
+                    </x-forms.fieldset>
 
                     <x-forms.button type="submit" class="w-full bg-red-strong border-red-strong text-white
                         hover:bg-white hover:text-red-strong hover:border-red-strong">

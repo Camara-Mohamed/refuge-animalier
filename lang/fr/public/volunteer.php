@@ -37,6 +37,8 @@ return [
 
     // Form
     'form_title' => 'Formulaire de Candidature',
+    'personal_info' => 'Informations personnelles',
+    'address_info' => 'Adresse',
     'form_subtitle' => 'Remplissez ce formulaire et nous vous contacterons rapidement pour discuter de votre engagement.',
     'form_name' => 'Nom complet',
     'form_email' => 'Email',

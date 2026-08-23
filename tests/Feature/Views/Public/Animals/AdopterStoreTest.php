@@ -24,7 +24,7 @@ it('creates an adopter and links an adoption request to the animal', function ()
     ]);
 
     $response->assertRedirect();
-    $response->assertSessionHas('success');
+    $response->assertSessionHas('send');
 
     expect(Adopter::count())->toBe(1);
     expect(Adoption::count())->toBe(1);

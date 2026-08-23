@@ -4,7 +4,16 @@
         ['label' => __('breadcrumbs.adoptions'), 'url' => route('admin.adoptions.index', ['locale' => app()->getLocale()])],
     ]" :key="'adoptions-index-breadcrumb'" />
 
-    <h1 class="font-serif font-bold text-2xl text-blue-strong">Adoptions</h1>
+    <div class="flex items-center justify-between gap-4 flex-wrap">
+        <h1 class="font-serif font-bold text-2xl text-blue-strong">Adoptions</h1>
+
+        @can('create', \App\Models\Adoption::class)
+            <x-admin-link :href="route('admin.adoptions.create', ['locale' => app()->getLocale()])"
+               class="px-4 py-2 rounded-lg bg-red-strong text-white font-sans text-sm font-semibold hover:bg-red-normal">
+                Nouvelle adoption
+            </x-admin-link>
+        @endcan
+    </div>
 
     <x-forms.select for="statusFilter" wire:model.live="statusFilter" label_title="Filtrer par statut">
         <option value="">Tous les statuts</option>

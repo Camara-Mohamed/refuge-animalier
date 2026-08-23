@@ -7,9 +7,12 @@
 
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <div class="flex items-center gap-2">
-            <h1 class="font-serif font-bold text-2xl text-blue-strong">
-                {{ $adoption->adopter->name }} → {{ $adoption->animal->name }}
-            </h1>
+            <div>
+                <h1 class="font-serif font-bold text-2xl text-blue-strong">
+                    {{ $adoption->adopter->name }} → {{ $adoption->animal->name }}
+                </h1>
+                <p class="font-sans text-sm text-blue-strong/50">Demandée le {{ $adoption->created_at->format('d/m/Y H:i') }}</p>
+            </div>
             <x-badge :color="$adoption->status->color()">{{ $adoption->status->label() }}</x-badge>
         </div>
 
@@ -21,21 +24,64 @@
         @endcan
     </div>
 
-    <ul class="flex flex-col gap-1 font-sans text-sm text-blue-strong">
-        <li>Email : {{ $adoption->adopter->email }}</li>
-        <li>Téléphone : {{ $adoption->adopter->phone }}</li>
-        <li>Adresse : {{ $adoption->adopter->address }} {{ $adoption->adopter->number }}, {{ $adoption->adopter->city }} {{ $adoption->adopter->postal_code }}</li>
-        <li>Type de logement : {{ $adoption->adopter->house_type->label() }}</li>
-        <li>A un jardin : {{ $adoption->adopter->have_garden ? 'Oui' : 'Non' }}</li>
-        <li>Demandée le : {{ $adoption->created_at->format('d/m/Y H:i') }}</li>
-    </ul>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+        <div class="p-6 bg-white rounded-2xl border border-blue-turquoise flex flex-col gap-4">
+            <h2 class="font-serif font-bold text-xl text-blue-strong">Animal</h2>
+            <hr class="border-blue-turquoise">
 
-    @if ($adoption->message)
-        <div class="flex flex-col gap-1">
-            <span class="font-sans text-sm text-blue-strong/60">Message</span>
-            <p class="font-sans text-blue-strong whitespace-pre-line">{{ $adoption->message }}</p>
+            <x-data-row label="Nom">{{ $adoption->animal->name }}</x-data-row>
+
+            @if ($adoption->animal->specie)
+                <x-data-row label="Espèce">{{ $adoption->animal->specie->name }}</x-data-row>
+            @endif
+
+            @if ($adoption->animal->race)
+                <x-data-row label="Race">{{ $adoption->animal->race->name }}</x-data-row>
+            @endif
+
+            @if ($adoption->animal->birth_date)
+                <x-data-row label="Âge">{{ \Carbon\Carbon::parse($adoption->animal->birth_date)->age }} ans</x-data-row>
+            @endif
+
+            @if ($adoption->animal->coat)
+                <x-data-row label="Pelage">{{ $adoption->animal->coat->name }}</x-data-row>
+            @endif
+
+            @if ($adoption->animal->specie?->vaccines->isNotEmpty())
+                <x-data-row label="Vaccins">{{ $adoption->animal->specie->vaccines->pluck('name')->join(' / ') }}</x-data-row>
+            @endif
+
+            <hr class="border-blue-turquoise">
+
+            <x-data-row label="Statut de l'animal">
+                <x-badge :color="$adoption->animal->status->color()">{{ $adoption->animal->status->label() }}</x-badge>
+            </x-data-row>
         </div>
-    @endif
+
+        <div class="p-6 bg-white rounded-2xl border border-blue-turquoise flex flex-col gap-4">
+            <h2 class="font-serif font-bold text-xl text-blue-strong">Adoptant</h2>
+            <hr class="border-blue-turquoise">
+
+            <x-data-row label="Nom">{{ $adoption->adopter->name }}</x-data-row>
+            <x-data-row label="Email">{{ $adoption->adopter->email }}</x-data-row>
+            <x-data-row label="Téléphone">{{ $adoption->adopter->phone }}</x-data-row>
+
+            <hr class="border-blue-turquoise">
+
+            <x-data-row label="Adresse">{{ $adoption->adopter->address }} {{ $adoption->adopter->number }}, {{ $adoption->adopter->postal_code }} {{ $adoption->adopter->city }}</x-data-row>
+            <x-data-row label="Logement">{{ $adoption->adopter->house_type->label() }}</x-data-row>
+            <x-data-row label="Jardin">{{ $adoption->adopter->have_garden ? 'Oui' : 'Non' }}</x-data-row>
+
+            @if ($adoption->message)
+                <hr class="border-blue-turquoise">
+
+                <div class="flex flex-col gap-1">
+                    <span class="font-sans font-bold text-blue-strong">Motivation</span>
+                    <p class="font-sans text-blue-strong whitespace-pre-line">{{ $adoption->message }}</p>
+                </div>
+            @endif
+        </div>
+    </div>
 
     @can('changeStatus', $adoption)
         <div class="flex items-center gap-2">

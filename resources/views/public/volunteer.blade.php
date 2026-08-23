@@ -39,159 +39,64 @@
                 <div class="p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
                     <x-forms.send></x-forms.send>
 
-                    <form method="POST" action="{{ route('public.volunteer.store', app()->getLocale()) }}" class="flex flex-col gap-4">
+                    <form method="POST" action="{{ route('public.volunteer.store', app()->getLocale()) }}" class="flex flex-col gap-6">
                         @csrf
 
-                        <div class="flex flex-col gap-2">
-                            <label for="name" class="text-blue-strong font-medium">
+                        <x-forms.fieldset title="{{ __('public/volunteer.personal_info') }}">
+                            <x-forms.input for="name" type="text" :required="true">
                                 {{ __('public/volunteer.form_name') }}
-                                <abbr title="{{ __('public/form.abbr_require') }}" class="text-red-strong no-underline">*</abbr>
-                            </label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value="{{ old('name') }}"
-                                required
-                                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-strong @error('name') border-red-500 @enderror"
-                            >
-                            @error('name')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
+                            </x-forms.input>
 
-                        <div class="flex flex-col gap-2">
-                            <label for="email" class="text-blue-strong font-medium">
+                            <x-forms.input for="email" type="email" :required="true">
                                 {{ __('public/volunteer.form_email') }}
-                                <abbr title="{{ __('public/form.abbr_require') }}" class="text-red-strong no-underline">*</abbr>
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value="{{ old('email') }}"
-                                required
-                                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-strong @error('email') border-red-500 @enderror"
-                            >
-                            @error('email')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
+                            </x-forms.input>
 
-                        <div class="flex flex-col gap-2">
-                            <label for="phone" class="text-blue-strong font-medium">
+                            <x-forms.input for="phone" type="tel" :required="true">
                                 {{ __('public/volunteer.form_phone') }}
-                                <abbr title="{{ __('public/form.abbr_require') }}" class="text-red-strong no-underline">*</abbr>
-                            </label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                value="{{ old('phone') }}"
-                                required
-                                class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-strong @error('phone') border-red-500 @enderror"
-                            >
-                            @error('phone')
-                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
+                            </x-forms.input>
+                        </x-forms.fieldset>
 
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="flex flex-col gap-2">
-                                <label for="address" class="text-blue-strong font-medium">
+                        <x-forms.fieldset title="{{ __('public/volunteer.address_info') }}">
+                            <div class="grid grid-cols-2 gap-4">
+                                <x-forms.input for="address" type="text" :required="true">
                                     {{ __('public/volunteer.form_address') }}
-                                    <abbr title="{{ __('public/form.abbr_require') }}" class="text-red-strong no-underline">*</abbr>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="address"
-                                    name="address"
-                                    value="{{ old('address') }}"
-                                    required
-                                    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-strong @error('address') border-red-500 @enderror"
-                                >
-                                @error('address')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                </x-forms.input>
 
-                            <div class="flex flex-col gap-2">
-                                <label for="number" class="text-blue-strong font-medium">
+                                <x-forms.input for="number" type="text" :required="true">
                                     {{ __('public/volunteer.form_number') }}
-                                    <abbr title="{{ __('public/form.abbr_require') }}" class="text-red-strong no-underline">*</abbr>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="number"
-                                    name="number"
-                                    value="{{ old('number') }}"
-                                    required
-                                    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-strong @error('number') border-red-500 @enderror"
-                                >
-                                @error('number')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
+                                </x-forms.input>
                             </div>
-                        </div>
 
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="flex flex-col gap-2">
-                                <label for="city" class="text-blue-strong font-medium">
+                            <div class="grid grid-cols-2 gap-4">
+                                <x-forms.input for="city" type="text" :required="true">
                                     {{ __('public/volunteer.form_city') }}
-                                    <abbr title="{{ __('public/form.abbr_require') }}" class="text-red-strong no-underline">*</abbr>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="city"
-                                    name="city"
-                                    value="{{ old('city') }}"
-                                    required
-                                    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-strong @error('city') border-red-500 @enderror"
-                                >
-                                @error('city')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                                </x-forms.input>
 
-                            <div class="flex flex-col gap-2">
-                                <label for="code_postal" class="text-blue-strong font-medium">
+                                <x-forms.input for="code_postal" type="text" :required="true">
                                     {{ __('public/volunteer.form_postal_code') }}
-                                    <abbr title="{{ __('public/form.abbr_require') }}" class="text-red-strong no-underline">*</abbr>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="code_postal"
-                                    name="code_postal"
-                                    value="{{ old('code_postal') }}"
-                                    required
-                                    class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-strong @error('code_postal') border-red-500 @enderror"
-                                >
-                                @error('code_postal')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
+                                </x-forms.input>
                             </div>
-                        </div>
+                        </x-forms.fieldset>
 
-                        <div class="flex flex-col gap-2">
-                            <label class="text-blue-strong font-medium">{{ __('public/volunteer.form_availability') }}</label>
+                        <x-forms.fieldset title="{{ __('public/volunteer.form_availability') }}">
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
                                 @foreach(\App\Enums\Day::cases() as $day)
-                                    <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-blue-strong/5">
+                                    <label class="flex items-center gap-2 p-3 border border-gray-300 rounded-lg cursor-pointer has-checked:bg-red-strong has-checked:text-white has-checked:border-red-strong transition-colors">
                                         <input
                                             type="checkbox"
                                             name="availabilities[]"
                                             value="{{ $day->value }}"
                                             {{ is_array(old('availabilities')) && in_array($day->value, old('availabilities')) ? 'checked' : '' }}
-                                            class="w-4 h-4 text-red-strong border-gray-300 rounded focus:ring-red-strong"
+                                            class="sr-only"
                                         >
-                                        <span class="text-blue-strong">{{ $day->label() }}</span>
+                                        <span>{{ $day->label() }}</span>
                                     </label>
                                 @endforeach
                             </div>
                             @error('availabilities')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </x-forms.fieldset>
 
                         <x-forms.button
                             type="submit"

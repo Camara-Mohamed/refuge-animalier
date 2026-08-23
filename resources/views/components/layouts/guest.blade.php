@@ -5,13 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Camara Mohamed">
-    <meta name="description"
-          content="Les Pattes Heureuses - Plateforme de gestion et d'adoption d'animaux. Gérez les
-     fiches animaux, les demandes d'adoption, les bénévoles et suivez les statistiques du refuge.">
+    <meta name="description" content="{{ __('public/home.meta_description') }}">
     <meta name="keywords" content="refuge, adoption, animaux à adopter, bénévoles, chat, chien, Les Pattes Heureuses">
 
-    <meta property="og:title" content="Les Pattes Heureuses - Application">
-    <meta property="og:description" content="Gérez votre refuge animalier avec notre application">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ __('public/home.meta_description') }}">
     <meta property="og:type" content="website">
 
     <title>{{ $title }}</title>

@@ -1,4 +1,4 @@
-<x-layouts.guest title="{{ __('public/contact.title')}}" >
+<x-layouts.guest title="{{ __('public/contact.title')}}">
 
     <x-public.sections.intro title="{{ __('public/contact.page_title') }}">
         {{ __('public/contact.page_subtitle') }}

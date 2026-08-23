@@ -3,6 +3,7 @@
 return [
     'name_website' => 'Les Pattes Heureuses',
     'title' => 'Accueil - Les Pattes Heureuses',
+    'meta_description' => 'Les Pattes Heureuses, refuge animalier à Bruxelles : découvrez nos animaux à adopter, devenez bénévole ou soutenez notre mission de protection animale.',
     'main_navigation' => 'Main Navigation',
 
     'hero_title' => 'Donnez une seconde chance à un animal',

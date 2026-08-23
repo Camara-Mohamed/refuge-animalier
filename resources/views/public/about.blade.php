@@ -70,7 +70,7 @@
         </div>
     </x-public.sections.section>
 
-    <x-public.sections.stats></x-public.sections.stats>
+    <x-public.sections.about.stats></x-public.sections.about.stats>
 
     <x-public.sections.section title="{{ __('public/about.values_title') }}">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

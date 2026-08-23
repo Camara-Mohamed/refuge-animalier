@@ -1,5 +1,5 @@
 <x-layouts.guest title="{{ __('public/home.title') }}">
-    <x-public.sections.hero></x-public.sections.hero>
+    <x-public.sections.home.hero></x-public.sections.home.hero>
     <x-public.sections.story
         title="{{ __('public/home.story_title') }}"
         image="{{ asset('assets/img/public/hero_bg_2_1280.webp') }}"

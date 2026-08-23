@@ -106,15 +106,7 @@
                         </p>
 
                         @if(isset($animal->specie->vaccines))
-                            <ul class="flex gap-2 pt-4 border-t border-blue-strong flex-wrap">
-                                @foreach($animal->specie->vaccines as $vaccine)
-                                    <li class="px-3 py-1 rounded-lg border text-sm
-                                                odd:border-red-strong odd:bg-red-strong/5 odd:text-red-strong
-                                                even:border-blue-strong even:bg-blue-strong/5 even:text-blue-strong">
-                                        {{ $vaccine->name }}
-                                    </li>
-                                @endforeach
-                            </ul>
+                            <x-public.vaccine-badges :vaccines="$animal->specie->vaccines" class="pt-4 border-t border-blue-strong" />
                         @endif
 
                         <x-buttons.button

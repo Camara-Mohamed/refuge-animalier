@@ -1,7 +1,8 @@
 @php use App\Enums\House;use Carbon\Carbon; @endphp
 <x-layouts.guest title="{{ $animal->name }} - {{ __('public/animals/animals_show.title')}}">
 
-    <section class="relative h-72 md:h-80 lg:h-96 bg-cover bg-center px-6 md:px-12 lg:px-20 py-4 flex flex-col justify-end" style="
+    <section class="relative h-72 md:h-80 lg:h-96 bg-cover bg-center px-6 md:px-12 lg:px-20 py-8 flex flex-col
+    justify-end" style="
         background-image:
             linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%),
             url('{{ $animal->avatarUrl(1280) }}');
@@ -109,15 +110,7 @@
                         <h3 class="text-2xl font-black font-serif text-blue-strong mb-4">
                             {{ __('public/animals/animals_show.vaccines_title') }}
                         </h3>
-                        <ul class="flex gap-2 flex-wrap">
-                            @foreach($vaccines as $vaccine)
-                                <li class="px-3 py-2 rounded-lg border text-sm
-                                        odd:border-red-strong odd:bg-red-strong/5 odd:text-red-strong
-                                        even:border-blue-strong even:bg-blue-strong/5 even:text-blue-strong">
-                                    {{ $vaccine->name }}
-                                </li>
-                            @endforeach
-                        </ul>
+                        <x-public.vaccine-badges :vaccines="$vaccines" />
                     </div>
                 @endif
             </div>

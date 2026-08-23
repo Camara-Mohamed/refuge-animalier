@@ -10,27 +10,11 @@
             <div class="flex flex-col gap-8">
                 <h3 class="text-3xl font-bold font-serif text-blue-strong">{{ __('public/volunteer.needs_title') }}</h3>
 
-                <div class="flex flex-col gap-4 w-full lg:w-96">
-                    @php
-                        $needs = [
-                            ['icon' => 'clock', 'title' => __('public/volunteer.need_1_title'), 'text' => __('public/volunteer.need_1_content')],
-                            ['icon' => 'hand-heart', 'title' => __('public/volunteer.need_2_title'), 'text' => __('public/volunteer.need_2_content')],
-                            ['icon' => 'users', 'title' => __('public/volunteer.need_3_title'), 'text' => __('public/volunteer.need_3_content')],
-                        ];
-                    @endphp
-
-                    @foreach ($needs as $need)
-                        <div class="p-6 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] outline outline-1 outline-offset-[-1px] outline-blue-strong/10 flex gap-6 items-start">
-                            <div class="w-12 h-12 shrink-0 p-3 bg-red-strong rounded-2xl flex justify-center items-center">
-                                <x-dynamic-component :component="'icons.' . $need['icon']" class="fill-white" />
-                            </div>
-                            <div class="flex flex-col gap-2">
-                                <h4 class="font-serif font-bold text-base text-blue-strong">{{ $need['title'] }}</h4>
-                                <p class="font-sans text-base text-blue-strong opacity-70">{{ $need['text'] }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+                <x-public.sections.volunteer.icon-list class="w-full lg:w-96" :items="[
+                    ['icon' => 'clock', 'title' => __('public/volunteer.need_1_title'), 'text' => __('public/volunteer.need_1_content')],
+                    ['icon' => 'hand-heart', 'title' => __('public/volunteer.need_2_title'), 'text' => __('public/volunteer.need_2_content')],
+                    ['icon' => 'users', 'title' => __('public/volunteer.need_3_title'), 'text' => __('public/volunteer.need_3_content')],
+                ]" />
             </div>
 
             <div class="flex flex-col gap-8 flex-1">
@@ -110,57 +94,22 @@
         </div>
     </x-public.sections.hidden_section>
 
-    <x-public.sections.feature-cards
+    <x-public.sections.volunteer.feature-cards
         title="{{ __('public/volunteer.benefits_title') }}"
         :cards="[
             ['icon' => 'heart', 'title' => __('public/volunteer.benefit_1_title'), 'text' => __('public/volunteer.benefit_1_content')],
             ['icon' => 'users', 'title' => __('public/volunteer.benefit_2_title'), 'text' => __('public/volunteer.benefit_2_content')],
             ['icon' => 'paw-print', 'title' => __('public/volunteer.benefit_3_title'), 'text' => __('public/volunteer.benefit_3_content')],
         ]">
-    </x-public.sections.feature-cards>
+    </x-public.sections.volunteer.feature-cards>
 
     <x-public.sections.section title="{{ __('public/volunteer.roles_title') }}">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="flex gap-4 p-6 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] outline outline-1 outline-offset-[-1px] outline-blue-strong/10">
-                <div class="w-10 h-10 bg-red-strong rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-white font-bold">1</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <h3 class="text-lg font-bold text-blue-strong">{{ __('public/volunteer.role_1_title') }}</h3>
-                    <p class="text-blue-strong opacity-70">{{ __('public/volunteer.role_1_content') }}</p>
-                </div>
-            </div>
-
-            <div class="flex gap-4 p-6 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] outline outline-1 outline-offset-[-1px] outline-blue-strong/10">
-                <div class="w-10 h-10 bg-red-strong rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-white font-bold">2</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <h3 class="text-lg font-bold text-blue-strong">{{ __('public/volunteer.role_2_title') }}</h3>
-                    <p class="text-blue-strong opacity-70">{{ __('public/volunteer.role_2_content') }}</p>
-                </div>
-            </div>
-
-            <div class="flex gap-4 p-6 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] outline outline-1 outline-offset-[-1px] outline-blue-strong/10">
-                <div class="w-10 h-10 bg-red-strong rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-white font-bold">3</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <h3 class="text-lg font-bold text-blue-strong">{{ __('public/volunteer.role_3_title') }}</h3>
-                    <p class="text-blue-strong opacity-70">{{ __('public/volunteer.role_3_content') }}</p>
-                </div>
-            </div>
-
-            <div class="flex gap-4 p-6 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] outline outline-1 outline-offset-[-1px] outline-blue-strong/10">
-                <div class="w-10 h-10 bg-red-strong rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-white font-bold">4</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <h3 class="text-lg font-bold text-blue-strong">{{ __('public/volunteer.role_4_title') }}</h3>
-                    <p class="text-blue-strong opacity-70">{{ __('public/volunteer.role_4_content') }}</p>
-                </div>
-            </div>
-        </div>
+        <x-public.sections.volunteer.numbered-list :items="[
+            ['title' => __('public/volunteer.role_1_title'), 'text' => __('public/volunteer.role_1_content')],
+            ['title' => __('public/volunteer.role_2_title'), 'text' => __('public/volunteer.role_2_content')],
+            ['title' => __('public/volunteer.role_3_title'), 'text' => __('public/volunteer.role_3_content')],
+            ['title' => __('public/volunteer.role_4_title'), 'text' => __('public/volunteer.role_4_content')],
+        ]" />
     </x-public.sections.section>
 
     <section class="py-10 px-6 md:py-12 md:px-12 lg:py-16 lg:px-20 text-blue-strong">

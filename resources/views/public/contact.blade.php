@@ -10,7 +10,7 @@
             <div class="flex flex-col gap-12">
                 <h3 class="text-3xl font-bold font-serif text-blue-strong">{{ __('public/contact.info_title') }}</h3>
 
-                <x-public.sections.coordinate></x-public.sections.coordinate>
+                <x-public.sections.contact.coordinate></x-public.sections.contact.coordinate>
             </div>
 
             <div class="flex flex-col gap-12 flex-1">

@@ -1,4 +1,14 @@
-<x-layouts.guest title="{{ __('public/volunteer.title')}}">
+<x-layouts.guest title="{{ __('public/volunteer.title')}}" :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'VolunteerOpportunity',
+    'name' => __('public/volunteer.page_title'),
+    'description' => __('public/volunteer.page_subtitle'),
+    'url' => route('public.volunteer', app()->getLocale()),
+    'organizer' => [
+        '@type' => 'Organization',
+        'name' => __('public/home.name_website'),
+    ],
+]">
 
     <x-public.sections.intro title="{{ __('public/volunteer.page_title') }}">
         {{ __('public/volunteer.page_subtitle') }}

@@ -14,6 +14,29 @@
 
     <title>{{ $title }}</title>
 
+    @php
+        $organizationSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => __('public/home.name_website'),
+            'url' => route('public.home', app()->getLocale()),
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => 'Rue des Animaux 12',
+                'postalCode' => '1000',
+                'addressLocality' => 'Bruxelles',
+                'addressCountry' => 'BE',
+            ],
+            'telephone' => __('public/contact.info_phone'),
+            'email' => __('public/contact.info_email'),
+        ];
+    @endphp
+    <script type="application/ld+json">{!! json_encode($organizationSchema) !!}</script>
+
+    @if ($schema ?? null)
+        <script type="application/ld+json">{!! json_encode($schema) !!}</script>
+    @endif
+
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])

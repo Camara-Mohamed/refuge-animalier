@@ -1,4 +1,9 @@
-<x-layouts.guest title="{{ __('public/legal.title') }}">
+<x-layouts.guest title="{{ __('public/legal.title') }}" :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'WebPage',
+    'name' => __('public/legal.page_title'),
+    'url' => route('public.legal-notice', app()->getLocale()),
+]">
 
     <x-public.sections.intro title="{{ __('public/legal.page_title') }}">
         {{ __('public/legal.page_subtitle') }}

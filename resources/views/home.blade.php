@@ -1,4 +1,9 @@
-<x-layouts.guest title="{{ __('public/home.title') }}">
+<x-layouts.guest title="{{ __('public/home.title') }}" :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'WebSite',
+    'name' => __('public/home.name_website'),
+    'url' => route('public.home', app()->getLocale()),
+]">
     <x-public.sections.home.hero></x-public.sections.home.hero>
     <x-public.sections.story
         title="{{ __('public/home.story_title') }}"

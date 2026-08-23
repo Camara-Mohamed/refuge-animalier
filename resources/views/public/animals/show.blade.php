@@ -1,5 +1,13 @@
 @php use App\Enums\House;use Carbon\Carbon; @endphp
-<x-layouts.guest title="{{ $animal->name }} - {{ __('public/animals/animals_show.title')}}">
+<x-layouts.guest title="{{ $animal->name }} - {{ __('public/animals/animals_show.title')}}" :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'Animal',
+    'name' => $animal->name,
+    'description' => $animal->description,
+    'image' => $animal->avatarUrl(1280),
+    'gender' => $animal->gender->label(),
+    'species' => $animal->specie?->name,
+]">
 
     <section class="relative h-72 md:h-80 lg:h-96 bg-cover bg-center px-6 md:px-12 lg:px-20 py-8 flex flex-col
     justify-end" style="

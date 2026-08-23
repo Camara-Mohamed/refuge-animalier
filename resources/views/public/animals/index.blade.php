@@ -1,5 +1,10 @@
 @php use App\Enums\Gender; @endphp
-<x-layouts.guest title="{{ __('public/animals/animals_index.title')}}">
+<x-layouts.guest title="{{ __('public/animals/animals_index.title')}}" :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'CollectionPage',
+    'name' => __('public/animals/animals_index.title'),
+    'url' => route('public.animals.index', app()->getLocale()),
+]">
     <x-public.sections.intro title="{{ __('public/animals/animals_index.section_title')}}">
         {{ __('public/animals/animals_index.section_subtitle') }}
     </x-public.sections.intro>

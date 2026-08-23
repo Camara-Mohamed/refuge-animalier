@@ -31,7 +31,7 @@
             <x-admin-link :href="route('admin.animals.index', ['locale' => app()->getLocale()])"
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['animals_total'] }}</span>
-                <span class="font-sans text-sm text-blue-strong/60">
+                <span class="font-sans text-sm text-blue-strong/70">
                     Animaux {{ $selectedMonth ? 'ajoutés sur la période' : "({$stats['animals_adoptable']} adoptables)" }}
                 </span>
             </x-admin-link>
@@ -41,13 +41,13 @@
             <x-admin-link :href="route('admin.adoptions.index', ['locale' => app()->getLocale()])"
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['adoptions_pending'] }}</span>
-                <span class="font-sans text-sm text-blue-strong/60">Demandes d'adoption en attente</span>
+                <span class="font-sans text-sm text-blue-strong/70">Demandes d'adoption en attente</span>
             </x-admin-link>
 
             <x-admin-link :href="route('admin.adoptions.index', ['locale' => app()->getLocale()])"
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['adoptions_completed'] }}</span>
-                <span class="font-sans text-sm text-blue-strong/60">Adoptions réussies {{ $selectedMonth ? 'sur la période' : '' }}</span>
+                <span class="font-sans text-sm text-blue-strong/70">Adoptions réussies {{ $selectedMonth ? 'sur la période' : '' }}</span>
             </x-admin-link>
         @endcan
 
@@ -55,7 +55,7 @@
             <x-admin-link :href="route('admin.messages.index', ['locale' => app()->getLocale()])"
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['messages_unread'] }}</span>
-                <span class="font-sans text-sm text-blue-strong/60">Messages non lus</span>
+                <span class="font-sans text-sm text-blue-strong/70">Messages non lus</span>
             </x-admin-link>
         @endcan
 
@@ -63,13 +63,13 @@
             <x-admin-link :href="route('admin.volunteers.index', ['locale' => app()->getLocale()])"
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['volunteers_total'] }}</span>
-                <span class="font-sans text-sm text-blue-strong/60">Bénévoles</span>
+                <span class="font-sans text-sm text-blue-strong/70">Bénévoles</span>
             </x-admin-link>
 
             <x-admin-link :href="route('admin.volunteer-applications.index', ['locale' => app()->getLocale()])"
                class="flex flex-col gap-1 p-4 rounded-lg border border-gray-200 hover:border-red-strong transition-colors">
                 <span class="font-serif font-black text-3xl text-blue-strong">{{ $stats['applications_unread'] }}</span>
-                <span class="font-sans text-sm text-blue-strong/60">Candidatures non lues</span>
+                <span class="font-sans text-sm text-blue-strong/70">Candidatures non lues</span>
             </x-admin-link>
         @endcan
     </div>
@@ -109,8 +109,8 @@
             <table class="w-full">
                 <thead>
                     <tr class="border-b border-gray-200">
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Nom</th>
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Espèce</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Nom</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Espèce</th>
                         <th class="py-2"></th>
                     </tr>
                 </thead>
@@ -150,7 +150,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/70">
                                 Aucun animal à traiter.
                             </td>
                         </tr>
@@ -167,8 +167,8 @@
             <table class="w-full">
                 <thead>
                     <tr class="border-b border-gray-200">
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Adoptant</th>
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Animal</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Adoptant</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Animal</th>
                         <th class="py-2"></th>
                     </tr>
                 </thead>
@@ -195,7 +195,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/70">
                                 Aucune adoption en attente.
                             </td>
                         </tr>
@@ -212,8 +212,8 @@
             <table class="w-full">
                 <thead>
                     <tr class="border-b border-gray-200">
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">De</th>
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Sujet</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">De</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Sujet</th>
                         <th class="py-2"></th>
                     </tr>
                 </thead>
@@ -242,7 +242,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/70">
                                 Aucun message non lu.
                             </td>
                         </tr>
@@ -259,8 +259,8 @@
             <table class="w-full">
                 <thead>
                     <tr class="border-b border-gray-200">
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Nom</th>
-                        <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Email</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Nom</th>
+                        <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Email</th>
                         <th class="py-2"></th>
                     </tr>
                 </thead>
@@ -295,7 +295,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/50">
+                            <td colspan="3" class="py-6 text-center font-sans text-blue-strong/70">
                                 Aucune candidature non lue.
                             </td>
                         </tr>

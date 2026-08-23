@@ -6,7 +6,7 @@
         background-image:
             linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%),
             url('{{ $animal->avatarUrl(1280) }}');
-    ">
+    " role="img" aria-label="Photo de {{ $animal->name }}">
         <div class="relative flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div class="text-white">
                 <h1 class="text-3xl md:text-4xl lg:text-5xl font-black font-serif mb-2">{{ $animal->name }}</h1>
@@ -39,7 +39,7 @@
                                 @endif
                             </span>
                             <div>
-                                <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.gender') }}</p>
+                                <p class="text-sm text-blue-strong/70">{{ __('public/animals/animals_show.gender') }}</p>
                                 <p class="font-semibold text-blue-strong capitalize">{{ $animal->gender->label() }}</p>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                                 <x-icons.calender class="w-5 h-5 fill-white"></x-icons.calender>
                             </span>
                                 <div>
-                                    <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.age') }}</p>
+                                    <p class="text-sm text-blue-strong/70">{{ __('public/animals/animals_show.age') }}</p>
                                     <p class="font-semibold text-blue-strong">
                                         {{ Carbon::parse($animal->birth_date)->age }} {{ __('public/animals/animals_show.years') }}
                                     </p>
@@ -64,7 +64,7 @@
                                 <x-icons.paw-print class="w-5 h-5 fill-white"></x-icons.paw-print>
                             </span>
                                 <div>
-                                    <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.species') }}</p>
+                                    <p class="text-sm text-blue-strong/70">{{ __('public/animals/animals_show.species') }}</p>
                                     <p class="font-semibold text-blue-strong">{{ $animal->specie->name }}</p>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                                 <x-icons.note class="w-5 h-5 fill-white"></x-icons.note>
                             </span>
                                 <div>
-                                    <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.coat') }}</p>
+                                    <p class="text-sm text-blue-strong/70">{{ __('public/animals/animals_show.coat') }}</p>
                                     <p class="font-semibold text-blue-strong">{{ $animal->coat->name }}</p>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                                 <x-icons.database class="w-5 h-5 fill-white"></x-icons.database>
                             </span>
                                 <div>
-                                    <p class="text-sm text-blue-strong/60">{{ __('public/animals/animals_show.chip') }}</p>
+                                    <p class="text-sm text-blue-strong/70">{{ __('public/animals/animals_show.chip') }}</p>
                                     <p class="font-semibold text-blue-strong font-mono text-sm">{{ $animal->chip }}</p>
                                 </div>
                             </div>

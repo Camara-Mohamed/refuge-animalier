@@ -1,4 +1,9 @@
-<x-layouts.guest title="{{ __('public/about.title')}}">
+<x-layouts.guest title="{{ __('public/about.title')}}" :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'AboutPage',
+    'name' => __('public/about.intro_title'),
+    'url' => route('public.about', app()->getLocale()),
+]">
 
     <x-public.sections.intro title="{{ __('public/about.intro_title') }}">
         {{ __('public/about.intro_subtitle') }}
@@ -21,7 +26,7 @@
                 <h2 class="font-serif font-bold text-2xl md:text-3xl lg:text-4xl">
                     {{ __('public/about.faq_title') }}
                 </h2>
-                <p class="font-sans font-normal text-lg text-blue-strong opacity-50">
+                <p class="font-sans font-normal text-lg text-blue-strong opacity-70">
                     {{ __('public/about.faq_subtitle') }}
                 </p>
             </div>
@@ -33,7 +38,7 @@
     {{--
     <x-public.sections.section title="{{ __('public/about.mission_title') }}">
         <div class="flex flex-col gap-6">
-            <p class="font-sans font-normal text-lg text-blue-strong opacity-50">
+            <p class="font-sans font-normal text-lg text-blue-strong opacity-70">
                 {{ __('public/about.mission_content') }}
             </p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
@@ -44,7 +49,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-blue-strong">{{ __('public/about.mission_1_title') }}</h3>
-                    <p class="text-blue-strong opacity-50">{{ __('public/about.mission_1_content') }}</p>
+                    <p class="text-blue-strong opacity-70">{{ __('public/about.mission_1_content') }}</p>
                 </div>
 
                 <div class="flex flex-col gap-4 items-center text-center">
@@ -54,7 +59,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-blue-strong">{{ __('public/about.mission_2_title') }}</h3>
-                    <p class="text-blue-strong opacity-50">{{ __('public/about.mission_2_content') }}</p>
+                    <p class="text-blue-strong opacity-70">{{ __('public/about.mission_2_content') }}</p>
                 </div>
 
                 <div class="flex flex-col gap-4 items-center text-center">
@@ -64,7 +69,7 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-blue-strong">{{ __('public/about.mission_3_title') }}</h3>
-                    <p class="text-blue-strong opacity-50">{{ __('public/about.mission_3_content') }}</p>
+                    <p class="text-blue-strong opacity-70">{{ __('public/about.mission_3_content') }}</p>
                 </div>
             </div>
         </div>
@@ -76,17 +81,17 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="flex flex-col gap-4 p-6 bg-white rounded-lg border border-gray-200">
                 <h3 class="text-xl font-bold text-red-strong">{{ __('public/about.value_1_title') }}</h3>
-                <p class="text-blue-strong opacity-50">{{ __('public/about.value_1_content') }}</p>
+                <p class="text-blue-strong opacity-70">{{ __('public/about.value_1_content') }}</p>
             </div>
 
             <div class="flex flex-col gap-4 p-6 bg-white rounded-lg border border-gray-200">
                 <h3 class="text-xl font-bold text-red-strong">{{ __('public/about.value_2_title') }}</h3>
-                <p class="text-blue-strong opacity-50">{{ __('public/about.value_2_content') }}</p>
+                <p class="text-blue-strong opacity-70">{{ __('public/about.value_2_content') }}</p>
             </div>
 
             <div class="flex flex-col gap-4 p-6 bg-white rounded-lg border border-gray-200">
                 <h3 class="text-xl font-bold text-red-strong">{{ __('public/about.value_3_title') }}</h3>
-                <p class="text-blue-strong opacity-50">{{ __('public/about.value_3_content') }}</p>
+                <p class="text-blue-strong opacity-70">{{ __('public/about.value_3_content') }}</p>
             </div>
         </div>
     </x-public.sections.section>
@@ -136,7 +141,7 @@
     </x-public.sections.section>
 
     <x-public.sections.section class="items-center" title="{{ __('public/about.cta_title') }}">
-        <p class="text-center text-lg text-blue-strong opacity-50">{{ __('public/about.cta_subtitle') }}</p>
+        <p class="text-center text-lg text-blue-strong opacity-70">{{ __('public/about.cta_subtitle') }}</p>
 
         <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
             <x-buttons.button

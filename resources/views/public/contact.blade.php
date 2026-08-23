@@ -1,4 +1,9 @@
-<x-layouts.guest title="{{ __('public/contact.title')}}">
+<x-layouts.guest title="{{ __('public/contact.title')}}" :schema="[
+    '@context' => 'https://schema.org',
+    '@type' => 'ContactPage',
+    'name' => __('public/contact.page_title'),
+    'url' => route('public.contact', app()->getLocale()),
+]">
 
     <x-public.sections.intro title="{{ __('public/contact.page_title') }}">
         {{ __('public/contact.page_subtitle') }}

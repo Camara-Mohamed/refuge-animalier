@@ -71,7 +71,10 @@
                 <details class="group p-2 bg-white rounded-lg shadow-2xl border-b-4 border-red-strong transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-b-8">
                     <summary class="list-none cursor-pointer flex flex-col gap-2 items-center">
                         <div class="self-stretch h-72 rounded-lg overflow-hidden">
-                            <div class="w-full h-full p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center transition-transform duration-500 ease-out hover:scale-105" style="background-image: url('{{ $animal->avatarUrl(640) }}');">
+                            <div class="w-full h-full p-4 rounded-lg bg-gradient-to-b from-black/0 to-black/70 flex flex-col justify-end bg-cover bg-center transition-transform duration-500 ease-out hover:scale-105"
+                                 style="background-image: url('{{ $animal->avatarUrl(640) }}');"
+                                 role="img"
+                                 aria-label="Photo de {{ $animal->name }}">
                             </div>
                         </div>
 
@@ -101,7 +104,7 @@
                             </span>
                         </div>
 
-                        <p class="text-blue-strong opacity-60 font-sans">
+                        <p class="text-blue-strong opacity-70 font-sans">
                             {{ $animal->description }}
                         </p>
 

@@ -25,10 +25,10 @@
     <table class="w-full">
         <thead>
             <tr class="border-b border-gray-200">
-                <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Adoptant</th>
-                <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Animal</th>
-                <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Demandée le</th>
-                <th class="text-left font-sans text-sm text-blue-strong/60 py-2">Statut</th>
+                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Adoptant</th>
+                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Animal</th>
+                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Demandée le</th>
+                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Statut</th>
                 <th class="py-2"></th>
             </tr>
         </thead>
@@ -65,7 +65,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="py-6 text-center font-sans text-blue-strong/50">
+                    <td colspan="5" class="py-6 text-center font-sans text-blue-strong/70">
                         Aucune demande pour le moment.
                     </td>
                 </tr>

@@ -118,7 +118,7 @@
                 <h2 class="font-serif font-bold text-2xl md:text-3xl lg:text-4xl">
                     {{ __('public/volunteer.faq_title') }}
                 </h2>
-                <p class="font-sans font-normal text-lg text-blue-strong opacity-50">
+                <p class="font-sans font-normal text-lg text-blue-strong opacity-70">
                     {{ __('public/volunteer.faq_subtitle') }}
                 </p>
             </div>

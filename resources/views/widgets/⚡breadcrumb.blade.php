@@ -12,7 +12,7 @@ new class extends Component
     @foreach ($items as $item)
         @if (! $loop->last)
             <x-admin-link :href="$item['url']"
-               class="font-sans text-sm text-blue-strong/60 hover:text-blue-strong transition duration-200">
+               class="font-sans text-sm text-blue-strong/70 hover:text-blue-strong transition duration-200">
                 {{ $item['label'] }}
             </x-admin-link>
             <x-icons.caret-right class="w-3 h-3 shrink-0 text-blue-strong/40" />

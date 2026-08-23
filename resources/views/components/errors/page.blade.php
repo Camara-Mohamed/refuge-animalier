@@ -10,7 +10,7 @@
 
         <div class="flex flex-col gap-2 max-w-md">
             <h1 class="font-serif font-bold text-2xl text-blue-strong">{{ $title }}</h1>
-            <p class="font-sans text-blue-strong/60">{{ $message }}</p>
+            <p class="font-sans text-blue-strong/70">{{ $message }}</p>
         </div>
 
         <x-buttons.button

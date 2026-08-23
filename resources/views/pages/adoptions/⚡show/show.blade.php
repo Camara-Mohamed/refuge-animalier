@@ -11,7 +11,7 @@
                 <h1 class="font-serif font-bold text-2xl text-blue-strong">
                     {{ $adoption->adopter->name }} → {{ $adoption->animal->name }}
                 </h1>
-                <p class="font-sans text-sm text-blue-strong/50">Demandée le {{ $adoption->created_at->format('d/m/Y H:i') }}</p>
+                <p class="font-sans text-sm text-blue-strong/70">Demandée le {{ $adoption->created_at->format('d/m/Y H:i') }}</p>
             </div>
             <x-badge :color="$adoption->status->color()">{{ $adoption->status->label() }}</x-badge>
         </div>
@@ -97,7 +97,7 @@
             </button>
         </div>
     @else
-        <p class="font-sans text-sm text-blue-strong/50">Seul un administrateur peut changer le statut de cette demande.</p>
+        <p class="font-sans text-sm text-blue-strong/70">Seul un administrateur peut changer le statut de cette demande.</p>
     @endcan
 
     <div class="flex flex-col gap-2">
@@ -108,7 +108,7 @@
                 <li wire:key="note-{{ $note->id }}" class="flex items-start justify-between gap-4 p-3 rounded-lg bg-blue-strong/5">
                     <div>
                         <p class="font-sans text-sm text-blue-strong">{{ $note->content }}</p>
-                        <p class="font-sans text-xs text-blue-strong/50 mt-1">
+                        <p class="font-sans text-xs text-blue-strong/70 mt-1">
                             {{ $note->user?->fullName() ?? '—' }} · {{ $note->created_at->format('d/m/Y H:i') }}
                         </p>
                     </div>

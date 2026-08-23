@@ -26,8 +26,8 @@
         ],
     ];
 
-    $currentRoute = request()->route()->getName();
-    $params = request()->route()->parameters();
+    $currentRoute = request()->route()?->getName() ?: 'public.home';
+    $params = $currentRoute === 'public.home' ? [] : request()->route()->parameters();
 
 @endphp
 

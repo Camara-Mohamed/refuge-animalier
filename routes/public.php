@@ -17,6 +17,7 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
     Route::get('/animals/{animal}', [AnimalController::class, 'show'])
         ->name('public.animals.show');
     Route::post('/animals/{animal}', [AdopterController::class, 'store'])
+        ->middleware('throttle:6,1')
         ->name('public.animals.store');
 
     Route::get('/about', function () {
@@ -27,11 +28,13 @@ Route::prefix('{locale}')->middleware(SetLocale::class)->group(function () {
         return view('public.contact');
     })->name('public.contact');
     Route::post('/contact', [MessageController::class, 'store'])
+        ->middleware('throttle:6,1')
         ->name('public.contact.store');
 
     Route::get('/volunteer', [VolunteerController::class, 'index'])
         ->name('public.volunteer');
     Route::post('/volunteer', [VolunteerController::class, 'store'])
+        ->middleware('throttle:6,1')
         ->name('public.volunteer.store');
 
     Route::get('/mentions-legales', function () {

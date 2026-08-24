@@ -13,7 +13,7 @@ return [
     'form_subject' => 'Onderwerp',
     'form_message' => 'Bericht',
     'form_submit' => 'Bericht verzenden',
-    'message_sent' => 'Uw bericht is succesvol verzonden. We nemen zo snel mogelijk contact met u op.',
+    'message_success' => 'Uw bericht is succesvol verzonden. We nemen zo snel mogelijk contact met u op.',
 
     // Contact Info
     'info_title' => 'Onze Contactgegevens',
@@ -25,5 +25,8 @@ return [
     'info_email' => 'contact@gelukkigepootjes.com',
     'info_hours_title' => 'Openingstijden',
     'info_hours' => 'Ma-Vr: 9u-18u, Za: 10u-16u',
+
+    'help_title' => 'Direct hulp nodig?',
+    'help_button' => 'Bel ons nu',
 
 ];

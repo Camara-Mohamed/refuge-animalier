@@ -12,7 +12,7 @@ return [
     'form_subject' => 'Subject',
     'form_message' => 'Message',
     'form_submit' => 'Send message',
-    'message_sent' => 'Your message has been sent successfully. We will respond to you as soon as possible.',
+    'message_success' => 'Your message has been sent successfully. We will respond to you as soon as possible.',
 
     'info_title' => 'Our Contact Information',
     'info_address_title' => 'Address',
@@ -23,5 +23,8 @@ return [
     'info_email' => 'contact@happypaws.com',
     'info_hours_title' => 'Hours',
     'info_hours' => 'Mon-Fri: 9am-6pm, Sat: 10am-4pm',
+
+    'help_title' => 'Need immediate help?',
+    'help_button' => 'Call us now',
 
 ];

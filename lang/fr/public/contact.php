@@ -12,7 +12,7 @@ return [
     'form_subject' => 'Sujet',
     'form_message' => 'Message',
     'form_submit' => 'Envoyer le message',
-    'message_sent' => 'Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.',
+    'message_success' => 'Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.',
 
     'info_title' => 'Nos coordonnées',
     'info_address_title' => 'Adresse',

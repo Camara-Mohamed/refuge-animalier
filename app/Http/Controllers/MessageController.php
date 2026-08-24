@@ -23,6 +23,6 @@ class MessageController extends Controller
             Mail::to($admins)->send(new NewMessageMail($message));
         }
 
-        return back()->with('send', 'Votre message a été envoyé !');
+        return back()->with('send', __('public/contact.message_success'));
     }
 }

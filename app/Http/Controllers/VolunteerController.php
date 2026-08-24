@@ -23,7 +23,7 @@ class VolunteerController extends Controller
             Mail::to($admins)->send(new NewVolunteerApplicationMail($application));
         }
 
-        return back()->with('send', 'Votre demande pour être bénévole a été envoyé !');
+        return back()->with('send', __('public/volunteer.application_success'));
     }
 
     public function index(string $locale)

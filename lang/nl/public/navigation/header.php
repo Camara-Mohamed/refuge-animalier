@@ -17,5 +17,9 @@ return [
     'go_volunteer' => 'Ga naar pagina: Word vrijwilliger',
 
     'toggle_menu' => 'Menu openen/sluiten',
+    'close_menu' => 'Menu sluiten',
+
+    'login' => 'Inloggen',
+    'go_login' => 'Ga naar pagina: Inloggen',
 
 ];

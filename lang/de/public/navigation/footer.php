@@ -19,4 +19,7 @@ return [
     'go_mention_legal' => 'Zur Seite gehen: Rechtliche Hinweise',
     'mention_legal' => 'Rechtliche Hinweise',
 
+    'developed_by' => 'von Mohamed Camara',
+    'go_developer' => 'Website von Mohamed Camara ansehen (neuer Tab)',
+
 ];

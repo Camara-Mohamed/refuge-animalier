@@ -4,6 +4,7 @@ return [
     'name_website' => 'Gelukkige Pootjes',
     'title' => 'Home – Gelukkige Pootjes',
     'main_navigation' => 'Hoofdnavigatie',
+    'meta_description' => 'Gelukkige Pootjes, dierenopvang in Brussel: ontdek onze dieren voor adoptie, word vrijwilliger of steun onze missie voor dierenbescherming.',
 
     'hero_title' => 'Geef een dier een tweede kans',
     'hero_subtitle' => 'Elke dag vangen wij verlaten, gewonde of mishandelde dieren op. Onze missie: hen beschermen, verzorgen… en eindelijk de familie vinden die ze verdienen.',
@@ -11,6 +12,8 @@ return [
     'title_hero_button_1' => 'De lijst met dieren bekijken',
     'hero_button_2' => 'Word vrijwilliger',
     'title_hero_button_2' => 'Vrijwilliger worden',
+    'hero_button_3' => 'Contacteer ons',
+    'title_hero_button_3' => 'Contacteer ons',
 
     'story_title' => 'Een opvangcentrum toegewijd aan dierenwelzijn sinds 2015',
     'story_content_1' => 'Gelukkige Pootjes is veel meer dan een gewone opvang. Het is een veilige haven waar elk verlaten dier opnieuw hoop, zorg en waardigheid vindt terwijl het wacht op een adoptiegezin.',

@@ -17,5 +17,9 @@ return [
     'go_volunteer' => 'Become a volunteer',
 
     'toggle_menu' => 'Toggle menu',
+    'close_menu' => 'Close menu',
+
+    'login' => 'Login',
+    'go_login' => 'Go to page: Login',
 
 ];

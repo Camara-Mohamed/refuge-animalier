@@ -19,4 +19,7 @@ return [
     'go_mention_legal' => 'Ga naar pagina: Wettelijke vermeldingen',
     'mention_legal' => 'Wettelijke vermeldingen',
 
+    'developed_by' => 'door Mohamed Camara',
+    'go_developer' => 'Bekijk de website van Mohamed Camara (nieuw tabblad)',
+
 ];

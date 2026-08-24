@@ -24,8 +24,21 @@ return [
     'role_4_title' => 'Administrative Unterstützung',
     'role_4_content' => 'Administrative Hilfe, öffentlicher Empfang und Adoptionsaktenverwaltung.',
 
+    'needs_title' => 'Unsere Bedürfnisse',
+    'need_1_title' => 'Zeit und Präsenz',
+    'need_1_content' => 'Regelmäßig verfügbare Freiwillige für die tägliche Pflege und die Instandhaltung des Tierheims.',
+    'need_2_title' => 'Sachspenden',
+    'need_2_content' => 'Futter, Streu, Decken, Spielzeug... jede Spende zählt für den Komfort unserer Bewohner.',
+    'need_3_title' => 'Spezifische Fähigkeiten',
+    'need_3_content' => 'Tierärzte, Verhaltensspezialisten, Fahrer: Ihr Fachwissen hilft uns, die Tiere besser zu versorgen.',
+
+    'faq_title' => 'Ihre Fragen, unsere Antworten',
+    'faq_subtitle' => 'Hier finden Sie Antworten auf die häufigsten Fragen zum Freiwilligendienst.',
+
     'form_title' => 'Bewerbungsformular',
     'form_subtitle' => 'Füllen Sie dieses Formular aus und wir werden uns schnell mit Ihnen in Verbindung setzen, um Ihr Engagement zu besprechen.',
+    'personal_info' => 'Persönliche Informationen',
+    'address_info' => 'Adresse',
     'form_name' => 'Vollständiger Name',
     'form_email' => 'E-Mail',
     'form_phone' => 'Telefon',

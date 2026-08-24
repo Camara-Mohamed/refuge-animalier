@@ -24,8 +24,21 @@ return [
     'role_4_title' => 'Administrative Support',
     'role_4_content' => 'Administrative assistance, public reception and adoption file management.',
 
+    'needs_title' => 'Our Needs',
+    'need_1_title' => 'Time and presence',
+    'need_1_content' => 'Volunteers regularly available for daily care and shelter maintenance.',
+    'need_2_title' => 'Material donations',
+    'need_2_content' => 'Food, litter, blankets, toys... every donation matters for the comfort of our residents.',
+    'need_3_title' => 'Specific skills',
+    'need_3_content' => 'Veterinarians, behaviorists, drivers: your expertise helps us take better care of the animals.',
+
+    'faq_title' => 'Your questions, our answers',
+    'faq_subtitle' => 'Find here the answers to the most frequently asked questions about volunteering.',
+
     'form_title' => 'Application Form',
     'form_subtitle' => 'Fill out this form and we will contact you quickly to discuss your commitment.',
+    'personal_info' => 'Personal information',
+    'address_info' => 'Address',
     'form_name' => 'Full name',
     'form_email' => 'Email',
     'form_phone' => 'Phone',

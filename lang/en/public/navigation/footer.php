@@ -19,4 +19,7 @@ return [
     'go_mention_legal' => 'Go to legal notice page',
     'mention_legal' => 'Legal notice',
 
+    'developed_by' => 'by Mohamed Camara',
+    'go_developer' => 'View Mohamed Camara\'s website (new tab)',
+
 ];

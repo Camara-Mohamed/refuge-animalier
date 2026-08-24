@@ -24,8 +24,21 @@ return [
     'role_4_title' => 'Administratieve Ondersteuning',
     'role_4_content' => 'Administratieve hulp, publieke ontvangst en adoptiebeheer.',
 
+    'needs_title' => 'Onze Behoeften',
+    'need_1_title' => 'Tijd en aanwezigheid',
+    'need_1_content' => 'Vrijwilligers die regelmatig beschikbaar zijn voor de dagelijkse zorg en het onderhoud van de opvang.',
+    'need_2_title' => 'Materiële donaties',
+    'need_2_content' => 'Voeding, kattenbakvulling, dekens, speelgoed... elke donatie telt voor het comfort van onze bewoners.',
+    'need_3_title' => 'Specifieke vaardigheden',
+    'need_3_content' => 'Dierenartsen, gedragsspecialisten, chauffeurs: uw expertise helpt ons de dieren beter te verzorgen.',
+
+    'faq_title' => 'Jouw vragen, onze antwoorden',
+    'faq_subtitle' => 'Vind hier de antwoorden op de meest gestelde vragen over vrijwilligerswerk.',
+
     'form_title' => 'Aanmeldingsformulier',
     'form_subtitle' => 'Vul dit formulier in en we nemen snel contact met u op om uw inzet te bespreken.',
+    'personal_info' => 'Persoonlijke informatie',
+    'address_info' => 'Adres',
     'form_name' => 'Volledige naam',
     'form_email' => 'E-mail',
     'form_phone' => 'Telefoon',

@@ -19,4 +19,7 @@ return [
     'toggle_menu' => 'Ouvrir le menu',
     'close_menu' => 'Fermer le menu',
 
+    'login' => 'Connexion',
+    'go_login' => 'Aller à la page : Connexion',
+
 ];

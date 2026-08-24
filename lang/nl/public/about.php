@@ -3,6 +3,12 @@
 return [
     'title' => 'Over Ons - Gelukkige Pootjes',
 
+    'intro_title' => 'Over onze opvang',
+    'intro_subtitle' => 'Sinds onze oprichting zetten we ons elke dag in om dieren in nood onderdak, zorg en liefde te bieden. Onze missie is hen een tweede kans te geven en een liefdevol gezin te vinden waarin ze kunnen opbloeien.',
+
+    'faq_title' => 'Jouw vragen, onze antwoorden',
+    'faq_subtitle' => 'Heb je een vraag over adoptie of vrijwilligerswerk? Hieronder vind je de meest gestelde vragen.',
+
     'story_title' => 'Ons Verhaal',
     'story_content_1' => 'Gelukkige Pootjes werd opgericht in 2015 door Élise Moreau, een gepassioneerde dierenarts, met een duidelijke visie: een veilig en liefdevol toevluchtsoord bieden aan verlaten, gewonde of mishandelde dieren.',
     'story_content_2' => 'Wat begon als een kleine lokale opvang is uitgegroeid tot een erkende organisatie, die tot 50 bewoners tegelijk verwelkomt in onze moderne en warme faciliteiten.',

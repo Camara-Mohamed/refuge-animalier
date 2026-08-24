@@ -3,6 +3,12 @@
 return [
     'title' => 'About - Happy Paws',
 
+    'intro_title' => 'About our shelter',
+    'intro_subtitle' => 'Since our founding, we have committed every day to offering shelter, care, and love to animals in need. Our mission is to give them a second chance and find them a loving family where they can thrive.',
+
+    'faq_title' => 'Your questions, our answers',
+    'faq_subtitle' => 'Have a question about adoption or volunteering? Find the most frequently asked questions below.',
+
     'story_title' => 'Our Story',
     'story_content_1' => 'Happy Paws was founded in 2015 by Élise Moreau, a passionate veterinarian, with a clear vision: to provide a safe and loving refuge for abandoned, injured, or mistreated animals.',
     'story_content_2' => 'What started as a small local shelter has transformed into a recognized organization, welcoming up to 50 residents simultaneously in our modern and warm facilities.',

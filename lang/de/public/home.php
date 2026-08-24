@@ -4,6 +4,7 @@ return [
     'name_website' => 'Glückliche Pfoten',
     'title' => 'Startseite – Glückliche Pfoten',
     'main_navigation' => 'Hauptnavigation',
+    'meta_description' => 'Glückliche Pfoten, Tierheim in Brüssel: Entdecken Sie unsere Tiere zur Adoption, werden Sie Freiwilliger oder unterstützen Sie unsere Mission zum Tierschutz.',
 
     'hero_title' => 'Geben Sie einem Tier eine zweite Chance',
     'hero_subtitle' => 'Jeden Tag nehmen wir verlassene, verletzte oder misshandelte Tiere auf. Unsere Mission: sie zu schützen, zu pflegen … und ihnen endlich die Familie zu finden, die sie verdienen.',
@@ -11,6 +12,8 @@ return [
     'title_hero_button_1' => 'Liste der Tiere anzeigen',
     'hero_button_2' => 'Freiwilliger werden',
     'title_hero_button_2' => 'Freiwilliger werden',
+    'hero_button_3' => 'Kontaktieren Sie uns',
+    'title_hero_button_3' => 'Kontaktieren Sie uns',
 
     'story_title' => 'Ein Tierheim im Zeichen des Tierwohls seit 2015',
     'story_content_1' => 'Glückliche Pfoten ist weit mehr als nur ein Tierheim. Es ist ein Ort des Friedens, an dem jedes verlassene Tier Hoffnung, Pflege und Würde zurückgewinnt, während es auf seine Adoptivfamilie wartet.',

@@ -17,5 +17,9 @@ return [
     'go_volunteer' => 'Gehe zu Seite: Freiwilliger werden',
 
     'toggle_menu' => 'Menü öffnen/schließen',
+    'close_menu' => 'Menü schließen',
+
+    'login' => 'Anmelden',
+    'go_login' => 'Zur Seite gehen: Anmelden',
 
 ];

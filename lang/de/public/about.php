@@ -3,6 +3,12 @@
 return [
     'title' => 'Über Uns - Glückliche Pfoten',
 
+    'intro_title' => 'Über unser Tierheim',
+    'intro_subtitle' => 'Seit unserer Gründung setzen wir uns täglich dafür ein, Tieren in Not Unterkunft, Pflege und Liebe zu bieten. Unsere Mission ist es, ihnen eine zweite Chance zu geben und eine liebevolle Familie zu finden, in der sie sich entfalten können.',
+
+    'faq_title' => 'Ihre Fragen, unsere Antworten',
+    'faq_subtitle' => 'Haben Sie eine Frage zur Adoption oder zum Freiwilligendienst? Hier finden Sie die häufigsten Antworten.',
+
     // Story Section
     'story_title' => 'Unsere Geschichte',
     'story_content_1' => 'Glückliche Pfoten wurde 2015 von Élise Moreau, einer leidenschaftlichen Tierärztin, mit einer klaren Vision gegründet: ein sicheres und liebevolles Zuhause für verlassene, verletzte oder misshandelte Tiere zu bieten.',

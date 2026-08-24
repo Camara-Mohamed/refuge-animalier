@@ -35,6 +35,8 @@ return [
     'house_loft' => 'Loft',
     'have_garden' => 'Ik heb een tuin',
 
+    'motivation_title' => 'Uw motivatie',
+
     'message' => 'Bericht',
     'message_help' => 'Vertel ons over uzelf, uw ervaring met dieren en waarom u wilt adopteren.',
 

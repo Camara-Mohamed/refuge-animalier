@@ -4,25 +4,27 @@
 <head>
     <meta charset="utf-8">
     <title>Rapport Mensuel</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-        td { padding: 6px 0; border-bottom: 1px solid #ddd; }
-        td.value { text-align: right; }
-    </style>
 </head>
 
 <body>
     <h1>Les Pattes Heureuses</h1>
-    <p>Voici le résumé de l'activité du refuge pour la période : {{ $month }}.</p>
+    <p>Résumé de l'activité du refuge - {{ $month }}</p>
 
-    <table>
-        @foreach ($stats as $label => $value)
+    <table border="1" cellpadding="6" cellspacing="0" width="100%">
+        <thead>
             <tr>
-                <td>{{ $label }}</td>
-                <td class="value">{{ $value }}</td>
+                <th align="left">Indicateur</th>
+                <th align="right">Valeur</th>
             </tr>
-        @endforeach
+        </thead>
+        <tbody>
+            @foreach ($stats as $label => $value)
+                <tr>
+                    <td>{{ $label }}</td>
+                    <td align="right">{{ $value }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 </body>
 

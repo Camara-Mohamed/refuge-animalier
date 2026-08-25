@@ -20,6 +20,7 @@ new #[Title('Détail adoption')] class extends Component
     public function mount(Adoption $adoption): void
     {
         $this->authorize('view', $adoption);
+        $adoption->load(['adopter', 'animal.specie.vaccines', 'animal.race', 'animal.coat']);
         $this->adoption = $adoption;
     }
 

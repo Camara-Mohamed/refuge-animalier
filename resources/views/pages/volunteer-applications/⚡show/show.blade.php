@@ -5,8 +5,10 @@
         ['label' => $application->name, 'url' => '#'],
     ]" :key="'volunteer-application-show-breadcrumb'" />
 
+    <x-flash />
+
     <div class="flex items-center justify-between gap-4 flex-wrap">
-        <h1 class="font-serif font-bold text-2xl text-blue-strong">{{ $application->name }}</h1>
+        <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ $application->name }}</h2>
 
         <div class="flex items-center gap-4">
             @can('create', \App\Models\User::class)
@@ -29,14 +31,14 @@
         </div>
     </div>
 
-    <ul class="flex flex-col gap-1 font-sans text-sm text-blue-strong">
-        <li>Email : {{ $application->email }}</li>
-        <li>Téléphone : {{ $application->phone }}</li>
-        <li>Adresse : {{ $application->address }} {{ $application->number }}, {{ $application->code_postal }} {{ $application->city }}</li>
-        <li>
-            Disponibilités :
-            {{ collect($application->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '—' }}
-        </li>
-        <li>Reçue le : {{ $application->created_at->format('d/m/Y H:i') }}</li>
-    </ul>
+    <div class="p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20 flex flex-col gap-4 max-w-2xl">
+        <x-data-row label="Email">{{ $application->email }}</x-data-row>
+        <x-data-row label="Téléphone">{{ $application->phone }}</x-data-row>
+        <x-data-row label="Adresse">{{ $application->address }} {{ $application->number }}, {{ $application->code_postal }} {{ $application->city }}</x-data-row>
+
+        <x-data-row label="Disponibilités">
+            {{ collect($application->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '-' }}
+        </x-data-row>
+        <x-data-row label="Reçue le">{{ $application->created_at->format('d/m/Y H:i') }}</x-data-row>
+    </div>
 </div>

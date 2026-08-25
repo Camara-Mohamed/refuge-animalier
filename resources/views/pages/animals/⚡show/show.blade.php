@@ -1,104 +1,109 @@
-<div>
+<div class="flex flex-col gap-4">
+    <livewire:widgets::breadcrumb :items="[
+        ['label' => __('breadcrumbs.dashboard'), 'url' => route('admin.dashboard', ['locale' => app()->getLocale()])],
+        ['label' => __('breadcrumbs.animals'), 'url' => route('admin.animals.index', ['locale' => app()->getLocale()])],
+        ['label' => $animal->name, 'url' => '#'],
+    ]" :key="'animals-show-breadcrumb'" />
+
     <x-flash />
 
-    <h2>{{ $animal->name }}</h2>
-
-    @can('update', $animal)
-        <x-admin-link :href="route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal])">Modifier</x-admin-link>
-    @endcan
-
-    @can('delete', $animal)
-        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $animal->id }}', model_type: 'animal', model_label: @js($animal->name) } })">
-            Supprimer
-        </button>
-    @endcan
-
-    @if ($animal->avatar)
-        <div>
-            <img src="{{ $animal->avatarUrl(640) }}" srcset="{{ $animal->avatarSrcset() }}" sizes="250px" alt="{{ $animal->name }}" width="250">
+    <div class="flex items-center justify-between gap-4 flex-wrap">
+        <div class="flex items-center gap-2">
+            <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ $animal->name }}</h2>
+            <x-badge :color="$animal->status->color()">{{ $animal->status->label() }}</x-badge>
         </div>
-    @endif
 
-    <ul>
-        <li>Sexe : {{ $animal->gender->label() }}</li>
-        <li>Statut : {{ $animal->status->label() }}</li>
-        <li>Âge : {{ $animal->age() !== null ? $animal->age() . ' an(s)' : '—' }}</li>
-        <li>Puce : {{ $animal->chip ?? '—' }}</li>
-        <li>Espèce : {{ $animal->specie?->name ?? '—' }}</li>
-        <li>Race : {{ $animal->race?->name ?? '—' }}</li>
-        <li>Pelage : {{ $animal->coat?->name ?? '—' }}</li>
-        <li>Description : {{ $animal->description ?? '—' }}</li>
-        <li>Ajouté par : {{ $animal->user?->fullName() ?? '—' }}</li>
-    </ul>
+        <div class="flex items-center gap-4">
+            @can('update', $animal)
+                <x-admin-link :href="route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal])"
+                   class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
+                    Modifier
+                </x-admin-link>
+            @endcan
 
-    @can('update', $animal)
-        <div>
-            @foreach (\App\Enums\AnimalStatus::cases() as $status)
-                <button wire:click="changeStatus('{{ $status->value }}')">
-                    {{ $status->label() }}
+            @can('delete', $animal)
+                <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $animal->id }}', model_type: 'animal', model_label: @js($animal->name) } })"
+                        class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
+                    Supprimer
                 </button>
-            @endforeach
+            @endcan
+        </div>
+    </div>
+
+    <div class="p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20 flex flex-col gap-4 max-w-2xl">
+        @if ($animal->avatar)
+            <img src="{{ $animal->avatarUrl(640) }}" srcset="{{ $animal->avatarSrcset() }}" sizes="250px"
+                 alt="{{ $animal->name }}" width="250" class="rounded-lg" loading="lazy">
+        @endif
+
+        <x-data-row label="Sexe">{{ $animal->gender->label() }}</x-data-row>
+        <x-data-row label="Âge">{{ $animal->age() !== null ? $animal->age() . ' an(s)' : '-' }}</x-data-row>
+        <x-data-row label="Puce">{{ $animal->chip ?? '-' }}</x-data-row>
+        <x-data-row label="Espèce">{{ $animal->specie?->name ?? '-' }}</x-data-row>
+        <x-data-row label="Race">{{ $animal->race?->name ?? '-' }}</x-data-row>
+        <x-data-row label="Pelage">{{ $animal->coat?->name ?? '-' }}</x-data-row>
+        <x-data-row label="Ajouté par">{{ $animal->user?->fullName() ?? '-' }}</x-data-row>
+
+        @if ($animal->description)
+            <hr class="border-red-strong/20">
+
+            <div class="flex flex-col gap-1">
+                <span class="font-sans font-bold text-blue-strong">Description</span>
+                <p class="font-sans text-blue-strong whitespace-pre-line">{{ $animal->description }}</p>
+            </div>
+        @endif
+    </div>
+
+    @can('update', $animal)
+        <div class="flex flex-col gap-2 max-w-2xl">
+            <span class="font-serif font-semibold text-blue-strong">Changer le statut</span>
+            <div class="flex flex-wrap gap-2">
+                @foreach (\App\Enums\AnimalStatus::cases() as $status)
+                    <button wire:click="changeStatus('{{ $status->value }}')"
+                            class="px-4 py-2 rounded-lg border font-sans text-sm transition-colors cursor-pointer
+                                {{ $status === $animal->status ? 'bg-red-strong border-red-strong text-white' : 'border-gray-300 text-blue-strong hover:bg-red-light' }}">
+                        {{ $status->label() }}
+                    </button>
+                @endforeach
+            </div>
         </div>
     @endcan
 
-    {{-- Galerie désactivée pour l'instant --}}
-    {{--
-    <h3>Galerie</h3>
+    <div class="flex flex-col gap-2 max-w-2xl">
+        <h2 class="font-serif font-bold text-lg text-blue-strong">Notes</h2>
 
-    <ul>
-        @forelse ($pictures as $picture)
-            <li wire:key="picture-{{ $picture->id }}">
-                <img src="{{ Storage::url($picture->path) }}" alt="{{ $picture->alt }}" width="120">
+        <ul class="flex flex-col gap-3">
+            @forelse ($notes as $note)
+                <li wire:key="note-{{ $note->id }}" class="flex items-start justify-between gap-4 p-3 rounded-lg bg-blue-strong/5">
+                    <div>
+                        <p class="font-sans text-sm text-blue-strong">{{ $note->content }}</p>
+                        <p class="font-sans text-xs text-blue-strong/70 mt-1">
+                            {{ $note->user?->fullName() ?? '-' }} · {{ $note->created_at->format('d/m/Y H:i') }}
+                        </p>
+                    </div>
 
-                @can('update', $animal)
-                    <button wire:click="deletePicture({{ $picture->id }})" wire:confirm="Supprimer cette photo ?">
-                        Supprimer
-                    </button>
-                @endcan
-            </li>
-        @empty
-            <li>Aucune photo dans la galerie.</li>
-        @endforelse
-    </ul>
+                    @can('delete', $note)
+                        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $note->id }}', model_type: 'animal-note' } })"
+                                class="shrink-0 font-sans text-sm text-red-normal hover:text-red-strong cursor-pointer">
+                            Supprimer
+                        </button>
+                    @endcan
+                </li>
+            @empty
+                <li class="font-sans text-sm text-blue-strong/40">Pas encore de note.</li>
+            @endforelse
+        </ul>
 
-    @can('update', $animal)
-        <form wire:submit="addPicture">
-            <input type="file" wire:model="newPicture">
-            @error('newPicture') <p>{{ $message }}</p> @enderror
-            @if ($newPicture) <img src="{{ $newPicture->temporaryUrl() }}" width="120"> @endif
-            <button type="submit">Ajouter une photo</button>
-        </form>
-    @endcan
-    --}}
-
-    <h3>Notes</h3>
-
-    <ul>
-        @forelse ($notes as $note)
-            <li wire:key="note-{{ $note->id }}">
-                <p>{{ $note->content }}</p>
-                <p>
-                    <small>
-                        {{ $note->user?->fullName() ?? '—' }} — {{ $note->created_at->format('d/m/Y H:i') }}
-                    </small>
-                </p>
-
-                @can('delete', $note)
-                    <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $note->id }}', model_type: 'animal-note' } })">
-                        Supprimer
-                    </button>
-                @endcan
-            </li>
-        @empty
-            <li>Pas encore de note.</li>
-        @endforelse
-    </ul>
-
-    @can('create', \App\Models\Note::class)
-        <form wire:submit="addNote">
-            <textarea wire:model="newNote" placeholder="Ajouter une note..."></textarea>
-            @error('newNote') <p>{{ $message }}</p> @enderror
-            <button type="submit">Ajouter une note</button>
-        </form>
-    @endcan
+        @can('create', \App\Models\Note::class)
+            <form wire:submit="addNote" class="flex flex-col gap-2">
+                <textarea wire:model="newNote" placeholder="Ajouter une note..." rows="3"
+                          class="w-full px-4 py-2 rounded-lg border border-gray-200 font-sans text-sm text-blue-strong focus:outline-none focus:border-red-strong"></textarea>
+                @error('newNote') <p class="font-sans text-sm text-red-normal">{{ $message }}</p> @enderror
+                <button type="submit"
+                        class="self-end px-4 py-2 rounded-lg font-sans font-bold text-sm text-white bg-red-strong hover:bg-red-normal cursor-pointer">
+                    Ajouter une note
+                </button>
+            </form>
+        @endcan
+    </div>
 </div>

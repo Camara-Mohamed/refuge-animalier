@@ -10,9 +10,9 @@
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <div class="flex items-center gap-2">
             <div>
-                <h1 class="font-serif font-bold text-2xl text-blue-strong">
+                <h2 class="font-serif font-bold text-2xl text-blue-strong">
                     {{ $adoption->adopter->name }} → {{ $adoption->animal->name }}
-                </h1>
+                </h2>
                 <p class="font-sans text-sm text-blue-strong/70">Demandée le {{ $adoption->created_at->format('d/m/Y H:i') }}</p>
             </div>
             <x-badge :color="$adoption->status->color()">{{ $adoption->status->label() }}</x-badge>
@@ -27,9 +27,9 @@
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-        <div class="p-6 bg-white rounded-2xl border border-blue-turquoise flex flex-col gap-4">
+        <div class="p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20 flex flex-col gap-4">
             <h2 class="font-serif font-bold text-xl text-blue-strong">Animal</h2>
-            <hr class="border-blue-turquoise">
+            <hr class="border-red-strong/20">
 
             <x-data-row label="Nom">{{ $adoption->animal->name }}</x-data-row>
 
@@ -53,29 +53,29 @@
                 <x-data-row label="Vaccins">{{ $adoption->animal->specie->vaccines->pluck('name')->join(' / ') }}</x-data-row>
             @endif
 
-            <hr class="border-blue-turquoise">
+            <hr class="border-red-strong/20">
 
             <x-data-row label="Statut de l'animal">
                 <x-badge :color="$adoption->animal->status->color()">{{ $adoption->animal->status->label() }}</x-badge>
             </x-data-row>
         </div>
 
-        <div class="p-6 bg-white rounded-2xl border border-blue-turquoise flex flex-col gap-4">
+        <div class="p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20 flex flex-col gap-4">
             <h2 class="font-serif font-bold text-xl text-blue-strong">Adoptant</h2>
-            <hr class="border-blue-turquoise">
+            <hr class="border-red-strong/20">
 
             <x-data-row label="Nom">{{ $adoption->adopter->name }}</x-data-row>
             <x-data-row label="Email">{{ $adoption->adopter->email }}</x-data-row>
             <x-data-row label="Téléphone">{{ $adoption->adopter->phone }}</x-data-row>
 
-            <hr class="border-blue-turquoise">
+            <hr class="border-red-strong/20">
 
             <x-data-row label="Adresse">{{ $adoption->adopter->address }} {{ $adoption->adopter->number }}, {{ $adoption->adopter->postal_code }} {{ $adoption->adopter->city }}</x-data-row>
             <x-data-row label="Logement">{{ $adoption->adopter->house_type->label() }}</x-data-row>
             <x-data-row label="Jardin">{{ $adoption->adopter->have_garden ? 'Oui' : 'Non' }}</x-data-row>
 
             @if ($adoption->message)
-                <hr class="border-blue-turquoise">
+                <hr class="border-red-strong/20">
 
                 <div class="flex flex-col gap-1">
                     <span class="font-sans font-bold text-blue-strong">Motivation</span>
@@ -111,7 +111,7 @@
                     <div>
                         <p class="font-sans text-sm text-blue-strong">{{ $note->content }}</p>
                         <p class="font-sans text-xs text-blue-strong/70 mt-1">
-                            {{ $note->user?->fullName() ?? '—' }} · {{ $note->created_at->format('d/m/Y H:i') }}
+                            {{ $note->user?->fullName() ?? '-' }} · {{ $note->created_at->format('d/m/Y H:i') }}
                         </p>
                     </div>
 

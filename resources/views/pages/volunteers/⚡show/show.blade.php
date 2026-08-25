@@ -30,21 +30,19 @@
         </div>
     </div>
 
-    <div class="p-6 bg-white rounded-2xl border border-blue-turquoise flex flex-col gap-4 max-w-2xl">
+    <div class="p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20 flex flex-col gap-4 max-w-2xl">
         @if ($volunteer->avatar)
-            <img src="{{ Storage::url($volunteer->avatar) }}" alt="{{ $volunteer->name }}" width="80" class="rounded-full">
+            <img src="{{ Storage::url($volunteer->avatar) }}" alt="{{ $volunteer->name }}" width="80" class="rounded-full" loading="lazy">
         @endif
 
-        <hr class="border-blue-turquoise">
-
         <x-data-row label="Email">{{ $volunteer->email }}</x-data-row>
-        <x-data-row label="Téléphone">{{ $volunteer->phone ?? '—' }}</x-data-row>
-        <x-data-row label="Adresse">{{ $volunteer->address ?? '—' }} {{ $volunteer->number ?? '' }}, {{ $volunteer->code_postal ?? '' }} {{ $volunteer->city ?? '' }}</x-data-row>
+        <x-data-row label="Téléphone">{{ $volunteer->phone ?? '-' }}</x-data-row>
+        <x-data-row label="Adresse">{{ $volunteer->address ?? '-' }} {{ $volunteer->number ?? '' }}, {{ $volunteer->code_postal ?? '' }} {{ $volunteer->city ?? '' }}</x-data-row>
 
-        <hr class="border-blue-turquoise">
+        <hr class="border-red-strong/20">
 
         <x-data-row label="Disponibilités">
-            {{ collect($volunteer->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '—' }}
+            {{ collect($volunteer->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '-' }}
         </x-data-row>
     </div>
 </div>

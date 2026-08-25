@@ -12,7 +12,7 @@ return [
     'editor_contact_link' => 'formulaire de contact',
 
     'hosting_title' => 'Hébergement',
-    'hosting_content' => 'Ce site est hébergé par Laravel Cloud — 111 N. Market St, San Jose, CA 95113, États-Unis.',
+    'hosting_content' => 'Ce site est hébergé par Laravel Cloud - 111 N. Market St, San Jose, CA 95113, États-Unis.',
 
     'ip_title' => 'Propriété intellectuelle',
     'ip_content' => 'L\'ensemble des contenus présents sur ce site (textes, images, logo, structure) est la propriété exclusive de l\'association Les Pattes Heureuses, sauf mention contraire. Toute reproduction, distribution ou utilisation de ces contenus, sans autorisation écrite préalable, est interdite.',

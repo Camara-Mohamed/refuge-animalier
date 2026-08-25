@@ -12,7 +12,7 @@ return [
     'editor_contact_link' => 'contact form',
 
     'hosting_title' => 'Hosting',
-    'hosting_content' => 'This site is hosted by Laravel Cloud — 111 N. Market St, San Jose, CA 95113, United States.',
+    'hosting_content' => 'This site is hosted by Laravel Cloud - 111 N. Market St, San Jose, CA 95113, United States.',
 
     'ip_title' => 'Intellectual property',
     'ip_content' => 'All content on this site (text, images, logo, structure) is the exclusive property of the Happy Paws association, unless otherwise stated. Any reproduction, distribution, or use of this content without prior written authorization is prohibited.',

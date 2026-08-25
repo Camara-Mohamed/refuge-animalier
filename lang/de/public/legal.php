@@ -12,7 +12,7 @@ return [
     'editor_contact_link' => 'Kontaktformular',
 
     'hosting_title' => 'Hosting',
-    'hosting_content' => 'Diese Website wird von Laravel Cloud gehostet — 111 N. Market St, San Jose, CA 95113, Vereinigte Staaten.',
+    'hosting_content' => 'Diese Website wird von Laravel Cloud gehostet - 111 N. Market St, San Jose, CA 95113, Vereinigte Staaten.',
 
     'ip_title' => 'Geistiges Eigentum',
     'ip_content' => 'Alle Inhalte dieser Website (Texte, Bilder, Logo, Struktur) sind ausschließliches Eigentum des Vereins Glückliche Pfoten, sofern nicht anders angegeben. Jede Vervielfältigung, Verbreitung oder Nutzung dieser Inhalte ohne vorherige schriftliche Genehmigung ist untersagt.',

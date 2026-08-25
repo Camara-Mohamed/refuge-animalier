@@ -10,6 +10,6 @@
     <hr class="divider">
 
     <p><strong>Disponibilités :</strong>
-        {{ collect($application->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '—' }}
+        {{ collect($application->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '-' }}
     </p>
 @endsection

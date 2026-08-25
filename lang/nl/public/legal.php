@@ -12,7 +12,7 @@ return [
     'editor_contact_link' => 'contactformulier',
 
     'hosting_title' => 'Hosting',
-    'hosting_content' => 'Deze site wordt gehost door Laravel Cloud — 111 N. Market St, San Jose, CA 95113, Verenigde Staten.',
+    'hosting_content' => 'Deze site wordt gehost door Laravel Cloud - 111 N. Market St, San Jose, CA 95113, Verenigde Staten.',
 
     'ip_title' => 'Intellectueel eigendom',
     'ip_content' => 'Alle inhoud op deze site (teksten, afbeeldingen, logo, structuur) is exclusief eigendom van de vereniging Gelukkige Pootjes, tenzij anders vermeld. Elke reproductie, verspreiding of gebruik van deze inhoud zonder voorafgaande schriftelijke toestemming is verboden.',

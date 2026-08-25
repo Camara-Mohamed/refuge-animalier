@@ -4,7 +4,7 @@
     <h1>Nouveau message</h1>
 
     <p><strong>De :</strong> {{ $message->name }} ({{ $message->email }})</p>
-    <p><strong>Sujet :</strong> {{ $message->subject ?? '—' }}</p>
+    <p><strong>Sujet :</strong> {{ $message->subject ?? '-' }}</p>
 
     <hr class="divider">
 

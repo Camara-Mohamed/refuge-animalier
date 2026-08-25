@@ -8,7 +8,7 @@
     <hr class="divider">
 
     <p><strong>Nom :</strong> {{ $animal->name }}</p>
-    <p><strong>Espèce :</strong> {{ $animal->specie?->name ?? '—' }}</p>
+    <p><strong>Espèce :</strong> {{ $animal->specie?->name ?? '-' }}</p>
 
     <hr class="divider">
 

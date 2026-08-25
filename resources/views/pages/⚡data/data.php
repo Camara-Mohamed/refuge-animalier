@@ -22,6 +22,11 @@ new #[Title('Données')] class extends Component
     #[Validate('required|string|max:255')]
     public string $newCoat = '';
 
+    public function mount(): void
+    {
+        $this->newRaceSpecieId = Specie::orderBy('name')->value('id');
+    }
+
     public function addSpecie(): void
     {
         $this->authorize('create', Specie::class);
@@ -30,6 +35,8 @@ new #[Title('Données')] class extends Component
         Specie::create(['name' => $this->newSpecie]);
 
         $this->reset('newSpecie');
+
+        session()->flash('success_specie', __('modals.specie.added'));
     }
 
     public function deleteSpecie(Specie $specie): void
@@ -38,7 +45,7 @@ new #[Title('Données')] class extends Component
 
         $specie->delete();
 
-        session()->flash('success', __('modals.specie.deleted'));
+        session()->flash('success_specie', __('modals.specie.deleted'));
     }
 
     #[On('specie_delete_confirmed')]
@@ -61,7 +68,9 @@ new #[Title('Données')] class extends Component
             'specie_id' => $this->newRaceSpecieId,
         ]);
 
-        $this->reset('newRace', 'newRaceSpecieId');
+        $this->reset('newRace');
+
+        session()->flash('success_race', __('modals.race.added'));
     }
 
     public function deleteRace(Race $race): void
@@ -70,7 +79,7 @@ new #[Title('Données')] class extends Component
 
         $race->delete();
 
-        session()->flash('success', __('modals.race.deleted'));
+        session()->flash('success_race', __('modals.race.deleted'));
     }
 
     #[On('race_delete_confirmed')]
@@ -87,6 +96,8 @@ new #[Title('Données')] class extends Component
         Coat::create(['name' => $this->newCoat]);
 
         $this->reset('newCoat');
+
+        session()->flash('success_coat', __('modals.coat.added'));
     }
 
     public function deleteCoat(Coat $coat): void
@@ -95,7 +106,7 @@ new #[Title('Données')] class extends Component
 
         $coat->delete();
 
-        session()->flash('success', __('modals.coat.deleted'));
+        session()->flash('success_coat', __('modals.coat.deleted'));
     }
 
     #[On('coat_delete_confirmed')]

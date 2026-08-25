@@ -71,6 +71,7 @@ return [
         'confirm' => 'Supprimer',
         'cancel' => 'Annuler',
         'deleted' => 'L\'espèce a été supprimée.',
+        'added' => 'L\'espèce a été ajoutée.',
     ],
 
     'race' => [
@@ -79,6 +80,7 @@ return [
         'confirm' => 'Supprimer',
         'cancel' => 'Annuler',
         'deleted' => 'La race a été supprimée.',
+        'added' => 'La race a été ajoutée.',
     ],
 
     'coat' => [
@@ -87,5 +89,6 @@ return [
         'confirm' => 'Supprimer',
         'cancel' => 'Annuler',
         'deleted' => 'Le pelage a été supprimé.',
+        'added' => 'Le pelage a été ajouté.',
     ],
 ];

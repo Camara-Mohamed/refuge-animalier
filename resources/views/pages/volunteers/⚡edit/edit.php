@@ -5,12 +5,9 @@ use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
-use Livewire\WithFileUploads;
 
 new #[Title('Modifier un profil')] class extends Component
 {
-    use WithFileUploads;
-
     public User $volunteer;
 
     #[Validate('required|string|max:255')]
@@ -19,26 +16,11 @@ new #[Title('Modifier un profil')] class extends Component
     #[Validate('required|email|max:255')]
     public string $email = '';
 
-    #[Validate('required|in:admin,volunteer')]
-    public string $role = 'volunteer';
-
     #[Validate('nullable|string')]
     public ?string $phone = null;
 
-    #[Validate('nullable|string')]
-    public ?string $address = null;
-
-    #[Validate('nullable|string')]
-    public ?string $number = null;
-
-    #[Validate('nullable|string')]
-    public ?string $city = null;
-
-    #[Validate('nullable|string')]
-    public ?string $code_postal = null;
-
-    #[Validate('nullable|image|max:2048')]
-    public $avatarFile = null;
+    #[Validate('required|in:admin,volunteer')]
+    public string $role = 'volunteer';
 
     public function mount(User $volunteer): void
     {
@@ -54,12 +36,8 @@ new #[Title('Modifier un profil')] class extends Component
 
         $this->name = $volunteer->name;
         $this->email = $volunteer->email;
-        $this->role = $volunteer->role->value;
         $this->phone = $volunteer->phone;
-        $this->address = $volunteer->address;
-        $this->number = $volunteer->number;
-        $this->city = $volunteer->city;
-        $this->code_postal = $volunteer->code_postal;
+        $this->role = $volunteer->role->value;
     }
 
     public function save(): void
@@ -69,19 +47,9 @@ new #[Title('Modifier un profil')] class extends Component
         $data = $this->validate([
             'name' => 'required|string|max:255',
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($this->volunteer->id)],
-            'role' => 'required|in:admin,volunteer',
             'phone' => 'nullable|string',
-            'address' => 'nullable|string',
-            'number' => 'nullable|string',
-            'city' => 'nullable|string',
-            'code_postal' => 'nullable|string',
-            'avatarFile' => 'nullable|image|max:2048',
+            'role' => 'required|in:admin,volunteer',
         ]);
-        unset($data['avatarFile']);
-
-        if ($this->avatarFile) {
-            $data['avatar'] = $this->avatarFile->store('avatars', config('filesystems.default'));
-        }
 
         $this->volunteer->update($data);
 

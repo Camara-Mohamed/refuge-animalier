@@ -1,48 +1,132 @@
-<div>
-    <x-flash />
+<div class="flex flex-col gap-4">
+    <livewire:widgets::breadcrumb :items="[
+        ['label' => __('breadcrumbs.dashboard'), 'url' => route('admin.dashboard', ['locale' => app()->getLocale()])],
+        ['label' => __('breadcrumbs.profile'), 'url' => route('admin.profile', ['locale' => app()->getLocale()])],
+    ]" :key="'profile-breadcrumb'" />
 
-    <h2>Mon profil</h2>
+    <h2 class="font-serif font-bold text-2xl text-blue-strong">Mon profil</h2>
 
-    <form wire:submit="save">
-        <label for="avatarFile">
-            @if ($avatarFile)
-                <img src="{{ $avatarFile->temporaryUrl() }}" alt="" width="120">
-            @elseif (auth()->user()->avatar)
-                <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="" width="120">
-            @else
-                <span>{{ auth()->user()->initials() }}</span>
-            @endif
-        </label>
-        <input type="file" id="avatarFile" wire:model="avatarFile">
-        @error('avatarFile') <p>{{ $message }}</p> @enderror
+    <div class="flex flex-col gap-6 max-w-2xl">
+        <form wire:submit="saveAvatar" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
+            <h3 class="font-serif font-semibold text-blue-strong">Photo de profil</h3>
 
-        @if ($avatarFile)
-            <button type="button" wire:click="removeNewAvatar">Annuler la nouvelle photo</button>
-        @endif
+            <x-flash key="success_avatar" />
 
-        <label for="name">Nom</label>
-        <input type="text" id="name" wire:model="name">
-        @error('name') <p>{{ $message }}</p> @enderror
+            <div class="flex items-center gap-4">
+                <span class="w-16 h-16 rounded-full bg-red-light flex items-center justify-center overflow-hidden shrink-0">
+                    @if ($avatarFile)
+                        <img src="{{ $avatarFile->temporaryUrl() }}" alt="" class="w-full h-full object-cover">
+                    @elseif (auth()->user()->avatar)
+                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="" class="w-full h-full object-cover">
+                    @else
+                        <span class="font-serif font-bold text-blue-strong">{{ auth()->user()->initials() }}</span>
+                    @endif
+                </span>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" wire:model="email">
-        @error('email') <p>{{ $message }}</p> @enderror
+                <div class="flex flex-col gap-2">
+                    <input type="file" id="avatarFile" wire:model="avatarFile"
+                           class="font-serif text-sm text-blue-strong file:bg-transparent file:border-0 file:p-0 file:mr-2 file:font-serif file:text-sm file:font-medium file:text-red-strong file:underline file:cursor-pointer hover:file:text-red-normal file:transition-colors">
+                    @error('avatarFile') <p class="font-serif text-sm text-red-normal">{{ $message }}</p> @enderror
 
-        <label for="receive_emails">
-            <input type="checkbox" id="receive_emails" wire:model="receive_emails">
-            Recevoir des emails de notification
-        </label>
+                    @if ($avatarFile)
+                        <button type="button" wire:click="removeNewAvatar" class="font-sans text-sm text-red-normal hover:text-red-strong w-fit cursor-pointer">
+                            Annuler la nouvelle photo
+                        </button>
+                    @endif
+                </div>
+            </div>
 
-        <fieldset>
-            <legend>Disponibilités</legend>
-            @foreach (\App\Enums\Day::cases() as $day)
-                <label for="availability-{{ $day->value }}">
-                    <input type="checkbox" id="availability-{{ $day->value }}" wire:model="availabilities" value="{{ $day->value }}">
-                    {{ $day->label() }}
-                </label>
-            @endforeach
-        </fieldset>
+            <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
+                hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
+                Enregistrer la photo
+            </x-forms.button>
+        </form>
 
-        <button type="submit">Enregistrer</button>
-    </form>
+        <form wire:submit="saveInfo" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
+            <h3 class="font-serif font-semibold text-blue-strong">Informations personnelles</h3>
+
+            <x-flash key="success_info" />
+
+            <x-forms.input for="name" wire:model="name" type="text" :required="true">
+                Nom
+            </x-forms.input>
+
+            <x-forms.input for="address" wire:model="address" type="text">
+                Adresse
+            </x-forms.input>
+
+            <x-forms.input for="number" wire:model="number" type="text">
+                Numéro
+            </x-forms.input>
+
+            <x-forms.input for="city" wire:model="city" type="text">
+                Ville
+            </x-forms.input>
+
+            <x-forms.input for="code_postal" wire:model="code_postal" type="text">
+                Code postal
+            </x-forms.input>
+
+            <label class="flex items-center gap-2 font-serif text-sm text-blue-strong">
+                <input type="checkbox" id="receive_emails" wire:model="receive_emails">
+                Recevoir des emails de notification
+            </label>
+
+            <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
+                hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
+                Enregistrer les informations
+            </x-forms.button>
+        </form>
+
+        <form wire:submit="saveEmail" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
+            <h3 class="font-serif font-semibold text-blue-strong">Email</h3>
+
+            <x-flash key="success_email" />
+
+            <x-forms.input for="email" wire:model="email" type="email" :required="true">
+                Email
+            </x-forms.input>
+
+            <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
+                hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
+                Enregistrer l'email
+            </x-forms.button>
+        </form>
+
+        <form wire:submit="savePassword" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
+            <h3 class="font-serif font-semibold text-blue-strong">Mot de passe</h3>
+
+            <x-flash key="success_password" />
+
+            <x-forms.input for="password" wire:model="password" type="password" placeholder="••••••••">
+                Nouveau mot de passe
+            </x-forms.input>
+
+            <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
+                hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
+                Enregistrer le mot de passe
+            </x-forms.button>
+        </form>
+
+        <form wire:submit="saveAvailabilities" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
+            <x-flash key="success_availabilities" />
+
+            <x-forms.fieldset title="Disponibilités">
+                <div class="flex flex-wrap gap-2">
+                    @foreach (\App\Enums\Day::cases() as $day)
+                        <label for="availability-{{ $day->value }}"
+                               class="px-4 py-2 rounded-lg border border-gray-300 text-blue-strong font-serif text-sm cursor-pointer transition-colors has-checked:bg-red-strong has-checked:text-white has-checked:border-red-strong">
+                            <input type="checkbox" id="availability-{{ $day->value }}" wire:model="availabilities" value="{{ $day->value }}" class="sr-only">
+                            {{ $day->label() }}
+                        </label>
+                    @endforeach
+                </div>
+            </x-forms.fieldset>
+
+            <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
+                hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
+                Enregistrer les disponibilités
+            </x-forms.button>
+        </form>
+    </div>
 </div>

@@ -22,4 +22,7 @@ return [
     'login' => 'Login',
     'go_login' => 'Go to page: Login',
 
+    'profile' => 'My profile',
+    'go_profile' => 'Go to page: My profile',
+
 ];

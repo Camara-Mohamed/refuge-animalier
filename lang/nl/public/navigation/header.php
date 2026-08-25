@@ -22,4 +22,7 @@ return [
     'login' => 'Inloggen',
     'go_login' => 'Ga naar pagina: Inloggen',
 
+    'profile' => 'Mijn profiel',
+    'go_profile' => 'Ga naar pagina: Mijn profiel',
+
 ];

@@ -32,13 +32,23 @@
         <x-public.navigation.links />
 
         <li class="flex flex-col lg:flex-row items-center gap-6 lg:gap-3 lg:ml-2">
-            <x-buttons.button
-                href="{{ route('public.volunteer', app()->getLocale()) }}"
-                title="{{ __('public/navigation/header.go_volunteer') }}"
-                class="bg-red-strong border-red-strong text-white justify-center
-                        hover:bg-white hover:text-red-strong">
-                {{ __('public/navigation/header.volunteer') }}
-            </x-buttons.button>
+            @auth
+                <x-buttons.button
+                    href="{{ route('admin.profile', ['locale' => app()->getLocale()]) }}"
+                    title="{{ __('public/navigation/header.go_profile') }}"
+                    class="bg-red-strong border-red-strong text-white justify-center
+                            hover:bg-white hover:text-red-strong">
+                    {{ __('public/navigation/header.profile') }}
+                </x-buttons.button>
+            @else
+                <x-buttons.button
+                    href="{{ route('public.volunteer', app()->getLocale()) }}"
+                    title="{{ __('public/navigation/header.go_volunteer') }}"
+                    class="bg-red-strong border-red-strong text-white justify-center
+                            hover:bg-white hover:text-red-strong">
+                    {{ __('public/navigation/header.volunteer') }}
+                </x-buttons.button>
+            @endauth
 
             <x-public.navigation.language.dropdown />
         </li>

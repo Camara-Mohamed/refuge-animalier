@@ -71,6 +71,7 @@ return [
         'confirm' => 'Verwijderen',
         'cancel' => 'Annuleren',
         'deleted' => 'De diersoort is verwijderd.',
+        'added' => 'De diersoort is toegevoegd.',
     ],
 
     'race' => [
@@ -79,6 +80,7 @@ return [
         'confirm' => 'Verwijderen',
         'cancel' => 'Annuleren',
         'deleted' => 'Het ras is verwijderd.',
+        'added' => 'Het ras is toegevoegd.',
     ],
 
     'coat' => [
@@ -87,5 +89,6 @@ return [
         'confirm' => 'Verwijderen',
         'cancel' => 'Annuleren',
         'deleted' => 'De vacht is verwijderd.',
+        'added' => 'De vacht is toegevoegd.',
     ],
 ];

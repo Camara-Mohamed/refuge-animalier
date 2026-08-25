@@ -5,9 +5,11 @@
         ['label' => $volunteer->name, 'url' => '#'],
     ]" :key="'volunteer-show-breadcrumb'" />
 
+    <x-flash />
+
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <div class="flex items-center gap-2">
-            <h1 class="font-serif font-bold text-2xl text-blue-strong">{{ $volunteer->name }}</h1>
+            <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ $volunteer->name }}</h2>
             <x-badge :color="$volunteer->role->color()">{{ $volunteer->role->label() }}</x-badge>
         </div>
 
@@ -28,13 +30,21 @@
         </div>
     </div>
 
-    @if ($volunteer->avatar)
-        <img src="{{ Storage::url($volunteer->avatar) }}" alt="{{ $volunteer->name }}" width="120" class="rounded-full">
-    @endif
+    <div class="p-6 bg-white rounded-2xl border border-blue-turquoise flex flex-col gap-4 max-w-2xl">
+        @if ($volunteer->avatar)
+            <img src="{{ Storage::url($volunteer->avatar) }}" alt="{{ $volunteer->name }}" width="80" class="rounded-full">
+        @endif
 
-    <ul class="flex flex-col gap-1 font-sans text-sm text-blue-strong">
-        <li>Email : {{ $volunteer->email }}</li>
-        <li>Téléphone : {{ $volunteer->phone ?? '—' }}</li>
-        <li>Adresse : {{ $volunteer->address ?? '—' }} {{ $volunteer->number ?? '' }}, {{ $volunteer->code_postal ?? '' }} {{ $volunteer->city ?? '' }}</li>
-    </ul>
+        <hr class="border-blue-turquoise">
+
+        <x-data-row label="Email">{{ $volunteer->email }}</x-data-row>
+        <x-data-row label="Téléphone">{{ $volunteer->phone ?? '—' }}</x-data-row>
+        <x-data-row label="Adresse">{{ $volunteer->address ?? '—' }} {{ $volunteer->number ?? '' }}, {{ $volunteer->code_postal ?? '' }} {{ $volunteer->city ?? '' }}</x-data-row>
+
+        <hr class="border-blue-turquoise">
+
+        <x-data-row label="Disponibilités">
+            {{ collect($volunteer->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '—' }}
+        </x-data-row>
+    </div>
 </div>

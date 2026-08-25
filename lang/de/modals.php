@@ -71,6 +71,7 @@ return [
         'confirm' => 'Löschen',
         'cancel' => 'Abbrechen',
         'deleted' => 'Die Art wurde gelöscht.',
+        'added' => 'Die Art wurde hinzugefügt.',
     ],
 
     'race' => [
@@ -79,6 +80,7 @@ return [
         'confirm' => 'Löschen',
         'cancel' => 'Abbrechen',
         'deleted' => 'Die Rasse wurde gelöscht.',
+        'added' => 'Die Rasse wurde hinzugefügt.',
     ],
 
     'coat' => [
@@ -87,5 +89,6 @@ return [
         'confirm' => 'Löschen',
         'cancel' => 'Abbrechen',
         'deleted' => 'Das Fell wurde gelöscht.',
+        'added' => 'Das Fell wurde hinzugefügt.',
     ],
 ];

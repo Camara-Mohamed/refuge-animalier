@@ -1,9 +1,7 @@
 <div>
-    <h2>Mon profil</h2>
+    <x-flash />
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+    <h2>Mon profil</h2>
 
     <form wire:submit="save">
         <label for="avatarFile">

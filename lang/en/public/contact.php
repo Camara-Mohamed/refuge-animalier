@@ -18,7 +18,7 @@ return [
     'info_address_title' => 'Address',
     'info_address' => '123 Animal Street, 75001 Paris, France',
     'info_phone_title' => 'Phone',
-    'info_phone' => '+33 1 23 45 67 89',
+    'info_phone' => '+32 2 123 45 67',
     'info_email_title' => 'Email',
     'info_email' => 'contact@happypaws.com',
     'info_hours_title' => 'Hours',

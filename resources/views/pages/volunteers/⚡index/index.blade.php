@@ -4,6 +4,8 @@
         ['label' => __('breadcrumbs.volunteers'), 'url' => route('admin.volunteers.index', ['locale' => app()->getLocale()])],
     ]" :key="'volunteers-index-breadcrumb'" />
 
+    <x-flash />
+
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <h1 class="font-serif font-bold text-2xl text-blue-strong">Bénévoles</h1>
 

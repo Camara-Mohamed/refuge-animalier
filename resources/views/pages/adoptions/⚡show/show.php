@@ -5,6 +5,7 @@ use App\Mail\AdoptionStatusUpdatedMail;
 use App\Models\Adoption;
 use App\Models\Note;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -39,7 +40,15 @@ new #[Title('Détail adoption')] class extends Component
 
         $this->adoption->delete();
 
+        session()->flash('success', __('modals.adoption.deleted'));
+
         $this->redirectRoute('admin.adoptions.index', ['locale' => app()->getLocale()]);
+    }
+
+    #[On('adoption_delete_confirmed')]
+    public function onAdoptionDeleteConfirmed(): void
+    {
+        $this->delete();
     }
 
     public function addNote(): void
@@ -60,6 +69,14 @@ new #[Title('Détail adoption')] class extends Component
         $this->authorize('delete', $note);
 
         $note->delete();
+
+        session()->flash('success', __('modals.adoption-note.deleted'));
+    }
+
+    #[On('adoption-note_delete_confirmed')]
+    public function onAdoptionNoteDeleteConfirmed(int $id): void
+    {
+        $this->deleteNote(Note::findOrFail($id));
     }
 
     public function with(): array

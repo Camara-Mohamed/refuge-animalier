@@ -3,6 +3,7 @@
 use App\Models\Coat;
 use App\Models\Race;
 use App\Models\Specie;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -36,6 +37,14 @@ new #[Title('Données')] class extends Component
         $this->authorize('delete', $specie);
 
         $specie->delete();
+
+        session()->flash('success', __('modals.specie.deleted'));
+    }
+
+    #[On('specie_delete_confirmed')]
+    public function onSpecieDeleteConfirmed(int $id): void
+    {
+        $this->deleteSpecie(Specie::findOrFail($id));
     }
 
     public function addRace(): void
@@ -60,6 +69,14 @@ new #[Title('Données')] class extends Component
         $this->authorize('delete', $race);
 
         $race->delete();
+
+        session()->flash('success', __('modals.race.deleted'));
+    }
+
+    #[On('race_delete_confirmed')]
+    public function onRaceDeleteConfirmed(int $id): void
+    {
+        $this->deleteRace(Race::findOrFail($id));
     }
 
     public function addCoat(): void
@@ -77,6 +94,14 @@ new #[Title('Données')] class extends Component
         $this->authorize('delete', $coat);
 
         $coat->delete();
+
+        session()->flash('success', __('modals.coat.deleted'));
+    }
+
+    #[On('coat_delete_confirmed')]
+    public function onCoatDeleteConfirmed(int $id): void
+    {
+        $this->deleteCoat(Coat::findOrFail($id));
     }
 
     public function with(): array

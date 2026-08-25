@@ -21,7 +21,7 @@
             </a>
 
             @can('delete', $application)
-                <button wire:click="delete" wire:confirm="Supprimer cette candidature ?"
+                <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $application->id }}', model_type: 'volunteer-application' } })"
                         class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                     Supprimer
                 </button>

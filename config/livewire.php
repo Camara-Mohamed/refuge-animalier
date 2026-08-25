@@ -17,6 +17,7 @@ return [
         'pages' => resource_path('views/pages'),
         'layouts' => resource_path('views/layouts'),
         'widgets' => resource_path('views/widgets'),
+        'modals' => resource_path('views/modals'),
     ],
 
     /*

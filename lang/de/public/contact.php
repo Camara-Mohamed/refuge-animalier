@@ -18,7 +18,7 @@ return [
     'info_address_title' => 'Adresse',
     'info_address' => 'Tierstraße 123, 75001 Paris, Frankreich',
     'info_phone_title' => 'Telefon',
-    'info_phone' => '+33 1 23 45 67 89',
+    'info_phone' => '+32 2 123 45 67',
     'info_email_title' => 'E-Mail',
     'info_email' => 'kontakt@gluecklichepfoten.com',
     'info_hours_title' => 'Öffnungszeiten',

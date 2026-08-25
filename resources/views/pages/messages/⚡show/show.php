@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Message;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -23,6 +24,14 @@ new #[Title('Message')] class extends Component
 
         $this->message->delete();
 
+        session()->flash('success', __('modals.message.deleted'));
+
         $this->redirectRoute('admin.messages.index', ['locale' => app()->getLocale()]);
+    }
+
+    #[On('message_delete_confirmed')]
+    public function onMessageDeleteConfirmed(): void
+    {
+        $this->delete();
     }
 };

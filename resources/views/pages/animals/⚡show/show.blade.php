@@ -1,4 +1,6 @@
 <div>
+    <x-flash />
+
     <h2>{{ $animal->name }}</h2>
 
     @can('update', $animal)
@@ -6,7 +8,7 @@
     @endcan
 
     @can('delete', $animal)
-        <button wire:click="delete" wire:confirm="Supprimer cet animal ? Cette action est irréversible.">
+        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $animal->id }}', model_type: 'animal', model_label: @js($animal->name) } })">
             Supprimer
         </button>
     @endcan
@@ -82,7 +84,7 @@
                 </p>
 
                 @can('delete', $note)
-                    <button wire:click="deleteNote({{ $note->id }})" wire:confirm="Supprimer cette note ?">
+                    <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $note->id }}', model_type: 'animal-note' } })">
                         Supprimer
                     </button>
                 @endcan

@@ -10,6 +10,7 @@ use App\Models\Note;
 use App\Models\User;
 use App\Traits\HandlesAnimalAvatar;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -92,6 +93,14 @@ new #[Title('Fiche animal')] class extends Component
         $this->authorize('delete', $note);
 
         $note->delete();
+
+        session()->flash('success', __('modals.animal-note.deleted'));
+    }
+
+    #[On('animal-note_delete_confirmed')]
+    public function onAnimalNoteDeleteConfirmed(int $id): void
+    {
+        $this->deleteNote(Note::findOrFail($id));
     }
 
     public function delete(): void
@@ -111,7 +120,15 @@ new #[Title('Fiche animal')] class extends Component
             Mail::to($admins)->send(new DeleteNotificationMail('Animal', $name, auth()->user()->fullName()));
         }
 
+        session()->flash('success', __('modals.animal.deleted'));
+
         $this->redirectRoute('admin.animals.index', ['locale' => app()->getLocale()]);
+    }
+
+    #[On('animal_delete_confirmed')]
+    public function onAnimalDeleteConfirmed(): void
+    {
+        $this->delete();
     }
 
     public function with(): array

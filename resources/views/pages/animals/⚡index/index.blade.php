@@ -1,4 +1,6 @@
 <div>
+    <x-flash />
+
     <h2>Animaux</h2>
 
     @can('create', \App\Models\Animal::class)
@@ -54,7 +56,7 @@
                             <x-admin-link :href="route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal])">Modifier</x-admin-link>
                         @endcan
                         @can('delete', $animal)
-                            <button wire:click="delete({{ $animal->id }})" wire:confirm="Supprimer {{ $animal->name }} ?">Supprimer</button>
+                            <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $animal->id }}', model_type: 'animal', model_label: @js($animal->name) } })">Supprimer</button>
                         @endcan
                     </td>
                 </tr>

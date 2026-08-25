@@ -1,4 +1,6 @@
 <div>
+    <x-flash />
+
     <h2>Gestion des données</h2>
 
     <div>
@@ -18,7 +20,7 @@
                     {{ $specie->name }}
 
                     @can('delete', $specie)
-                        <button wire:click="deleteSpecie({{ $specie->id }})" wire:confirm="Supprimer cette espèce ?">
+                        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $specie->id }}', model_type: 'specie' } })">
                             Supprimer
                         </button>
                     @endcan
@@ -53,7 +55,7 @@
                     {{ $race->name }} ({{ $race->specie->name }})
 
                     @can('delete', $race)
-                        <button wire:click="deleteRace({{ $race->id }})" wire:confirm="Supprimer cette race ?">
+                        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $race->id }}', model_type: 'race' } })">
                             Supprimer
                         </button>
                     @endcan
@@ -81,7 +83,7 @@
                     {{ $coat->name }}
 
                     @can('delete', $coat)
-                        <button wire:click="deleteCoat({{ $coat->id }})" wire:confirm="Supprimer ce pelage ?">
+                        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $coat->id }}', model_type: 'coat' } })">
                             Supprimer
                         </button>
                     @endcan

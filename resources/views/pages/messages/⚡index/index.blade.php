@@ -4,6 +4,8 @@
         ['label' => __('breadcrumbs.messages'), 'url' => route('admin.messages.index', ['locale' => app()->getLocale()])],
     ]" :key="'messages-index-breadcrumb'" />
 
+    <x-flash />
+
     <h1 class="font-serif font-bold text-2xl text-blue-strong">Messages</h1>
 
     <table class="w-full">
@@ -36,7 +38,7 @@
                            class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
                             Voir
                         </x-admin-link>
-                        <button wire:click="delete({{ $message->id }})" wire:confirm="Supprimer ce message ?"
+                        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $message->id }}', model_type: 'message' } })"
                                 class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                             Supprimer
                         </button>

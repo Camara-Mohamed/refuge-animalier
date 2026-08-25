@@ -14,6 +14,7 @@ use App\Models\VolunteerApplication;
 use App\Traits\HandlesAnimalAvatar;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -90,6 +91,14 @@ new #[Title('Tableau de bord')] class extends Component
 
         $this->deleteAnimalAvatar($animal);
         $animal->delete();
+
+        session()->flash('success', __('modals.animal.deleted'));
+    }
+
+    #[On('animal_delete_confirmed')]
+    public function onAnimalDeleteConfirmed(int $id): void
+    {
+        $this->deleteAnimal(Animal::findOrFail($id));
     }
 
     public function deleteMessage(Message $message): void
@@ -97,6 +106,14 @@ new #[Title('Tableau de bord')] class extends Component
         $this->authorize('delete', $message);
 
         $message->delete();
+
+        session()->flash('success', __('modals.message.deleted'));
+    }
+
+    #[On('message_delete_confirmed')]
+    public function onMessageDeleteConfirmed(int $id): void
+    {
+        $this->deleteMessage(Message::findOrFail($id));
     }
 
     public function deleteApplication(VolunteerApplication $volunteerApplication): void
@@ -104,6 +121,14 @@ new #[Title('Tableau de bord')] class extends Component
         $this->authorize('delete', $volunteerApplication);
 
         $volunteerApplication->delete();
+
+        session()->flash('success', __('modals.volunteer-application.deleted'));
+    }
+
+    #[On('volunteer-application_delete_confirmed')]
+    public function onVolunteerApplicationDeleteConfirmed(int $id): void
+    {
+        $this->deleteApplication(VolunteerApplication::findOrFail($id));
     }
 
     public function mount(): void

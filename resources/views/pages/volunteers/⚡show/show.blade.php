@@ -20,7 +20,7 @@
             @endcan
 
             @can('delete', $volunteer)
-                <button wire:click="delete" wire:confirm="Supprimer ce profil ? Cette action est irréversible."
+                <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $volunteer->id }}', model_type: 'volunteer' } })"
                         class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                     Supprimer
                 </button>

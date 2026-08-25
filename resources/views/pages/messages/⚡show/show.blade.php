@@ -14,7 +14,7 @@
             </a>
 
             @can('delete', $message)
-                <button wire:click="delete" wire:confirm="Supprimer ce message ?"
+                <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $message->id }}', model_type: 'message' } })"
                         class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                     Supprimer
                 </button>

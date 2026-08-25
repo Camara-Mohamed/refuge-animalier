@@ -4,6 +4,7 @@ use App\Enums\AdoptionStatus;
 use App\Mail\AdoptionStatusUpdatedMail;
 use App\Models\Adoption;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -40,6 +41,14 @@ new #[Title('Adoptions')] class extends Component
         $this->authorize('delete', $adoption);
 
         $adoption->delete();
+
+        session()->flash('success', __('modals.adoption.deleted'));
+    }
+
+    #[On('adoption_delete_confirmed')]
+    public function onAdoptionDeleteConfirmed(int $id): void
+    {
+        $this->delete(Adoption::findOrFail($id));
     }
 
     public function with(): array

@@ -18,7 +18,7 @@ return [
     'info_address_title' => 'Adresse',
     'info_address' => 'Rue des Animaux 12, 1000 Bruxelles, Belgique',
     'info_phone_title' => 'Téléphone',
-    'info_phone' => '+33 1 23 45 67 89',
+    'info_phone' => '+32 2 123 45 67',
     'info_email_title' => 'Email',
     'info_email' => 'contact@lespattesheureuses.com',
     'info_hours_title' => 'Horaires',

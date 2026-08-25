@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Message;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -19,6 +20,14 @@ new #[Title('Messages')] class extends Component
         $this->authorize('delete', $message);
 
         $message->delete();
+
+        session()->flash('success', __('modals.message.deleted'));
+    }
+
+    #[On('message_delete_confirmed')]
+    public function onMessageDeleteConfirmed(int $id): void
+    {
+        $this->delete(Message::findOrFail($id));
     }
 
     public function with(): array

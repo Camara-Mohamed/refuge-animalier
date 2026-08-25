@@ -20,7 +20,7 @@ return [
     'info_address_title' => 'Adres',
     'info_address' => 'Dierenstraat 123, 75001 Parijs, Frankrijk',
     'info_phone_title' => 'Telefoon',
-    'info_phone' => '+33 1 23 45 67 89',
+    'info_phone' => '+32 2 123 45 67',
     'info_email_title' => 'E-mail',
     'info_email' => 'contact@gelukkigepootjes.com',
     'info_hours_title' => 'Openingstijden',

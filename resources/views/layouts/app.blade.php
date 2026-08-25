@@ -115,6 +115,8 @@
     </main>
 </div>
 
+<livewire:widgets::modal />
+
 </body>
 
 </html>

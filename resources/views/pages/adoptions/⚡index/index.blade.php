@@ -4,6 +4,8 @@
         ['label' => __('breadcrumbs.adoptions'), 'url' => route('admin.adoptions.index', ['locale' => app()->getLocale()])],
     ]" :key="'adoptions-index-breadcrumb'" />
 
+    <x-flash />
+
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <h1 class="font-serif font-bold text-2xl text-blue-strong">Adoptions</h1>
 
@@ -56,7 +58,7 @@
                             Voir
                         </x-admin-link>
                         @can('delete', $adoption)
-                            <button wire:click="delete({{ $adoption->id }})" wire:confirm="Supprimer cette demande ?"
+                            <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $adoption->id }}', model_type: 'adoption' } })"
                                     class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                                 Supprimer
                             </button>

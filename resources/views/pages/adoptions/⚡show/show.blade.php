@@ -5,6 +5,8 @@
         ['label' => $adoption->adopter->name, 'url' => '#'],
     ]" :key="'adoption-show-breadcrumb'" />
 
+    <x-flash />
+
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <div class="flex items-center gap-2">
             <div>
@@ -17,7 +19,7 @@
         </div>
 
         @can('delete', $adoption)
-            <button wire:click="delete" wire:confirm="Supprimer cette demande ? Cette action est irréversible."
+            <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $adoption->id }}', model_type: 'adoption' } })"
                     class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                 Supprimer
             </button>
@@ -114,7 +116,7 @@
                     </div>
 
                     @can('delete', $note)
-                        <button wire:click="deleteNote({{ $note->id }})" wire:confirm="Supprimer cette note ?"
+                        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $note->id }}', model_type: 'adoption-note' } })"
                                 class="shrink-0 font-sans text-sm text-red-normal hover:text-red-strong cursor-pointer">
                             Supprimer
                         </button>

@@ -9,6 +9,7 @@ use App\Models\Specie;
 use App\Models\User;
 use App\Traits\HandlesAnimalAvatar;
 use Illuminate\Support\Facades\Mail;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -73,6 +74,14 @@ new #[Title('Animaux')] class extends Component
         if ($admins->isNotEmpty()) {
             Mail::to($admins)->send(new DeleteNotificationMail('Animal', $name, auth()->user()->fullName()));
         }
+
+        session()->flash('success', __('modals.animal.deleted'));
+    }
+
+    #[On('animal_delete_confirmed')]
+    public function onAnimalDeleteConfirmed(int $id): void
+    {
+        $this->delete(Animal::findOrFail($id));
     }
 
     public function with(): array

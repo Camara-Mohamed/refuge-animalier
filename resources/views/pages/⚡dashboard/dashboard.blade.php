@@ -1,4 +1,6 @@
 <div class="flex flex-col gap-6" wire:poll.30s>
+    <x-flash />
+
     <div class="flex items-center justify-between gap-4 flex-wrap">
         <h1 class="font-serif font-bold text-2xl text-blue-strong">Tableau de bord</h1>
 
@@ -140,8 +142,7 @@
                                     </x-admin-link>
                                 @endcan
                                 @can('delete', $animal)
-                                    <button wire:click="deleteAnimal({{ $animal->id }})"
-                                            wire:confirm="Supprimer {{ $animal->name }} ? Cette action est irréversible."
+                                    <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $animal->id }}', model_type: 'animal', model_label: @js($animal->name) } })"
                                             class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                                         Supprimer
                                     </button>
@@ -232,8 +233,7 @@
                                     Répondre
                                 </a>
                                 @can('delete', $message)
-                                    <button wire:click="deleteMessage({{ $message->id }})"
-                                            wire:confirm="Supprimer ce message ?"
+                                    <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $message->id }}', model_type: 'message' } })"
                                             class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                                         Supprimer
                                     </button>
@@ -285,8 +285,7 @@
                                     Répondre
                                 </a>
                                 @can('delete', $application)
-                                    <button wire:click="deleteApplication({{ $application->id }})"
-                                            wire:confirm="Supprimer cette candidature ?"
+                                    <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $application->id }}', model_type: 'volunteer-application' } })"
                                             class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
                                         Supprimer
                                     </button>

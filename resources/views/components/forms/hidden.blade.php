@@ -2,6 +2,7 @@
     'for' => '',
     'type' => '',
     'placeholder' => '',
+    'value' => '',
 ])
 
 <div class="flex flex-col gap-2">
@@ -9,6 +10,6 @@
         {{ $slot }}
     </label>
 
-    <input type="{{ $type }}" name="{{ $for }}" id="{{ $for}}" {{ $attributes->merge(['class' => 'px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-strong focus:border-2']) }}
+    <input type="{{ $type }}" name="{{ $for }}" id="{{ $for}}" value="{{ $value }}" {{ $attributes->merge(['class' => 'px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-strong focus:border-2']) }}
     placeholder="{{ $placeholder }}">
 </div>

@@ -7,7 +7,7 @@ return [
     'section_subtitle' => 'Entdecken Sie unsere Bewohner, die sehnsüchtig darauf warten, ihre Familie für immer zu finden.',
 
     'search' => 'Suchen',
-    'search_placeholder' => 'Suchen: ein Tier, eine Rasse, ein Geschlecht, eine Art...',
+    'search_placeholder' => 'Ein Tier suchen...',
 
     'animal_found' => 'Tier gefunden',
     'animals_found' => 'Tiere gefunden',

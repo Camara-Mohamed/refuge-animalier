@@ -7,7 +7,7 @@ return [
     'section_subtitle' => 'Discover our residents who are eagerly waiting to find their forever family.',
 
     'search' => 'Search',
-    'search_placeholder' => 'Search: an animal, a breed, a gender, a species...',
+    'search_placeholder' => 'Search an animal...',
 
     'animal_found' => 'animal found',
     'animals_found' => 'animals found',

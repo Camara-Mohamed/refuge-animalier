@@ -11,54 +11,45 @@
 
     <section class="pb-20 px-20 flex flex-col text-blue-strong transition-all duration-200 ease-in-out">
         <h2 class="sr-only">{{ __('public/animals/animals_index.section_animals_title') }}</h2>
-        <div class="flex flex-wrap items-center justify-between gap-4 mt-4">
-            <form method="GET" action="{{ route('public.animals.index', app()->getLocale()) }}" class="flex items-center gap-2">
-                <x-forms.hidden
-                    for="search"
-                    type="search"
-                    placeholder="{{ __('public/animals/animals_index.search_placeholder') }}">
-                    {{ __('public/animals/animals_index.search') }}
-                </x-forms.hidden>
+        <form method="GET" action="{{ route('public.animals.index', app()->getLocale()) }}"
+              class="flex flex-wrap items-center gap-3 mt-4">
+            <x-forms.hidden
+                for="search"
+                type="search"
+                value="{{ request('search') }}"
+                placeholder="{{ __('public/animals/animals_index.search_placeholder') }}">
+                {{ __('public/animals/animals_index.search') }}
+            </x-forms.hidden>
 
-                <x-forms.button
-                    type="submit"
-                    class="h-10 bg-red-strong border-red-strong text-white hover:bg-white hover:text-red-strong hover:border-red-strong"
-                    title="Rechercher un animal">
-                    Rechercher
-                </x-forms.button>
-            </form>
+            <x-forms.select class="h-10 capitalize" for="sexe" label_title="{{ __('public/animals/animals_index.filtre_sexe') }}">
+                <option value="all">{{ __('public/animals/animals_index.filtre_tous') }}</option>
+                @foreach(Gender::cases() as $gender)
+                    <option value="{{ $gender->name }}" @selected(request('sexe') === $gender->name)>{{
+                    $gender->label() }}</option>
+                @endforeach
+            </x-forms.select>
 
-            <form method="GET" action="{{ route('public.animals.index', app()->getLocale()) }}" class="flex items-center gap-2 flex-wrap">
-                <x-forms.select class="h-10 capitalize" for="sexe" label_title="{{ __('public/animals/animals_index.filtre_sexe') }}">
-                    <option value="all">{{ __('public/animals/animals_index.filtre_tous') }}</option>
-                    @foreach(Gender::cases() as $gender)
-                        <option value="{{ $gender->name }}" @selected(request('sexe') === $gender->name)>{{
-                        $gender->label() }}</option>
-                    @endforeach
-                </x-forms.select>
+            <x-forms.select class="h-10" for="race" label_title="{{ __('public/animals/animals_index.filtre_race') }}">
+                <option value="all">{{ __('public/animals/animals_index.filtre_toutes') }}</option>
+                @foreach($races as $race)
+                    <option value="{{ $race->name }}" @selected(request('race') === $race->name)>{{ $race->name }}</option>
+                @endforeach
+            </x-forms.select>
 
-                <x-forms.select class="h-10" for="race" label_title="{{ __('public/animals/animals_index.filtre_race') }}">
-                    <option value="all">{{ __('public/animals/animals_index.filtre_toutes') }}</option>
-                    @foreach($races as $race)
-                        <option value="{{ $race->name }}" @selected(request('race') === $race->name)>{{ $race->name }}</option>
-                    @endforeach
-                </x-forms.select>
+            <x-forms.select class="h-10" for="species" label_title="{{ __('public/animals/animals_index.filtre_species') }}">
+                <option value="all">{{ __('public/animals/animals_index.filtre_tous') }}</option>
+                @foreach($species as $specie)
+                    <option value="{{ $specie->name }}" @selected(request('species') === $specie->name)>{{ $specie->name }}</option>
+                @endforeach
+            </x-forms.select>
 
-                <x-forms.select class="h-10" for="species" label_title="{{ __('public/animals/animals_index.filtre_species') }}">
-                    <option value="all">{{ __('public/animals/animals_index.filtre_tous') }}</option>
-                    @foreach($species as $specie)
-                        <option value="{{ $specie->name }}" @selected(request('species') === $specie->name)>{{ $specie->name }}</option>
-                    @endforeach
-                </x-forms.select>
-
-                <x-forms.button
-                    type="submit"
-                    class="h-10 bg-red-strong border-red-strong text-white hover:bg-white hover:text-red-strong hover:border-red-strong"
-                    title="Filtrer les animaux">
-                    Filter
-                </x-forms.button>
-            </form>
-        </div>
+            <x-forms.button
+                type="submit"
+                class="h-10 bg-red-strong border-red-strong text-white hover:bg-white hover:text-red-strong hover:border-red-strong"
+                title="Filtrer les animaux">
+                Filter
+            </x-forms.button>
+        </form>
 
         <div class="flex justify-between mt-4">
             <p class="font-normal text-blue-strong">

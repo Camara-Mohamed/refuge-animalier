@@ -7,7 +7,7 @@ return [
     'section_subtitle' => 'Découvrez nos pensionnaires qui attendent avec impatience de trouver leur famille pour toujours.',
 
     'search' => 'Rechercher',
-    'search_placeholder' => 'Rechercher : un animal, une race, un genre, une espèce ...',
+    'search_placeholder' => 'Rechercher un animal...',
 
     'animal_found' => 'animal trouvé',
     'animals_found' => 'animals trouvés',

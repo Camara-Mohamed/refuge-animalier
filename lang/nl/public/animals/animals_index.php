@@ -7,7 +7,7 @@ return [
     'section_subtitle' => 'Ontdek onze bewoners die graag hun eeuwige familie willen vinden.',
 
     'search' => 'Zoeken',
-    'search_placeholder' => 'Zoeken: een dier, een ras, een geslacht, een soort...',
+    'search_placeholder' => 'Een dier zoeken...',
 
     'animal_found' => 'dier gevonden',
     'animals_found' => 'dieren gevonden',

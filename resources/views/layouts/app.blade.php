@@ -24,16 +24,25 @@
 <x-public.navigation.skip-link/>
 
 <div class="flex min-h-screen">
-    <aside class="w-80 shrink-0 bg-red-strong flex flex-col sticky top-0 h-screen overflow-y-auto p-6">
-        <div class="flex items-center justify-center py-6">
+    <input type="checkbox" id="sidebar-toggle" class="peer sr-only" />
+
+    <aside
+        class="w-full lg:w-80 shrink-0 bg-red-strong flex flex-col fixed inset-y-0 left-0 z-40 h-dvh overflow-hidden lg:overflow-y-auto p-4 lg:p-6 transition-transform duration-200 ease-in-out -translate-x-full peer-checked:translate-x-0 lg:translate-x-0 lg:sticky lg:top-0">
+        <div class="flex items-center justify-between lg:justify-center py-3 lg:py-6 shrink-0">
             <h2 class="sr-only">Les Pattes Heureuses</h2>
             <x-admin-link :href="route('admin.dashboard', ['locale' => app()->getLocale()])"
                           class="font-sans font-black text-xl leading-6 text-white text-center whitespace-nowrap">
                 Les Pattes Heureuses
             </x-admin-link>
+
+            <label for="sidebar-toggle" tabindex="0"
+                    class="lg:hidden w-8 h-8 flex items-center justify-center rounded-lg text-white hover:bg-white/10 cursor-pointer">
+                <span class="sr-only">{{ __('admin/layout.close_menu') }}</span>
+                <x-icons.close class="w-4 h-4 text-white" fill="fill-current"/>
+            </label>
         </div>
 
-        <nav class="flex-1 flex flex-col gap-1 px-3 mt-2">
+        <nav class="flex-1 min-h-0 flex flex-col gap-0.5 lg:gap-1 px-3 mt-1 lg:mt-2">
             <h3 class="sr-only">{{ __('admin/layout.nav_title') }}</h3>
 
             <x-admin-nav-link :href="route('admin.dashboard', ['locale' => app()->getLocale()])"
@@ -67,7 +76,7 @@
             @endcan
 
             @if (auth()->user()->isAdmin())
-                <p class="px-3 mt-4 mb-1 font-sans text-xs uppercase tracking-wide text-white/40">
+                <p class="px-3 mt-2 lg:mt-4 mb-1 font-sans text-xs uppercase tracking-wide text-white/40">
                     {{ __('admin/layout.admin_section') }}
                 </p>
             @endif
@@ -96,7 +105,15 @@
 
         </nav>
 
-        <div class="px-3 py-4 border-t border-white/15 flex flex-col gap-1">
+        <div class="px-3 py-2 lg:py-4 border-t border-white/15 flex items-center justify-between shrink-0">
+            <span class="font-sans text-xs uppercase tracking-wide text-white/40">{{ __('admin/layout.language') }}</span>
+
+            <x-public.navigation.language.dropdown
+                summary-class="capitalize cursor-pointer px-3 py-1.5 rounded-lg font-sans text-sm font-semibold text-white/80 hover:bg-white/10 hover:text-white"
+                list-class="capitalize min-w-max absolute right-0 bottom-full mb-2 bg-white border shadow rounded" />
+        </div>
+
+        <div class="px-3 py-2 lg:py-4 border-t border-white/15 flex flex-col gap-0.5 lg:gap-1 shrink-0">
             <x-admin-nav-link :href="route('admin.profile', ['locale' => app()->getLocale()])"
                               :active="request()->routeIs('admin.profile')">
                 <span
@@ -115,7 +132,7 @@
             <form method="POST" action="{{ route('logout', ['locale' => app()->getLocale()]) }}">
                 @csrf
                 <button type="submit"
-                        class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-white/80 hover:bg-white/10 hover:text-white cursor-pointer whitespace-nowrap">
+                        class="w-full text-left flex items-center gap-3 px-3 py-1.5 lg:py-2 rounded-lg font-serif text-white/80 hover:bg-white/10 hover:text-white cursor-pointer whitespace-nowrap">
                     <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.sign-out class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>{{ __('admin/layout.logout') }}</span>
                 </button>
@@ -123,9 +140,24 @@
         </div>
     </aside>
 
-    <main id="main-content" class="flex-1 p-8 min-w-0">
-        {{ $slot }}
-    </main>
+    <div class="flex-1 min-w-0 flex flex-col">
+        <div class="lg:hidden sticky top-0 z-30 flex items-center justify-between px-4 py-3 bg-red-strong">
+            <x-admin-link :href="route('admin.dashboard', ['locale' => app()->getLocale()])"
+                          class="font-sans font-black text-lg text-white whitespace-nowrap">
+                Les Pattes Heureuses
+            </x-admin-link>
+
+            <label for="sidebar-toggle" tabindex="0"
+                    class="w-10 h-10 flex items-center justify-center rounded-lg text-white hover:bg-white/10 cursor-pointer">
+                <span class="sr-only">{{ __('admin/layout.open_menu') }}</span>
+                <x-icons.burger class="w-6 h-6 text-white" fill="fill-current"/>
+            </label>
+        </div>
+
+        <main id="main-content" class="flex-1 p-8 min-w-0">
+            {{ $slot }}
+        </main>
+    </div>
 </div>
 
 <livewire:widgets::modal/>

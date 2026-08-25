@@ -13,4 +13,7 @@ return [
     'volunteers' => 'Vrijwilligers',
     'volunteer_applications' => 'Aanmeldingen',
     'logout' => 'Uitloggen',
+    'open_menu' => 'Menu openen',
+    'close_menu' => 'Menu sluiten',
+    'language' => 'Taal',
 ];

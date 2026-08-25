@@ -13,4 +13,7 @@ return [
     'volunteers' => 'Volunteers',
     'volunteer_applications' => 'Applications',
     'logout' => 'Log out',
+    'open_menu' => 'Open menu',
+    'close_menu' => 'Close menu',
+    'language' => 'Language',
 ];

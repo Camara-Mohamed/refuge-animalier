@@ -1,3 +1,8 @@
+@props([
+    'summaryClass' => 'capitalize cursor-pointer px-3 py-2 font-semibold text-blue-strong hover:text-red-strong',
+    'listClass' => 'capitalize min-w-max absolute right-0 mt-2 bg-white border shadow rounded',
+])
+
 <nav aria-label="Choisir une langue">
     <h3 class="sr-only">{{ __('public/navigation/lang.change_language') }}</h3>
     @php
@@ -6,11 +11,11 @@
     @endphp
 
     <details class="relative">
-        <summary title="{{ __('public/navigation/lang.change_language') }}" class="capitalize cursor-pointer px-3 py-2 font-semibold text-blue-strong hover:text-red-strong">
+        <summary title="{{ __('public/navigation/lang.change_language') }}" class="{{ $summaryClass }}">
             {{ app()->getLocale() }}
         </summary>
 
-        <ul class="capitalize min-w-max absolute right-0 mt-2 bg-white border shadow rounded">
+        <ul class="{{ $listClass }}">
             @foreach(config('app.locales') as $locale)
                 <li class="text-[0.75rem]">
                     <x-public.navigation.link

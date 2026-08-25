@@ -34,6 +34,7 @@
         @endcan
     </div>
 
+    <div class="overflow-x-auto">
     <table class="w-full">
         <thead>
             <tr class="border-b border-gray-200">
@@ -84,6 +85,7 @@
             @endforelse
         </tbody>
     </table>
+    </div>
 
     <div class="mt-6">
         {{ $adoptions->links() }}

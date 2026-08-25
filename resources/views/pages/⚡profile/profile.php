@@ -107,14 +107,25 @@ new #[Title('Mon profil')] class extends Component
             'number' => $this->number,
             'city' => $this->city,
             'code_postal' => $this->code_postal,
-            'receive_emails' => $this->receive_emails,
         ]);
 
-        if ($user->wasChanged(['name', 'address', 'number', 'city', 'code_postal', 'receive_emails'])) {
+        if ($user->wasChanged(['name', 'address', 'number', 'city', 'code_postal'])) {
             $this->notifyAdmins($user);
         }
 
         session()->flash('success_info', 'Informations mises à jour avec succès !');
+    }
+
+    public function saveNotifications(): void
+    {
+        $user = auth()->user();
+        $user->update(['receive_emails' => $this->receive_emails]);
+
+        if ($user->wasChanged('receive_emails')) {
+            $this->notifyAdmins($user);
+        }
+
+        session()->flash('success_notifications', 'Préférences mises à jour avec succès !');
     }
 
     public function saveEmail(): void

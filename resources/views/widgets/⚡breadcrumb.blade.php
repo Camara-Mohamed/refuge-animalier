@@ -9,6 +9,7 @@ new class extends Component
 ?>
 
 <nav aria-label="Fil d'ariane" class="flex items-center flex-wrap gap-1">
+    <h2 class="sr-only">Fil d'ariane</h2>
     @foreach ($items as $item)
         @if (! $loop->last)
             <x-admin-link :href="$item['url']"

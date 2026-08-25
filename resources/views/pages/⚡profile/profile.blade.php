@@ -4,13 +4,13 @@
         ['label' => __('breadcrumbs.profile'), 'url' => route('admin.profile', ['locale' => app()->getLocale()])],
     ]" :key="'profile-breadcrumb'" />
 
-    <h2 class="font-serif font-bold text-2xl text-blue-strong">Mon profil</h2>
+    <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ __('admin/profile.title') }}</h2>
 
     <div class="flex flex-col gap-6 max-w-2xl">
         <form wire:submit="saveAvatar" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
             <x-flash key="success_avatar" />
 
-            <x-forms.fieldset title="Photo de profil">
+            <x-forms.fieldset title="{{ __('admin/profile.photo_title') }}">
                 <div class="flex items-center gap-4">
                     <span class="w-16 h-16 rounded-full bg-red-light flex items-center justify-center overflow-hidden shrink-0">
                         @if ($avatarFile)
@@ -29,7 +29,7 @@
 
                         @if ($avatarFile)
                             <button type="button" wire:click="removeNewAvatar" class="font-sans text-sm text-red-normal hover:text-red-strong w-fit cursor-pointer">
-                                Annuler la nouvelle photo
+                                {{ __('admin/profile.cancel_new_photo') }}
                             </button>
                         @endif
                     </div>
@@ -38,97 +38,97 @@
 
             <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
                 hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
-                Enregistrer la photo
+                {{ __('admin/profile.save_photo') }}
             </x-forms.button>
         </form>
 
         <form wire:submit="saveInfo" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
             <x-flash key="success_info" />
 
-            <x-forms.fieldset title="Nom">
+            <x-forms.fieldset title="{{ __('admin/profile.name_title') }}">
                 <x-forms.input for="name" wire:model="name" type="text" :required="true">
-                    Nom
+                    {{ __('admin/profile.name') }}
                 </x-forms.input>
             </x-forms.fieldset>
 
-            <x-forms.fieldset title="Adresse">
+            <x-forms.fieldset title="{{ __('admin/profile.address_title') }}">
                 <div class="grid grid-cols-2 gap-4">
                     <x-forms.input for="address" wire:model="address" type="text">
-                        Rue
+                        {{ __('admin/profile.street') }}
                     </x-forms.input>
 
                     <x-forms.input for="number" wire:model="number" type="text">
-                        Numéro
+                        {{ __('admin/profile.number') }}
                     </x-forms.input>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <x-forms.input for="city" wire:model="city" type="text">
-                        Ville
+                        {{ __('admin/profile.city') }}
                     </x-forms.input>
 
                     <x-forms.input for="code_postal" wire:model="code_postal" type="text">
-                        Code postal
+                        {{ __('admin/profile.postal_code') }}
                     </x-forms.input>
                 </div>
             </x-forms.fieldset>
 
             <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
                 hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
-                Enregistrer les informations
+                {{ __('admin/profile.save_info') }}
             </x-forms.button>
         </form>
 
         <form wire:submit="saveNotifications" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
             <x-flash key="success_notifications" />
 
-            <x-forms.fieldset title="Notifications">
+            <x-forms.fieldset title="{{ __('admin/profile.notifications_title') }}">
                 <label class="flex items-center gap-2 font-serif text-sm text-blue-strong">
                     <input type="checkbox" id="receive_emails" wire:model="receive_emails">
-                    Recevoir des emails de notification
+                    {{ __('admin/profile.receive_emails') }}
                 </label>
             </x-forms.fieldset>
 
             <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
                 hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
-                Enregistrer
+                {{ __('admin/profile.save') }}
             </x-forms.button>
         </form>
 
         <form wire:submit="saveEmail" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
             <x-flash key="success_email" />
 
-            <x-forms.fieldset title="Email">
+            <x-forms.fieldset title="{{ __('admin/profile.email_title') }}">
                 <x-forms.input for="email" wire:model="email" type="email" :required="true">
-                    Email
+                    {{ __('admin/profile.email') }}
                 </x-forms.input>
             </x-forms.fieldset>
 
             <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
                 hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
-                Enregistrer l'email
+                {{ __('admin/profile.save_email') }}
             </x-forms.button>
         </form>
 
         <form wire:submit="savePassword" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
             <x-flash key="success_password" />
 
-            <x-forms.fieldset title="Mot de passe">
+            <x-forms.fieldset title="{{ __('admin/profile.password_title') }}">
                 <x-forms.input for="password" wire:model="password" type="password" placeholder="••••••••">
-                    Nouveau mot de passe
+                    {{ __('admin/profile.new_password') }}
                 </x-forms.input>
             </x-forms.fieldset>
 
             <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
                 hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
-                Enregistrer le mot de passe
+                {{ __('admin/profile.save_password') }}
             </x-forms.button>
         </form>
 
         <form wire:submit="saveAvailabilities" class="flex flex-col gap-4 p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
             <x-flash key="success_availabilities" />
 
-            <x-forms.fieldset title="Disponibilités">
+            <x-forms.fieldset title="{{ __('admin/profile.availabilities_title') }}">
                 <div class="flex flex-wrap gap-2">
                     @foreach (\App\Enums\Day::cases() as $day)
                         <label for="availability-{{ $day->value }}"
@@ -142,7 +142,7 @@
 
             <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
                 hover:bg-white hover:text-red-strong hover:border-red-strong w-fit text-sm px-4 py-2">
-                Enregistrer les disponibilités
+                {{ __('admin/profile.save_availabilities') }}
             </x-forms.button>
         </form>
     </div>

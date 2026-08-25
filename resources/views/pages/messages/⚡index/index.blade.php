@@ -6,19 +6,19 @@
 
     <x-flash />
 
-    <h2 class="font-serif font-bold text-2xl text-blue-strong">Messages</h2>
+    <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ __('admin/messages.index_title') }}</h2>
 
     <div class="flex items-center gap-4 flex-wrap">
-        <x-forms.input for="search" type="text" placeholder="Rechercher un nom ou un sujet..."
+        <x-forms.input for="search" type="text" placeholder="{{ __('admin/messages.search_placeholder') }}"
                         wire:model.live.debounce.300ms="search" class="w-64">
-            <span class="sr-only">Rechercher</span>
+            <span class="sr-only">{{ __('admin/common.search') }}</span>
         </x-forms.input>
 
         <x-filter-panel>
-            <x-forms.select for="statusFilter" wire:model.live="statusFilter" label_title="Filtrer par statut">
-                <option value="">Tous les statuts</option>
-                <option value="unread">Non lu</option>
-                <option value="read">Lu</option>
+            <x-forms.select for="statusFilter" wire:model.live="statusFilter" label_title="{{ __('admin/messages.filter_status') }}">
+                <option value="">{{ __('admin/messages.all_statuses') }}</option>
+                <option value="unread">{{ __('admin/messages.unread') }}</option>
+                <option value="read">{{ __('admin/messages.read') }}</option>
             </x-forms.select>
         </x-filter-panel>
     </div>
@@ -32,7 +32,7 @@
                         {{ $message->name }}
                     </span>
                     <x-badge :color="$message->isRead() ? 'bg-gray-100 text-gray-600' : 'bg-red-strong/10 text-red-strong'">
-                        {{ $message->isRead() ? 'Lu' : 'Non lu' }}
+                        {{ $message->isRead() ? __('admin/messages.read') : __('admin/messages.unread') }}
                     </x-badge>
                 </div>
 
@@ -45,16 +45,16 @@
                 <div class="flex items-center gap-4 mt-2 pt-2 border-t border-red-strong/10">
                     <x-admin-link :href="route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message])"
                        class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
-                        Voir
+                        {{ __('admin/common.view') }}
                     </x-admin-link>
                     <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $message->id }}', model_type: 'message' } })"
                             class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
-                        Supprimer
+                        {{ __('admin/common.delete') }}
                     </button>
                 </div>
             </div>
         @empty
-            <p class="font-sans text-blue-strong/70">Aucun message pour le moment.</p>
+            <p class="font-sans text-blue-strong/70">{{ __('admin/messages.no_messages') }}</p>
         @endforelse
     </div>
 

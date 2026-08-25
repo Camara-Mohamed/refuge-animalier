@@ -6,19 +6,19 @@
 
     <x-flash />
 
-    <h2 class="font-serif font-bold text-2xl text-blue-strong">Candidatures bénévoles</h2>
+    <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ __('admin/volunteer_applications.index_title') }}</h2>
 
     <div class="flex items-start gap-4 flex-wrap">
-        <x-forms.input for="search" type="text" placeholder="Rechercher un nom ou un email..."
+        <x-forms.input for="search" type="text" placeholder="{{ __('admin/volunteer_applications.search_placeholder') }}"
                         wire:model.live.debounce.300ms="search" class="w-64">
-            <span class="sr-only">Rechercher</span>
+            <span class="sr-only">{{ __('admin/common.search') }}</span>
         </x-forms.input>
 
         <x-filter-panel>
-            <x-forms.select for="statusFilter" wire:model.live="statusFilter" label_title="Filtrer par statut">
-                <option value="">Tous les statuts</option>
-                <option value="unread">Non lue</option>
-                <option value="read">Lue</option>
+            <x-forms.select for="statusFilter" wire:model.live="statusFilter" label_title="{{ __('admin/volunteer_applications.filter_status') }}">
+                <option value="">{{ __('admin/volunteer_applications.all_statuses') }}</option>
+                <option value="unread">{{ __('admin/volunteer_applications.unread') }}</option>
+                <option value="read">{{ __('admin/volunteer_applications.read') }}</option>
             </x-forms.select>
         </x-filter-panel>
     </div>
@@ -32,7 +32,7 @@
                         {{ $application->name }}
                     </span>
                     <x-badge :color="$application->isRead() ? 'bg-gray-100 text-gray-600' : 'bg-red-strong/10 text-red-strong'">
-                        {{ $application->isRead() ? 'Lue' : 'Non lue' }}
+                        {{ $application->isRead() ? __('admin/volunteer_applications.read') : __('admin/volunteer_applications.unread') }}
                     </x-badge>
                 </div>
 
@@ -42,16 +42,16 @@
                 <div class="flex items-center gap-4 mt-2 pt-2 border-t border-red-strong/10">
                     <x-admin-link :href="route('admin.volunteer-applications.show', ['locale' => app()->getLocale(), 'volunteerApplication' => $application])"
                        class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
-                        Voir
+                        {{ __('admin/common.view') }}
                     </x-admin-link>
                     <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $application->id }}', model_type: 'volunteer-application' } })"
                             class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
-                        Supprimer
+                        {{ __('admin/common.delete') }}
                     </button>
                 </div>
             </div>
         @empty
-            <p class="font-sans text-blue-strong/70">Aucune candidature pour le moment.</p>
+            <p class="font-sans text-blue-strong/70">{{ __('admin/volunteer_applications.no_applications') }}</p>
         @endforelse
     </div>
 

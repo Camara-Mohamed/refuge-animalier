@@ -7,17 +7,17 @@
     <x-flash />
 
     <div class="flex items-center justify-between gap-4 flex-wrap">
-        <h2 class="font-serif font-bold text-2xl text-blue-strong">Bénévoles</h2>
+        <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ __('admin/volunteers.index_title') }}</h2>
     </div>
 
     <div class="flex items-center gap-3 flex-wrap">
-        <x-forms.input for="search" type="text" placeholder="Rechercher un nom ou un email..."
+        <x-forms.input for="search" type="text" placeholder="{{ __('admin/volunteers.search_placeholder') }}"
                         wire:model.live.debounce.300ms="search" class="w-64">
-            <span class="sr-only">Rechercher</span>
+            <span class="sr-only">{{ __('admin/common.search') }}</span>
         </x-forms.input>
 
-        <x-forms.select for="roleFilter" wire:model.live="roleFilter" label_title="Filtrer par rôle">
-            <option value="">Tous les rôles</option>
+        <x-forms.select for="roleFilter" wire:model.live="roleFilter" label_title="{{ __('admin/volunteers.filter_role') }}">
+            <option value="">{{ __('admin/volunteers.all_roles') }}</option>
             @foreach (\App\Enums\UserRole::cases() as $role)
                 <option value="{{ $role->value }}">{{ $role->label() }}</option>
             @endforeach
@@ -28,7 +28,7 @@
                           class="px-4 h-[50px] flex items-center rounded-lg bg-red-strong text-white font-sans text-sm
                           font-semibold
                           hover:bg-red-normal">
-                Créer un profil
+                {{ __('admin/volunteers.create_profile') }}
             </x-admin-link>
         @endcan
     </div>
@@ -47,12 +47,12 @@
                 <div class="flex items-center gap-4 mt-2 pt-2 border-t border-red-strong/10">
                     <x-admin-link :href="route('admin.volunteers.show', ['locale' => app()->getLocale(), 'volunteer' => $volunteer])"
                        class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
-                        Voir
+                        {{ __('admin/common.view') }}
                     </x-admin-link>
                 </div>
             </div>
         @empty
-            <p class="font-sans text-blue-strong/70">Aucun bénévole trouvé.</p>
+            <p class="font-sans text-blue-strong/70">{{ __('admin/volunteers.no_volunteers_found') }}</p>
         @endforelse
     </div>
 

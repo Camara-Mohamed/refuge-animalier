@@ -17,14 +17,14 @@
             @can('update', $volunteer)
                 <x-admin-link :href="route('admin.volunteers.edit', ['locale' => app()->getLocale(), 'volunteer' => $volunteer])"
                    class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
-                    Modifier
+                    {{ __('admin/common.edit') }}
                 </x-admin-link>
             @endcan
 
             @can('delete', $volunteer)
                 <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $volunteer->id }}', model_type: 'volunteer' } })"
                         class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
-                    Supprimer
+                    {{ __('admin/common.delete') }}
                 </button>
             @endcan
         </div>
@@ -35,13 +35,13 @@
             <img src="{{ Storage::url($volunteer->avatar) }}" alt="{{ $volunteer->name }}" width="80" class="rounded-full" loading="lazy">
         @endif
 
-        <x-data-row label="Email">{{ $volunteer->email }}</x-data-row>
-        <x-data-row label="Téléphone">{{ $volunteer->phone ?? '-' }}</x-data-row>
-        <x-data-row label="Adresse">{{ $volunteer->address ?? '-' }} {{ $volunteer->number ?? '' }}, {{ $volunteer->code_postal ?? '' }} {{ $volunteer->city ?? '' }}</x-data-row>
+        <x-data-row label="{{ __('admin/volunteers.email') }}">{{ $volunteer->email }}</x-data-row>
+        <x-data-row label="{{ __('admin/volunteers.phone') }}">{{ $volunteer->phone ?? '-' }}</x-data-row>
+        <x-data-row label="{{ __('admin/volunteers.address') }}">{{ $volunteer->address ?? '-' }} {{ $volunteer->number ?? '' }}, {{ $volunteer->code_postal ?? '' }} {{ $volunteer->city ?? '' }}</x-data-row>
 
         <hr class="border-red-strong/20">
 
-        <x-data-row label="Disponibilités">
+        <x-data-row label="{{ __('admin/volunteers.availabilities') }}">
             {{ collect($volunteer->availabilities ?? [])->map(fn ($day) => \App\Enums\Day::from($day)->label())->implode(', ') ?: '-' }}
         </x-data-row>
     </div>

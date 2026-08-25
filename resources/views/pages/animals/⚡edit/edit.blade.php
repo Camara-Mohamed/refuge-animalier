@@ -6,24 +6,24 @@
         ['label' => __('breadcrumbs.edit'), 'url' => '#'],
     ]" :key="'animals-edit-breadcrumb'" />
 
-    <h2 class="font-serif font-bold text-2xl text-blue-strong">Modifier {{ $animal->name }}</h2>
+    <h2 class="font-serif font-bold text-2xl text-blue-strong">{{ __('admin/animals.edit_title', ['name' => $animal->name]) }}</h2>
 
     <form wire:submit="save" class="flex flex-col gap-6 max-w-2xl p-6 md:p-8 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20">
-        <x-forms.fieldset title="Informations générales">
+        <x-forms.fieldset title="{{ __('admin/animals.general_info') }}">
             <x-forms.input for="name" wire:model="name" type="text" :required="true">
-                Nom
+                {{ __('admin/animals.name') }}
             </x-forms.input>
 
             <x-forms.textarea for="description" wire:model="description">
-                Description
+                {{ __('admin/animals.description') }}
             </x-forms.textarea>
         </x-forms.fieldset>
 
-        <x-forms.fieldset title="Catégorisation">
+        <x-forms.fieldset title="{{ __('admin/animals.categorization') }}">
             <div class="flex flex-col gap-2">
-                <label for="specie_id" class="font-medium font-serif text-blue-strong">Espèce</label>
+                <label for="specie_id" class="font-medium font-serif text-blue-strong">{{ __('admin/animals.species') }}</label>
                 <x-forms.select for="specie_id" wire:model="specie_id" class="w-full">
-                    <option value="">-- aucune --</option>
+                    <option value="">{{ __('admin/animals.none_f') }}</option>
                     @foreach ($species as $specie)
                         <option value="{{ $specie->id }}">{{ $specie->name }}</option>
                     @endforeach
@@ -31,9 +31,9 @@
             </div>
 
             <div class="flex flex-col gap-2">
-                <label for="race_id" class="font-medium font-serif text-blue-strong">Race</label>
+                <label for="race_id" class="font-medium font-serif text-blue-strong">{{ __('admin/animals.race') }}</label>
                 <x-forms.select for="race_id" wire:model="race_id" class="w-full">
-                    <option value="">-- aucune --</option>
+                    <option value="">{{ __('admin/animals.none_f') }}</option>
                     @foreach ($races as $race)
                         <option value="{{ $race->id }}">{{ $race->name }}</option>
                     @endforeach
@@ -41,9 +41,9 @@
             </div>
 
             <div class="flex flex-col gap-2">
-                <label for="coat_id" class="font-medium font-serif text-blue-strong">Pelage</label>
+                <label for="coat_id" class="font-medium font-serif text-blue-strong">{{ __('admin/animals.coat') }}</label>
                 <x-forms.select for="coat_id" wire:model="coat_id" class="w-full">
-                    <option value="">-- aucun --</option>
+                    <option value="">{{ __('admin/animals.none_m') }}</option>
                     @foreach ($coats as $coat)
                         <option value="{{ $coat->id }}">{{ $coat->name }}</option>
                     @endforeach
@@ -51,9 +51,9 @@
             </div>
         </x-forms.fieldset>
 
-        <x-forms.fieldset title="Photo">
+        <x-forms.fieldset title="{{ __('admin/animals.photo') }}">
             <div class="flex flex-col gap-2">
-                <label for="avatarFile" class="font-medium font-serif text-blue-strong">Remplacer la photo principale</label>
+                <label for="avatarFile" class="font-medium font-serif text-blue-strong">{{ __('admin/animals.replace_main_photo') }}</label>
                 @if ($animal->avatar && ! $avatarFile)
                     <img src="{{ $animal->avatarUrl(320) }}" width="150" class="rounded-lg">
                 @endif
@@ -68,7 +68,7 @@
 
         <x-forms.button type="submit" class="bg-red-strong border-red-strong text-white
             hover:bg-white hover:text-red-strong hover:border-red-strong w-fit">
-            Enregistrer
+            {{ __('admin/animals.save') }}
         </x-forms.button>
     </form>
 </div>

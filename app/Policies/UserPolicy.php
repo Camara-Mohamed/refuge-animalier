@@ -25,8 +25,7 @@ class UserPolicy
     /**
      * Determine whether the user can create models.
      *
-     * Only admins manually create volunteer accounts (outside the
-     * candidature flow) — see VolunteerApplication.
+     * Only admins manually create volunteer accounts
      */
     public function create(User $user): bool
     {

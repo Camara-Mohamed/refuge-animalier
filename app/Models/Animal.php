@@ -40,18 +40,6 @@ class Animal extends Model
         return $this->birth_date?->age;
     }
 
-    /**
-     * Les animaux seedés ont un chemin d'asset public en dur
-     * (ex: assets/img/public/animals/dogs/dog_1.webp), tandis que les
-     * photos réellement uploadées via le formulaire passent par le
-     * disque "public" (storage/app/public). On distingue les deux ici.
-     *
-     * Dans les deux cas, plusieurs tailles existent (320/640/1280) —
-     * pour le seed en suffixe de fichier, pour les uploads via
-     * ProcessUploadedImageJob dans animals/variants/{taille}/.
-     * On sert la bonne taille selon le contexte au lieu de toujours
-     * charger l'originale.
-     */
     public function avatarUrl(?int $size = null): ?string
     {
         if (! $this->avatar) {
@@ -82,10 +70,6 @@ class Animal extends Model
         return Storage::url($this->avatar);
     }
 
-    /**
-     * Attribut srcset (descripteurs de largeur), pour laisser le
-     * navigateur choisir la taille adaptée, comme dans le fil rouge.
-     */
     public function avatarSrcset(): ?string
     {
         if (! $this->avatar) {

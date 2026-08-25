@@ -17,14 +17,14 @@
             @can('update', $animal)
                 <x-admin-link :href="route('admin.animals.edit', ['locale' => app()->getLocale(), 'animal' => $animal])"
                    class="font-sans text-sm font-semibold text-blue-strong hover:text-red-strong">
-                    Modifier
+                    {{ __('admin/common.edit') }}
                 </x-admin-link>
             @endcan
 
             @can('delete', $animal)
                 <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $animal->id }}', model_type: 'animal', model_label: @js($animal->name) } })"
                         class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
-                    Supprimer
+                    {{ __('admin/common.delete') }}
                 </button>
             @endcan
         </div>
@@ -36,19 +36,19 @@
                  alt="{{ $animal->name }}" width="250" class="rounded-lg" loading="lazy">
         @endif
 
-        <x-data-row label="Sexe">{{ $animal->gender->label() }}</x-data-row>
-        <x-data-row label="Âge">{{ $animal->age() !== null ? $animal->age() . ' an(s)' : '-' }}</x-data-row>
-        <x-data-row label="Puce">{{ $animal->chip ?? '-' }}</x-data-row>
-        <x-data-row label="Espèce">{{ $animal->specie?->name ?? '-' }}</x-data-row>
-        <x-data-row label="Race">{{ $animal->race?->name ?? '-' }}</x-data-row>
-        <x-data-row label="Pelage">{{ $animal->coat?->name ?? '-' }}</x-data-row>
-        <x-data-row label="Ajouté par">{{ $animal->user?->fullName() ?? '-' }}</x-data-row>
+        <x-data-row label="{{ __('admin/animals.show_gender') }}">{{ $animal->gender->label() }}</x-data-row>
+        <x-data-row label="{{ __('admin/animals.show_age') }}">{{ $animal->age() !== null ? __('admin/animals.age_years', ['count' => $animal->age()]) : '-' }}</x-data-row>
+        <x-data-row label="{{ __('admin/animals.chip') }}">{{ $animal->chip ?? '-' }}</x-data-row>
+        <x-data-row label="{{ __('admin/animals.species') }}">{{ $animal->specie?->name ?? '-' }}</x-data-row>
+        <x-data-row label="{{ __('admin/animals.race') }}">{{ $animal->race?->name ?? '-' }}</x-data-row>
+        <x-data-row label="{{ __('admin/animals.coat') }}">{{ $animal->coat?->name ?? '-' }}</x-data-row>
+        <x-data-row label="{{ __('admin/animals.added_by') }}">{{ $animal->user?->fullName() ?? '-' }}</x-data-row>
 
         @if ($animal->description)
             <hr class="border-red-strong/20">
 
             <div class="flex flex-col gap-1">
-                <span class="font-sans font-bold text-blue-strong">Description</span>
+                <span class="font-sans font-bold text-blue-strong">{{ __('admin/animals.description') }}</span>
                 <p class="font-sans text-blue-strong whitespace-pre-line">{{ $animal->description }}</p>
             </div>
         @endif
@@ -56,7 +56,7 @@
 
     @can('update', $animal)
         <div class="flex flex-col gap-2 max-w-2xl">
-            <span class="font-serif font-semibold text-blue-strong">Changer le statut</span>
+            <span class="font-serif font-semibold text-blue-strong">{{ __('admin/animals.change_status') }}</span>
             <div class="flex flex-wrap gap-2">
                 @foreach (\App\Enums\AnimalStatus::cases() as $status)
                     <button wire:click="changeStatus('{{ $status->value }}')"
@@ -70,7 +70,7 @@
     @endcan
 
     <div class="flex flex-col gap-2 max-w-2xl">
-        <h2 class="font-serif font-bold text-lg text-blue-strong">Notes</h2>
+        <h2 class="font-serif font-bold text-lg text-blue-strong">{{ __('admin/animals.notes') }}</h2>
 
         <ul class="flex flex-col gap-3">
             @forelse ($notes as $note)
@@ -85,23 +85,23 @@
                     @can('delete', $note)
                         <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $note->id }}', model_type: 'animal-note' } })"
                                 class="shrink-0 font-sans text-sm text-red-normal hover:text-red-strong cursor-pointer">
-                            Supprimer
+                            {{ __('admin/common.delete') }}
                         </button>
                     @endcan
                 </li>
             @empty
-                <li class="font-sans text-sm text-blue-strong/40">Pas encore de note.</li>
+                <li class="font-sans text-sm text-blue-strong/40">{{ __('admin/animals.no_notes_yet') }}</li>
             @endforelse
         </ul>
 
         @can('create', \App\Models\Note::class)
             <form wire:submit="addNote" class="flex flex-col gap-2">
-                <textarea wire:model="newNote" placeholder="Ajouter une note..." rows="3"
+                <textarea wire:model="newNote" placeholder="{{ __('admin/animals.add_note_placeholder') }}" rows="3"
                           class="w-full px-4 py-2 rounded-lg border border-gray-200 font-sans text-sm text-blue-strong focus:outline-none focus:border-red-strong"></textarea>
                 @error('newNote') <p class="font-sans text-sm text-red-normal">{{ $message }}</p> @enderror
                 <button type="submit"
                         class="self-end px-4 py-2 rounded-lg font-sans font-bold text-sm text-white bg-red-strong hover:bg-red-normal cursor-pointer">
-                    Ajouter une note
+                    {{ __('admin/animals.add_note') }}
                 </button>
             </form>
         @endcan

@@ -13,11 +13,18 @@ new #[Title('Adoptions')] class extends Component
 {
     use WithPagination;
 
+    public string $search = '';
+
     public string $statusFilter = '';
 
     public function mount(): void
     {
         $this->authorize('viewAny', Adoption::class);
+    }
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
     }
 
     public function updatingStatusFilter(): void
@@ -55,6 +62,10 @@ new #[Title('Adoptions')] class extends Component
     {
         $adoptions = Adoption::query()
             ->with(['adopter', 'animal'])
+            ->when($this->search, fn ($q) => $q->where(function ($q) {
+                $q->whereHas('adopter', fn ($q) => $q->where('name', 'like', "%{$this->search}%"))
+                    ->orWhereHas('animal', fn ($q) => $q->where('name', 'like', "%{$this->search}%"));
+            }))
             ->when($this->statusFilter, fn ($q) => $q->where('status', $this->statusFilter))
             ->latest()
             ->paginate(10);

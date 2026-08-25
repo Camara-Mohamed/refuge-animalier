@@ -2,13 +2,13 @@
     'for' => '',
     'type' => '',
     'class_label' => 'font-medium font-serif',
-    'class_input' => 'px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-strong focus:border-2',
+    'class_input' => 'h-[50px] px-4 border border-gray-300 rounded-lg focus:outline-none focus:border-red-strong focus:border-2',
     'required' => false,
     'placeholder' => '',
     'value' => null,
 ])
 
-<div class="flex flex-col gap-2">
+<div class="flex flex-col">
     <label for="{{ $for }}" class="{{ $class_label }}">
         {{ $slot }}
 

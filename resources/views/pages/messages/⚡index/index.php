@@ -10,9 +10,23 @@ new #[Title('Messages')] class extends Component
 {
     use WithPagination;
 
+    public string $search = '';
+
+    public string $statusFilter = '';
+
     public function mount(): void
     {
         $this->authorize('viewAny', Message::class);
+    }
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingStatusFilter(): void
+    {
+        $this->resetPage();
     }
 
     public function delete(Message $message): void
@@ -32,8 +46,18 @@ new #[Title('Messages')] class extends Component
 
     public function with(): array
     {
+        $messages = Message::query()
+            ->when($this->search, fn ($q) => $q->where(function ($q) {
+                $q->where('name', 'like', "%{$this->search}%")
+                    ->orWhere('subject', 'like', "%{$this->search}%");
+            }))
+            ->when($this->statusFilter === 'read', fn ($q) => $q->whereNotNull('read_at'))
+            ->when($this->statusFilter === 'unread', fn ($q) => $q->whereNull('read_at'))
+            ->latest()
+            ->paginate(10);
+
         return [
-            'messages' => Message::query()->latest()->paginate(10),
+            'messages' => $messages,
         ];
     }
 };

@@ -25,9 +25,6 @@ class RacePolicy
 
     /**
      * Determine whether the user can create models.
-     *
-     * Both admins and volunteers may propose a race inline from the animal
-     * form — the resulting record still needs admin approval (see `approve`).
      */
     public function create(User $user): bool
     {

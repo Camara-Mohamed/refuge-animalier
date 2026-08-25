@@ -6,53 +6,57 @@
 
     <x-flash />
 
-    <h1 class="font-serif font-bold text-2xl text-blue-strong">Messages</h1>
+    <h2 class="font-serif font-bold text-2xl text-blue-strong">Messages</h2>
 
-    <table class="w-full">
-        <thead>
-            <tr class="border-b border-gray-200">
-                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">De</th>
-                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Sujet</th>
-                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Reçu le</th>
-                <th class="text-left font-sans text-sm text-blue-strong/70 py-2">Statut</th>
-                <th class="py-2"></th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100">
-            @forelse ($messages as $message)
-                <tr wire:key="message-{{ $message->id }}">
-                    <td class="py-2 font-sans {{ $message->isRead() ? 'text-blue-strong/70' : 'font-bold text-blue-strong' }}">
+    <div class="flex items-center gap-4 flex-wrap">
+        <x-forms.input for="search" type="text" placeholder="Rechercher un nom ou un sujet..."
+                        wire:model.live.debounce.300ms="search" class="w-64">
+            <span class="sr-only">Rechercher</span>
+        </x-forms.input>
+
+        <x-filter-panel>
+            <x-forms.select for="statusFilter" wire:model.live="statusFilter" label_title="Filtrer par statut">
+                <option value="">Tous les statuts</option>
+                <option value="unread">Non lu</option>
+                <option value="read">Lu</option>
+            </x-forms.select>
+        </x-filter-panel>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @forelse ($messages as $message)
+            <div wire:key="message-{{ $message->id }}"
+                 class="p-4 bg-white rounded-lg shadow-[0px_5px_20px_0px_rgba(0,0,0,0.10)] border border-red-strong/20 flex flex-col gap-2">
+                <div class="flex items-start justify-between gap-2">
+                    <span class="font-sans {{ $message->isRead() ? 'text-blue-strong/70' : 'font-bold text-blue-strong' }}">
                         {{ $message->name }}
-                    </td>
-                    <td class="py-2 font-sans {{ $message->isRead() ? 'text-blue-strong/70' : 'font-bold text-blue-strong' }}">
-                        {{ $message->subject ?? '—' }}
-                    </td>
-                    <td class="py-2 font-sans text-blue-strong/70">{{ $message->created_at->format('d/m/Y H:i') }}</td>
-                    <td class="py-2">
-                        <x-badge :color="$message->isRead() ? 'bg-gray-100 text-gray-600' : 'bg-red-strong/10 text-red-strong'">
-                            {{ $message->isRead() ? 'Lu' : 'Non lu' }}
-                        </x-badge>
-                    </td>
-                    <td class="py-2 text-right flex items-center justify-end gap-4">
-                        <x-admin-link :href="route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message])"
-                           class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
-                            Voir
-                        </x-admin-link>
-                        <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $message->id }}', model_type: 'message' } })"
-                                class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
-                            Supprimer
-                        </button>
-                    </td>
-                </tr>
-            @empty
-                <tr>
-                    <td colspan="5" class="py-6 text-center font-sans text-blue-strong/70">
-                        Aucun message pour le moment.
-                    </td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+                    </span>
+                    <x-badge :color="$message->isRead() ? 'bg-gray-100 text-gray-600' : 'bg-red-strong/10 text-red-strong'">
+                        {{ $message->isRead() ? 'Lu' : 'Non lu' }}
+                    </x-badge>
+                </div>
+
+                <span class="font-sans text-sm {{ $message->isRead() ? 'text-blue-strong/70' : 'font-bold text-blue-strong' }}">
+                    {{ $message->subject ?? '-' }}
+                </span>
+
+                <span class="font-sans text-xs text-blue-strong/50">{{ $message->created_at->format('d/m/Y H:i') }}</span>
+
+                <div class="flex items-center gap-4 mt-2 pt-2 border-t border-red-strong/10">
+                    <x-admin-link :href="route('admin.messages.show', ['locale' => app()->getLocale(), 'message' => $message])"
+                       class="font-sans text-sm font-semibold text-red-strong hover:text-red-normal">
+                        Voir
+                    </x-admin-link>
+                    <button wire:click="$dispatch('open_modal', { payload: { form: 'modals::confirm-delete', model_id: '{{ $message->id }}', model_type: 'message' } })"
+                            class="font-sans text-sm font-semibold text-red-normal hover:text-red-strong cursor-pointer">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+        @empty
+            <p class="font-sans text-blue-strong/70">Aucun message pour le moment.</p>
+        @endforelse
+    </div>
 
     <div>
         {{ $messages->links() }}

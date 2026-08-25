@@ -28,22 +28,24 @@
         <div class="flex items-center justify-center py-6">
             <h2 class="sr-only">Les Pattes Heureuses</h2>
             <x-admin-link :href="route('admin.dashboard', ['locale' => app()->getLocale()])"
-                          class="font-sans font-black text-3xl leading-10 text-white text-center whitespace-nowrap">
-                Les Pattes <br> Heureuses
+                          class="font-sans font-black text-xl leading-6 text-white text-center whitespace-nowrap">
+                Les Pattes Heureuses
             </x-admin-link>
         </div>
 
         <nav class="flex-1 flex flex-col gap-1 px-3 mt-2">
+            <h3 class="sr-only">Navigation Principale</h3>
+
             <x-admin-nav-link :href="route('admin.dashboard', ['locale' => app()->getLocale()])"
                               :active="request()->routeIs('admin.dashboard')">
-                <x-icons.house class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
-                <span>Tableau de bord</span>
+                <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.house class="w-4 h-4 text-white" fill="fill-current"/></span>
+                <span>Dashboard</span>
             </x-admin-nav-link>
 
             @can('manage-animals')
                 <x-admin-nav-link :href="route('admin.animals.index', ['locale' => app()->getLocale()])"
                                   :active="request()->routeIs('admin.animals.*')">
-                    <x-icons.paw-print class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
+                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.paw-print class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>Animaux</span>
                 </x-admin-nav-link>
             @endcan
@@ -51,7 +53,7 @@
             @can('manage-adoptions')
                 <x-admin-nav-link :href="route('admin.adoptions.index', ['locale' => app()->getLocale()])"
                                   :active="request()->routeIs('admin.adoptions.*')">
-                    <x-icons.hand-heart class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
+                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.hand-heart class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>Adoptions</span>
                 </x-admin-nav-link>
             @endcan
@@ -59,7 +61,7 @@
             @can('manage-data')
                 <x-admin-nav-link :href="route('admin.data.index', ['locale' => app()->getLocale()])"
                                   :active="request()->routeIs('admin.data.*')">
-                    <x-icons.database class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
+                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.database class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>Données</span>
                 </x-admin-nav-link>
             @endcan
@@ -73,7 +75,7 @@
             @can('manage-messages')
                 <x-admin-nav-link :href="route('admin.messages.index', ['locale' => app()->getLocale()])"
                                   :active="request()->routeIs('admin.messages.*')">
-                    <x-icons.mail class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
+                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.mail class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>Messages</span>
                 </x-admin-nav-link>
             @endcan
@@ -81,13 +83,13 @@
             @can('manage-volunteers')
                 <x-admin-nav-link :href="route('admin.volunteers.index', ['locale' => app()->getLocale()])"
                                   :active="request()->routeIs('admin.volunteers.*')">
-                    <x-icons.users class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
+                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.users class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>Bénévoles</span>
                 </x-admin-nav-link>
 
                 <x-admin-nav-link :href="route('admin.volunteer-applications.index', ['locale' => app()->getLocale()])"
                                   :active="request()->routeIs('admin.volunteer-applications.*')">
-                    <x-icons.note class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
+                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.note class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>Candidatures</span>
                 </x-admin-nav-link>
             @endcan
@@ -114,7 +116,7 @@
                 @csrf
                 <button type="submit"
                         class="w-full text-left flex items-center gap-3 px-3 py-2 rounded-lg font-serif text-white/80 hover:bg-white/10 hover:text-white cursor-pointer whitespace-nowrap">
-                    <x-icons.sign-out class="w-5 h-5 text-white/80 shrink-0" fill="fill-current"/>
+                    <span class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center shrink-0"><x-icons.sign-out class="w-4 h-4 text-white" fill="fill-current"/></span>
                     <span>Se déconnecter</span>
                 </button>
             </form>

@@ -3,7 +3,7 @@
 ])
 
 <nav class="relative flex items-center justify-between bg-white px-6 md:px-12 lg:px-20 py-4 font-sans border-b-[0.25rem] border-b-red-strong">
-    <h2 class="hidden">{{ __('public/home.main_navigation') }}</h2>
+    <h2 class="sr-only">{{ __('public/home.main_navigation') }}</h2>
 
     {{-- Burger checkbox --}}
     <input type="checkbox" id="nav-toggle" class="sr-only" />

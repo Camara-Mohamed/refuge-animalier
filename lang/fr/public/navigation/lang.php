@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'change_language' => 'Changer de langue',
+
     'fr' => 'FR',
     'switch_fr' => 'Changer la page en : Français',
 

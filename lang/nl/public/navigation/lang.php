@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'change_language' => 'Taal wijzigen',
+
     'fr' => 'FR',
     'switch_fr' => 'Wijzig de pagina naar: Frans',
 

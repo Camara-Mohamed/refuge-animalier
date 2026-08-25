@@ -1,5 +1,6 @@
 @if ($paginator->hasPages())
-    <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex flex-wrap items-center justify-center gap-2 font-sans">
+    <nav role="navigation" aria-label="{{ __('pagination.navigation') }}" class="flex flex-wrap items-center justify-center gap-2 font-sans">
+        <h3 class="sr-only">{{ __('pagination.navigation') }}</h3>
 
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
@@ -8,7 +9,7 @@
                 <x-icons.arrow-left class="w-4 h-4" fill="fill-current" />
             </span>
         @else
-            <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="{{ __('pagination.previous') }}"
+            <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="{{ __('pagination.previous') }}" title="{{ __('pagination.previous') }}"
                class="w-9 h-9 flex items-center justify-center rounded-lg border border-red-strong text-red-strong hover:bg-red-strong hover:text-white transition-colors duration-200">
                 <x-icons.arrow-left class="w-4 h-4" fill="fill-current" />
             </a>
@@ -32,7 +33,7 @@
                             {{ $page }}
                         </span>
                     @else
-                        <a href="{{ $url }}" aria-label="{{ __('Go to page :page', ['page' => $page]) }}"
+                        <a href="{{ $url }}" aria-label="{{ __('Go to page :page', ['page' => $page]) }}" title="{{ __('Go to page :page', ['page' => $page]) }}"
                            class="w-9 h-9 flex items-center justify-center rounded-lg text-sm text-blue-strong hover:bg-red-light transition-colors duration-200">
                             {{ $page }}
                         </a>
@@ -43,7 +44,7 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="{{ __('pagination.next') }}"
+            <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="{{ __('pagination.next') }}" title="{{ __('pagination.next') }}"
                class="w-9 h-9 flex items-center justify-center rounded-lg border border-red-strong text-red-strong hover:bg-red-strong hover:text-white transition-colors duration-200">
                 <x-icons.arrow-right class="w-4 h-4" fill="fill-current" />
             </a>

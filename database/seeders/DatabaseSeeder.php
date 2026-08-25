@@ -243,7 +243,7 @@ class DatabaseSeeder extends Seeder
         });
 
         // les demandes d'adoption
-        $allAnimals->random(6)->each(function (Animal $animal) {
+        $allAnimals->random(min(15, $allAnimals->count()))->each(function (Animal $animal) {
             $adopter = Adopter::factory()->create();
 
             Adoption::factory()->create([
@@ -255,29 +255,32 @@ class DatabaseSeeder extends Seeder
         });
 
         // les messages de contact
-        $messages = [
-            ['subject' => 'Question sur l\'adoption', 'message' => 'Bonjour, est-ce que Rex est encore disponible à l\'adoption ?'],
-            ['subject' => 'Don de nourriture', 'message' => 'Je souhaite faire un don de croquettes, comment procéder ?'],
-            ['subject' => 'Horaires du refuge', 'message' => 'Quels sont vos horaires d\'ouverture le week-end ?'],
-            ['subject' => 'Animal trouvé', 'message' => 'J\'ai trouvé un chat errant, pouvez-vous le prendre en charge ?'],
-            ['subject' => 'Partenariat association', 'message' => 'Nous représentons une association et aimerions organiser un événement commun.'],
-            ['subject' => 'Suivi de dossier', 'message' => 'Je n\'ai pas eu de nouvelles depuis ma demande d\'adoption, pouvez-vous me tenir informé ?'],
+        $subjects = [
+            'Question sur l\'adoption',
+            'Don de nourriture',
+            'Horaires du refuge',
+            'Animal trouvé',
+            'Partenariat association',
+            'Suivi de dossier',
+            'Bénévolat ponctuel',
+            'Demande de parrainage',
+            'Signalement de maltraitance',
+            'Visite du refuge',
+            'Question sur les vaccins',
+            'Remerciements',
+            'Demande de stage',
+            'Problème sur le site',
+            'Don matériel',
         ];
 
-        foreach ($messages as $message) {
-            Message::factory()->create($message);
+        foreach ($subjects as $subject) {
+            Message::factory()->create([
+                'subject' => $subject,
+                'message' => fake()->paragraph(),
+            ]);
         }
 
         // les candidatures bénévoles
-        $applications = [
-            ['name' => 'Claire Dubois', 'email' => 'claire.dubois@example.com'],
-            ['name' => 'Julien Petit', 'email' => 'julien.petit@example.com'],
-            ['name' => 'Nadia Aziz', 'email' => 'nadia.aziz@example.com'],
-            ['name' => 'Marc Lefevre', 'email' => 'marc.lefevre@example.com'],
-        ];
-
-        foreach ($applications as $application) {
-            VolunteerApplication::factory()->create($application);
-        }
+        VolunteerApplication::factory()->count(12)->create();
     }
 }

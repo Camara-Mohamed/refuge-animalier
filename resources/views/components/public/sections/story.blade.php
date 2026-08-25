@@ -16,7 +16,7 @@
             @endisset
         </div>
 
-        <figure class="order-1 md:order-2 min-h-64">
+        <figure class="order-1 md:order-2 h-full min-h-64">
             <x-public.sections.image src="{{ $image }}" alt="{{ $imageAlt }}" />
         </figure>
     </div>

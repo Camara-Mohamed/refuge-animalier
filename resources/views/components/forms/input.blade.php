@@ -3,7 +3,7 @@
     'type' => '',
     'class_label' => 'font-medium font-serif',
     'class_input' => 'px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-red-strong focus:border-2',
-    'required' => 'false',
+    'required' => false,
     'placeholder' => '',
     'value' => null,
 ])

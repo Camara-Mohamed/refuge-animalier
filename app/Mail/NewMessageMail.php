@@ -14,12 +14,12 @@ class NewMessageMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Message $message) {}
+    public function __construct(public Message $contactMessage) {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Nouveau message : '.($this->message->subject ?? $this->message->name),
+            subject: 'Nouveau message : '.($this->contactMessage->subject ?? $this->contactMessage->name),
         );
     }
 

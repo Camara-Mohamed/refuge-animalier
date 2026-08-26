@@ -10,10 +10,7 @@ class AdopterController extends Controller
 {
     public function store($locale, StoreAdopterRequest $request, Animal $animal)
     {
-        $adopter = Adopter::create([
-            ...$request->validated(),
-            'have_garden' => $request->boolean('have_garden'),
-        ]);
+        $adopter = Adopter::create($request->validated());
 
         $adopter->adoption()->create([
             'message' => $adopter->message,

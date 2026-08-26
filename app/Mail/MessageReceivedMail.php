@@ -14,7 +14,7 @@ class MessageReceivedMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Message $message) {}
+    public function __construct(public Message $contactMessage) {}
 
     public function envelope(): Envelope
     {
